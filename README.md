@@ -40,7 +40,7 @@ attribution and license files. No compilation is needed.
 
 ```sh
 make open                    # open the local Project with The98 selected
-make package                 # create theme.gams.zip and SHA256SUMS
+make package                 # build theme.gams.zip and SHA256SUMS in build.nosync/
 make clean                   # remove generated output and downloaded caches
 make serve-docs DOCS_PORT=8080
 make docs
@@ -52,8 +52,9 @@ retaining notices and setting `GAMS_APP_CWD`. Released Project dependencies are
 pinned; no sibling checkout is needed. Documentation uses pinned
 `justgook/wiki` v1.4.0 and requires Node.js 24. Initial downloads need network access.
 
-Packages go to `build.nosync/dist/candidate/`. Output must not already exist; set `OUT=build.nosync/dist/new-candidate` for a fresh
-output directory.
+`make package` depends on `build.nosync/SHA256SUMS` and
+`build.nosync/theme.gams.zip`. Make rebuilds the ZIP when inputs change and
+updates its checksum; otherwise it does nothing.
 
 Build output, documentation, caches and temporary files live in `build.nosync/`.
 Finished Host tools and installed Units stay in `tools/` and `gams_modules/`.

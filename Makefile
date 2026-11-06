@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
 VERSION := 1.0.1
-OUT ?= build.nosync/dist/candidate
+PACKAGE_INPUTS := $(shell find src licenses -print) README.md LICENSE NOTICE Makefile scripts/release.py
 export TMPDIR := $(abspath build.nosync/tmp)
 export PYTHONPYCACHEPREFIX := $(abspath build.nosync/pycache)
 PYTHON ?= python3
@@ -19,8 +19,13 @@ WIKI_ENGINE := $(abspath build.nosync/wiki-$(WIKI_VERSION))
 version:
 	@printf '%s\n' '$(VERSION)'
 
-package: | build.nosync/tmp
-	$(PYTHON) scripts/release.py stage --tag "v$(VERSION)" --out "$(OUT)"
+package: build.nosync/SHA256SUMS build.nosync/theme.gams.zip
+
+build.nosync/theme.gams.zip: $(PACKAGE_INPUTS) | build.nosync/tmp
+	$(PYTHON) scripts/release.py stage --tag "v$(VERSION)" --out "$@"
+
+build.nosync/SHA256SUMS: build.nosync/theme.gams.zip
+	@$(PYTHON) -c 'import hashlib, pathlib, sys; p = pathlib.Path(sys.argv[1]); print(hashlib.sha256(p.read_bytes()).hexdigest() + "  " + p.name)' "$<" > "$@"
 
 clean:
 	@set -eu; \

@@ -71,10 +71,7 @@ for page in pages:
         if release["tag_name"] == sys.argv[1]:
             sys.exit("GitHub Release already exists; use a new version")
 ' "$tag"
-mkdir -p build.nosync/tmp
-out=$(mktemp -d "$PWD/build.nosync/tmp/release.XXXXXX")
-trap 'rm -rf "$out"' EXIT
-make package OUT="$out/candidate"
+make package
 [ -z "$(git status --porcelain)" ] || fail 'checkout changed during preflight'
 [ "$(git rev-parse HEAD)" = "$head" ] || fail 'HEAD changed during preflight'
 [ "$(git symbolic-ref --quiet HEAD)" = "$branch_ref" ] || fail 'branch changed during preflight'

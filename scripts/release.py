@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Package theme files for matching-tag releases."""
 import argparse
-import hashlib
 import io
 import os
 from pathlib import Path, PurePosixPath
@@ -10,10 +9,6 @@ import subprocess
 import urllib.error
 import urllib.request
 import zipfile
-
-
-def digest(data):
-    return hashlib.sha256(data).hexdigest()
 
 
 REPOSITORY = 'kkgams/theme.gams'
@@ -78,7 +73,7 @@ def payload(root, tag):
             if deployed in files:
                 raise ValueError('duplicate deployment output: ' + deployed)
             files[deployed] = data
-    return 'theme.gams.zip', files
+    return files
 
 
 def archive(files):
@@ -93,12 +88,10 @@ def archive(files):
 
 
 def stage(root, out, tag):
-    name, files = payload(root, tag)
-    data = archive(files)
+    data = archive(payload(root, tag))
     reject_symlinks(out.absolute())
-    out.mkdir(parents=True, exist_ok=False)
-    (out / name).write_bytes(data)
-    (out / 'SHA256SUMS').write_text(f'{digest(data)}  {name}\n')
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_bytes(data)
 
 
 def identity(tag):
@@ -133,7 +126,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('command', choices=['stage', 'identity', 'absent'])
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument('--out', type=Path, default=Path('build.nosync/dist/candidate'))
+    parser.add_argument('--out', type=Path, default=Path('build.nosync/theme.gams.zip'))
     parser.add_argument('--tag', required=True)
     args = parser.parse_args()
     if args.command == 'stage':
