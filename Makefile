@@ -13,7 +13,7 @@ WIKI_REPOSITORY := https://github.com/justgook/wiki
 WIKI_MAKEFILE := build/wiki-$(WIKI_VERSION).mk
 WIKI_ENGINE := $(abspath build/wiki-$(WIKI_VERSION))
 
-.PHONY: version package check-package open serve-docs validate-docs build-docs docs
+.PHONY: version package check-package clean open serve-docs validate-docs build-docs docs
 version:
 	@printf '%s\n' '$(VERSION)'
 
@@ -22,6 +22,18 @@ package:
 
 check-package:
 	$(PYTHON) scripts/release.py check --tag "v$(VERSION)" --out "$(OUT)"
+
+clean:
+	@set -eu; \
+		paths='build dist tools gams_modules __pycache__'; \
+		for dir in scripts test; do \
+			if [ ! -L "$$dir" ]; then paths="$$paths $$dir/__pycache__"; fi; \
+		done; \
+		tracked=$$(git ls-files -- $$paths); \
+		if [ -n "$$tracked" ]; then \
+			printf 'Refusing to remove tracked output files:\n%s\n' "$$tracked" >&2; exit 1; \
+		fi; \
+		rm -rf -- $$paths
 
 # Retain an existing app; never update it implicitly.
 tools/gams.app:

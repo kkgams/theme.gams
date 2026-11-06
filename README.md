@@ -41,6 +41,7 @@ attribution and license files. No compilation is needed.
 ```sh
 make open                    # open the local Project with The98 selected
 make package                 # create theme.gams.zip and SHA256SUMS
+make clean                   # remove generated output and downloaded caches
 make serve-docs DOCS_PORT=8080
 make docs
 ```
@@ -53,3 +54,8 @@ pinned; no sibling checkout is needed. Documentation uses pinned
 
 Package output must not already exist; set `OUT=dist/new-candidate` for a fresh
 output directory.
+
+`make clean` removes `build/`, `dist/`, `tools/`, `gams_modules/` and Python
+bytecode caches. It refuses tracked files in those output locations and leaves
+other untracked files alone. The next open/docs commands download their tools
+again when needed.

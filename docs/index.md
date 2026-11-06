@@ -49,6 +49,13 @@ concern release bytes, not CSS behavior or license auditing.
 Makefile owns `VERSION`. A matching tag push publishes `theme.gams.zip` and
 SHA256SUMS without overwriting existing releases.
 
+## Clean generated files
+
+`make clean` removes `build/`, `dist/`, downloaded Host/tools, installed Unit
+caches in `gams_modules/` and Python bytecode caches. Downloads are recreated on
+the next command that needs them. Source, configuration and unrelated untracked
+files remain; tracked output files cause clean to stop rather than delete them.
+
 ## Documentation
 
 - `make serve-docs DOCS_PORT=8080` previews these docs.
