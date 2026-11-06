@@ -13,13 +13,16 @@ Themes for [GAMS](https://github.com/kkgams/gams).
 
 Edit styles in `src/themes/` and list packaged files in Makefile's `ZIP_FILES`.
 `orange` keeps the Host base styling with the GAMS promo accent (`#ec4e00`) and
-square corners. Select a theme through `ui.theme.url` in `gams.json`; the local
-Project currently uses `src/themes/orange.css`.
+square corners. The preview Projects are `projects/orange/gams.json` and
+`projects/the98/gams.json`. Each links to the canonical `src/` directory;
+`make open` selects the Project folder without copying configuration or styles.
+Both use the repository's shared `gams_modules/` cache.
 
 | Command | Description |
 | --- | --- |
 | `make` / `make package` | Build `build.nosync/theme.gams.zip` and `build.nosync/SHA256SUMS`; rebuild only when inputs change. |
-| `make open` | Open the local Project with orange in the released GAMS Host; download the Host when absent. |
+| `make open` | Open orange (default) in the released GAMS Host; download the Host when absent. |
+| `THEME=the98 make open` | Open The98; `THEME=orange make open` selects orange explicitly. |
 | `make tools/gams.app` | Download the Host and its notices without opening it; keep an existing download. |
 | `make clean` | Remove generated output, downloaded tools and installed Unit caches; preserve tracked files and unrelated untracked files. |
 | `make serve-docs DOCS_PORT=8080` | Serve the documentation locally. |
