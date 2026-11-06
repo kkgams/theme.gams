@@ -1,7 +1,5 @@
-dist/
-__pycache__/
-
-# Local Host, installed Units, and documentation output.
+# Disposable build output, temporary files, downloaded tools and Unit caches.
+/build.nosync/
 /tools/
 /gams_modules/
-/build/
+__pycache__/

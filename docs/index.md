@@ -37,11 +37,12 @@ Services and file Views supply the workspace; no sibling checkout is needed.
 ## Package and publish
 
 ```sh
-make package OUT=dist/new-candidate
-make check-package OUT=dist/new-candidate
+make package OUT=build.nosync/dist/new-candidate
+make check-package OUT=build.nosync/dist/new-candidate
 ```
 
-Packaging requires Make and Python 3. Output must not already exist. CSS is
+Packaging requires Make and Python 3. `make package` defaults to
+`build.nosync/dist/candidate/`; output must not already exist. CSS is
 copied unchanged; there is no compilation or CSS test pipeline. The ZIP includes
 README, LICENSE, NOTICE and `licenses/`. Generated checksums and package checking
 concern release bytes, not CSS behavior or license auditing.
@@ -51,7 +52,11 @@ SHA256SUMS without overwriting existing releases.
 
 ## Clean generated files
 
-`make clean` removes `build/`, `dist/`, downloaded Host/tools, installed Unit
+All build, temporary, package and documentation output lives in ignored
+`build.nosync/`. Finished Host tools and installed Units remain in `tools/` and
+`gams_modules/`.
+
+`make clean` removes `build.nosync/`, downloaded Host/tools, installed Unit
 caches in `gams_modules/` and Python bytecode caches. Downloads are recreated on
 the next command that needs them. Source, configuration and unrelated untracked
 files remain; tracked output files cause clean to stop rather than delete them.
@@ -60,7 +65,7 @@ files remain; tracked output files cause clean to stop rather than delete them.
 
 - `make serve-docs DOCS_PORT=8080` previews these docs.
 - `make validate-docs` validates documentation.
-- `make docs` builds the portable site in `build/site/`.
+- `make docs` builds the portable site in `build.nosync/site/`.
 
 Documentation uses pinned `justgook/wiki` v1.4.0 and Node.js 24, without npm
 packages. First-time downloads need network access. Every push to `release`

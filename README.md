@@ -52,10 +52,13 @@ retaining notices and setting `GAMS_APP_CWD`. Released Project dependencies are
 pinned; no sibling checkout is needed. Documentation uses pinned
 `justgook/wiki` v1.4.0 and requires Node.js 24. Initial downloads need network access.
 
-Package output must not already exist; set `OUT=dist/new-candidate` for a fresh
+Packages go to `build.nosync/dist/candidate/`. Output must not already exist; set `OUT=build.nosync/dist/new-candidate` for a fresh
 output directory.
 
-`make clean` removes `build/`, `dist/`, `tools/`, `gams_modules/` and Python
+Build output, documentation, caches and temporary files live in `build.nosync/`.
+Finished Host tools and installed Units stay in `tools/` and `gams_modules/`.
+
+`make clean` removes `build.nosync/`, `tools/`, `gams_modules/` and Python
 bytecode caches. It refuses tracked files in those output locations and leaves
 other untracked files alone. The next open/docs commands download their tools
 again when needed.

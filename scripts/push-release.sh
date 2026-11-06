@@ -71,7 +71,8 @@ for page in pages:
         if release["tag_name"] == sys.argv[1]:
             sys.exit("GitHub Release already exists; use a new version")
 ' "$tag"
-out=$(mktemp -d)
+mkdir -p build.nosync/tmp
+out=$(mktemp -d "$PWD/build.nosync/tmp/release.XXXXXX")
 trap 'rm -rf "$out"' EXIT
 make package OUT="$out/candidate"
 make check-package OUT="$out/candidate"

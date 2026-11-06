@@ -155,7 +155,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('command', choices=['stage', 'check', 'identity', 'absent'])
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument('--out', type=Path, default=Path('dist/candidate'))
+    parser.add_argument('--out', type=Path, default=Path('build.nosync/dist/candidate'))
     parser.add_argument('--tag', required=True)
     args = parser.parse_args()
     if args.command in ('stage', 'check'):
