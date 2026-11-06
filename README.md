@@ -26,8 +26,8 @@ Select a stylesheet in your Project's `gams.json`:
 }
 ```
 
-Version 1.0.1 is the next candidate; that URL works after publication. ZIP names
-stay fixed, so future upgrades change only the tag version. Existing
+The example URL works after that tag is published. ZIP names stay fixed, so
+future upgrades change only the tag version. Existing
 `theme.the98` release URLs remain valid.
 
 Any local or external CSS is still supported, for example
@@ -47,8 +47,8 @@ make serve-docs DOCS_PORT=8080
 make docs
 ```
 
-Packaging requires Make, `zip` and `shasum`. Python 3 is used only by release
-and Host-download helpers. `make open` uses the released macOS Apple
+Packaging requires Make, `zip` and `shasum`. Python 3 is used only by the
+Host downloader. `make open` uses the released macOS Apple
 Silicon Host in ignored `tools/gams.app`, downloading it only when absent,
 retaining notices and setting `GAMS_APP_CWD`. Released Project dependencies are
 pinned; no sibling checkout is needed. Documentation uses pinned

@@ -1,6 +1,5 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
-VERSION := 1.0.1
 ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt src/themes/the98.css
 export TMPDIR := $(abspath build.nosync/tmp)
 export PYTHONPYCACHEPREFIX := $(abspath build.nosync/pycache)
@@ -15,10 +14,7 @@ WIKI_REPOSITORY := https://github.com/justgook/wiki
 WIKI_MAKEFILE := build.nosync/wiki-$(WIKI_VERSION).mk
 WIKI_ENGINE := $(abspath build.nosync/wiki-$(WIKI_VERSION))
 
-.PHONY: version package clean open serve-docs validate-docs build-docs docs
-version:
-	@printf '%s\n' '$(VERSION)'
-
+.PHONY: package clean open serve-docs validate-docs build-docs docs
 package: build.nosync/SHA256SUMS build.nosync/theme.gams.zip
 
 build.nosync/theme.gams.zip: $(ZIP_FILES) Makefile | build.nosync/tmp

@@ -16,7 +16,7 @@ Set `ui.theme.url` in your Project's `gams.json` to a CSS source. For example,
 `{"ui":{"theme":{"url":"themes/my-theme.css"}}}` selects a local stylesheet.
 A published collection ZIP uses `#themes/the98.css` to select The98. Its asset
 name is always `theme.gams.zip`; only the release tag changes between versions.
-Version 1.0.1 is the next candidate, not a published-asset claim.
+Download URLs require a published tag.
 
 The Host also accepts CSS outside this collection. Omit `ui.theme` for Host
 base styling. Existing theme.the98 release pins remain valid.
@@ -48,8 +48,9 @@ there is no compilation or CSS test pipeline. The ZIP includes README, LICENSE,
 NOTICE and `licenses/`; SHA256SUMS sits alongside it. Developers decide whether
 the theme works as expected.
 
-Makefile owns `VERSION`. A matching tag push publishes `theme.gams.zip` and
-SHA256SUMS without overwriting existing releases.
+Release versions come from pushed tags such as `v1.0.1`, not build metadata.
+The release workflow runs only for tags with three numeric parts, builds once
+and publishes `theme.gams.zip` and SHA256SUMS using GitHub CLI.
 
 ## Clean generated files
 
