@@ -36,16 +36,17 @@ Put the theme's CSS and required assets under `src/themes/`. Follow the Host-own
 semantic UI contract in GAMS's `docs/gams-view-development-guide.md`; themes style
 that contract rather than requiring View-specific markup or runtime changes.
 
-List each deployable source in `package.json` under `files` and each selectable
-stylesheet's deployed path in `release.json` under `entries`. Preserve license
-attribution and maintain the source/license evidence for new or changed bytes.
+List each deployable source in `package.json` under `files`. Stylesheets are
+discovered directly under `src/themes/`; no separate theme-entry manifest is
+needed. Preserve license attribution and maintain the source/license evidence
+for new or changed bytes.
 Update the theme table in README and select the theme's local CSS in `gams.json`
 while developing it. Do not add a custom theme loader or restrict outside CSS.
 
 ## Validate
 
 Run `make check` with Node.js 24 and Python 3. It validates source references,
-collection entries, source/licensing evidence, deterministic packaging, exact
+theme sources, source/licensing evidence, deterministic packaging, exact
 artifact contents, tag identity and release safety. It does not render CSS.
 
 Use the real Host to inspect labels, forms, buttons and mixed button/select

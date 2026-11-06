@@ -31,15 +31,13 @@ class ReleaseTests(unittest.TestCase):
         (self.root / 'package.json').write_text(json.dumps({
             'name': 'theme.gams', 'version': '1.0.0', 'private': True,
             'license': 'Apache-2.0', 'files': ['src/themes/first.css', 'src/themes/second.css']}))
-        (self.root / 'release.json').write_text(json.dumps({'kind': 'theme', 'entries': ['themes/first.css', 'themes/second.css']}))
         for name in ('LICENSE', 'NOTICE', 'README.md'):
             (self.root / name).write_text(name + '\n')
         (self.root / 'licenses').mkdir()
         (self.root / 'licenses/98.css.MIT.txt').write_text('MIT terms\n')
-        (self.root / 'THEME-COMPARISON.json').write_text('{}\n')
         evidence = {'files_sha256': {p: release.digest((self.root / p).read_bytes())
                     for p in ('src/themes/first.css', 'src/themes/second.css',
-                              'THEME-COMPARISON.json', 'licenses/98.css.MIT.txt')}}
+                              'licenses/98.css.MIT.txt')}}
         proof = json.dumps(evidence).encode()
         (self.root / 'NOTICE-EVIDENCE.json').write_bytes(proof)
         (self.root / 'NOTICE').write_text('NOTICE\nNOTICE-EVIDENCE.json SHA-256: ' + release.digest(proof) + '\n')
@@ -88,30 +86,27 @@ class ReleaseTests(unittest.TestCase):
         (self.root / 'NOTICE-EVIDENCE.json').write_bytes(proof)
         (self.root / 'NOTICE').write_text('NOTICE\nNOTICE-EVIDENCE.json SHA-256: ' + release.digest(proof) + '\n')
 
-    def test_missing_and_malformed_collection_entries(self):
-        invalid = [None, [], {}, {'kind': 'theme'},
-                   {'kind': 'theme', 'entry': 'themes/first.css'},
-                   {'kind': 'view', 'entries': ['themes/first.css']},
-                   {'kind': 'theme', 'entries': []},
-                   {'kind': 'theme', 'entries': 'themes/first.css'},
-                   {'kind': 'theme', 'entries': [None]},
-                   {'kind': 'theme', 'entries': ['themes/first.css'] * 2},
-                   {'kind': 'theme', 'entries': ['themes/missing.css']},
-                   {'kind': 'theme', 'entries': ['LICENSE']},
-                   {'kind': 'theme', 'entries': ['../themes/first.css']},
-                   {'kind': 'theme', 'entries': ['/themes/first.css']},
-                   {'kind': 'theme', 'entries': ['themes//first.css']},
-                   {'kind': 'theme', 'entries': ['themes/first.css'], 'host': '2.0.3'}]
-        for config in invalid:
-            with self.subTest(config=config):
-                (self.root / 'release.json').write_text(json.dumps(config))
-                with self.assertRaises(ValueError):
-                    self.stage()
-        (self.root / 'release.json').write_text('{')
-        with self.assertRaises(ValueError):
-            self.stage()
-        (self.root / 'release.json').unlink()
-        with self.assertRaises(ValueError):
+    def test_themes_discovered_without_release_manifest(self):
+        self.assertFalse((self.root / 'release.json').exists())
+        self.stage()
+        self.check()
+        with zipfile.ZipFile(self.out / 'theme.gams.zip') as bundle:
+            self.assertNotIn('release.json', bundle.namelist())
+            self.assertNotIn('THEME-COMPARISON.json', bundle.namelist())
+            self.assertTrue({'themes/first.css', 'themes/second.css'} <= set(bundle.namelist()))
+
+    def test_theme_stylesheet_required(self):
+        for name in ('first.css', 'second.css'):
+            (self.root / 'src/themes' / name).unlink()
+        asset = 'src/themes/asset.svg'
+        (self.root / asset).write_text('<svg/>')
+        package = json.loads((self.root / 'package.json').read_text())
+        package['files'] = [asset]
+        (self.root / 'package.json').write_text(json.dumps(package))
+        evidence = {'files_sha256': {name: release.digest((self.root / name).read_bytes())
+                    for name in (asset, 'licenses/98.css.MIT.txt')}}
+        self.write_evidence(evidence)
+        with self.assertRaisesRegex(ValueError, 'at least one theme stylesheet'):
             self.stage()
 
     def test_collection_identity_and_version(self):
@@ -126,7 +121,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_all_evidence_inputs_are_bound_and_validated(self):
         evidence = json.loads((self.root / 'NOTICE-EVIDENCE.json').read_text())
-        for name in ('THEME-COMPARISON.json', 'licenses/98.css.MIT.txt'):
+        for name in ('licenses/98.css.MIT.txt',):
             original = (self.root / name).read_bytes()
             (self.root / name).write_bytes(b'changed')
             with self.assertRaisesRegex(ValueError, 'audited evidence input changed'):

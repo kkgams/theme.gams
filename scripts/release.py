@@ -18,7 +18,7 @@ def digest(data):
 
 
 LEGAL_PAYLOAD = ('LICENSE', 'NOTICE', 'README.md', 'NOTICE-EVIDENCE.json',
-                 'THEME-COMPARISON.json', 'licenses/98.css.MIT.txt')
+                 'licenses/98.css.MIT.txt')
 
 
 def safe_path(root, name):
@@ -52,7 +52,6 @@ def legal_files(root):
 def payload(root, tag):
     root = root.resolve()
     package = json.loads(regular_bytes(root, 'package.json'))
-    config = json.loads(regular_bytes(root, 'release.json'))
     if package['name'] != 'theme.gams':
         raise ValueError('invalid theme collection identity')
     if 'GITHUB_REPOSITORY' in os.environ and os.environ['GITHUB_REPOSITORY'] != 'kkgams/' + package['name']:
@@ -61,11 +60,6 @@ def payload(root, tag):
         raise ValueError('tag/version mismatch')
     if package['license'] != 'Apache-2.0' or package['private'] is not True:
         raise ValueError('invalid package licensing/publication policy')
-    if not isinstance(config, dict) or set(config) != {'kind', 'entries'} or config['kind'] != 'theme':
-        raise ValueError('invalid theme collection manifest')
-    entries = config['entries']
-    if not isinstance(entries, list) or not entries or any(not isinstance(p, str) for p in entries) or len(entries) != len(set(entries)):
-        raise ValueError('entries must be a nonempty unique list')
     legal_files(root)
     evidence_bytes = regular_bytes(root, 'NOTICE-EVIDENCE.json')
     if ('NOTICE-EVIDENCE.json SHA-256: ' + digest(evidence_bytes)) not in (root / 'NOTICE').read_text():
@@ -74,8 +68,8 @@ def payload(root, tag):
     audited = evidence.get('files_sha256') if isinstance(evidence, dict) else None
     if not isinstance(audited, dict) or not audited:
         raise ValueError('invalid evidence inputs')
-    if not {'THEME-COMPARISON.json', 'licenses/98.css.MIT.txt'} <= audited.keys():
-        raise ValueError('missing audited comparison/MIT inputs')
+    if 'licenses/98.css.MIT.txt' not in audited:
+        raise ValueError('missing audited MIT input')
     for path, expected in audited.items():
         if not isinstance(expected, str) or not re.fullmatch(r'[0-9a-f]{64}', expected):
             raise ValueError('invalid evidence digest')
@@ -95,6 +89,8 @@ def payload(root, tag):
             actual.add(name)
         elif not local.is_dir():
             raise ValueError('nonregular source: ' + name)
+    if not any(path.startswith('src/themes/') and path.endswith('.css') for path in actual):
+        raise ValueError('at least one theme stylesheet is required')
     if actual != set(source_files):
         raise ValueError('source closure differs from package files')
     if actual != {p for p in audited if p.startswith('src/')}:
@@ -108,11 +104,6 @@ def payload(root, tag):
         if deployed in files or deployed == 'unit.json':
             raise ValueError('duplicate deployment output')
         files[deployed] = regular_bytes(root, source)
-    for entry in entries:
-        safe_path(root, entry)
-        path = PurePosixPath(entry)
-        if path.parts[0] != 'themes' or path.suffix != '.css' or entry not in files:
-            raise ValueError('entry must be deployed theme CSS: ' + entry)
     return package['name'] + '.zip', files
 
 

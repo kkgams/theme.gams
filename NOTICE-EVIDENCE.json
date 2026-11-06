@@ -1,6 +1,5 @@
 {
   "files_sha256": {
-    "THEME-COMPARISON.json": "7de98dca238a7890fdca90a637d83fce9afab725a8b618247286528af3bfb2c1",
     "licenses/98.css.MIT.txt": "8933005629892c51d896f7591b5e79c39a17617ce678231e4c3aa7d412d2682f",
     "src/themes/the98.css": "b504eb8334c9e8944f40a703ad40947bf677fc81b469299b991640732dc50414"
   },
@@ -239,6 +238,18 @@
       "change_boundary": "Add a feature- and forced-colors-guarded customizable native picker for single-line selects. Reuse The98 variables and arrow assets; style gray optgroup labels and regular-weight options; size popup independently, reserve scrollbar space, and wrap labels at the viewport limit to avoid horizontal scrolling. No other stylesheet changes.",
       "preserved": "Historical audit findings and prior release_maintenance records remain unchanged. LICENSE, full NOTICE body, MIT terms, CSS url assets including embedded SVG payloads, THEME-COMPARISON.json, SOURCE.json and strict production verification are unchanged. Previous evidence and NOTICE bytes remain in baseline_commit.",
       "limitations": "Bounded checksum maintenance, not a new legal audit. Development Chrome checks passed 20 picker and 10 arrow assertions, with a narrow-viewport long-label probe. Classic-scrollbar external-Project desktop, clean-Mac and hosted CI results are not claimed."
+    },
+    {
+      "version": "1.0.1",
+      "baseline_commit": "ff25b66b72bf1ad1f32cdd40fa675b35406f22e9",
+      "authorization": "Owner requested removing THEME-COMPARISON.json and release.json to simplify the theme collection.",
+      "previous_evidence_sha256": "afce6347e58c215fe9880cbebcf4316e5c6c28d18946f267384ec96df8218bc6",
+      "previous_notice_sha256": "7e5c4d2dd7d3e3e0b4bd4fec4e3fd8988b6031195532eb691f23eca6f3e84a5e",
+      "removed_inputs": {
+        "THEME-COMPARISON.json": "7de98dca238a7890fdca90a637d83fce9afab725a8b618247286528af3bfb2c1"
+      },
+      "change_boundary": "Archive the unchanged historical comparison and original evidence; remove comparison from active inputs and release ZIP. Derive theme stylesheets from source rather than release.json. CSS, source/MIT digests, license terms, historical audit findings and prior maintenance records are unchanged.",
+      "limitations": "Bounded evidence maintenance, not a new legal audit, source attribution claim or publication approval."
     }
   ]
 }

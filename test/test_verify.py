@@ -22,25 +22,22 @@ class VerifyTests(unittest.TestCase):
         (self.root / 'src/themes/second.css').write_text('body {color:white}\n')
         (self.root / 'package.json').write_text(json.dumps({
             'type': 'module', 'files': ['src/themes/first.css', 'src/themes/second.css']}))
-        self.manifest = {'kind': 'theme', 'entries': ['themes/first.css', 'themes/second.css']}
 
     def verify(self):
-        (self.root / 'release.json').write_text(json.dumps(self.manifest))
         return subprocess.run(['node', 'scripts/verify.mjs'], cwd=self.root,
                               text=True, capture_output=True)
 
-    def test_two_deployed_css_entries(self):
+    def test_two_theme_stylesheets_without_manifest(self):
+        self.assertFalse((self.root / 'release.json').exists())
         result = self.verify()
         self.assertEqual(result.returncode, 0, result.stderr)
 
-    def test_missing_malformed_duplicate_and_nondeployed_entries(self):
-        for entries in ([], None, 'themes/first.css', [False],
-                        ['themes/first.css'] * 2, ['themes/missing.css'],
-                        ['../themes/first.css'], ['themes//first.css'], ['README.md']):
-            with self.subTest(entries=entries):
-                self.manifest['entries'] = entries
-                self.assertNotEqual(self.verify().returncode, 0)
-        self.manifest = {'kind': 'theme', 'entry': 'themes/first.css'}
+    def test_theme_stylesheet_required(self):
+        for name in ('first.css', 'second.css'):
+            (self.root / 'src/themes' / name).unlink()
+        (self.root / 'src/themes/asset.svg').write_text('<svg/>')
+        self.assertNotEqual(self.verify().returncode, 0)
+        (self.root / 'src/elsewhere.css').write_text('body {}')
         self.assertNotEqual(self.verify().returncode, 0)
 
     def test_css_url_resolution_and_escape_validation(self):

@@ -20,7 +20,7 @@ make docs
 Staging validates the complete source/evidence closure and produces deterministic
 ZIP bytes and checksums. Independent checking requires the exact candidate files,
 contents and metadata; it never substitutes source for missing artifacts. LICENSE,
-NOTICE, README, evidence, comparison and third-party license files accompany the
+NOTICE, README, source evidence and third-party license files accompany the
 stylesheets. The Host loads CSS directly; no `unit.json` or custom loader is needed.
 
 `make check` does not run browser rendering. Before publishing changed CSS,

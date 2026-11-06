@@ -5,20 +5,6 @@ import { spawnSync } from 'node:child_process'
 import assert from 'node:assert/strict'
 
 const root = resolve(import.meta.dirname, '..')
-const manifest = JSON.parse(await readFile(resolve(root, 'release.json'), 'utf8'))
-assert.deepEqual(Object.keys(manifest).sort(), ['entries', 'kind'], 'invalid theme collection manifest')
-assert.equal(manifest.kind, 'theme')
-assert(Array.isArray(manifest.entries) && manifest.entries.length > 0, 'missing theme entries')
-assert(manifest.entries.every(entry => typeof entry === 'string'), 'invalid theme entries')
-assert.equal(new Set(manifest.entries).size, manifest.entries.length, 'duplicate theme entries')
-const packageMetadata = JSON.parse(await readFile(resolve(root, 'package.json'), 'utf8'))
-for (const entry of manifest.entries) {
-  assert(/^themes\/(?:[a-zA-Z0-9_-]+\/)*[a-zA-Z0-9_.-]+\.css$/.test(entry), `invalid theme entry: ${entry}`)
-  assert(packageMetadata.files.includes(`src/${entry}`), `entry is not deployed: ${entry}`)
-  const path = resolve(root, 'src', entry)
-  assert((await lstat(path)).isFile(), `entry must be regular CSS: ${entry}`)
-  await access(path, constants.R_OK)
-}
 
 async function walk(path) {
   const info = await lstat(path)
@@ -38,10 +24,11 @@ const ownedPaths = [
   resolve(root, 'src'),
   resolve(root, 'scripts'),
   resolve(root, 'package.json'),
-  resolve(root, 'release.json'),
   resolve(root, '.github/workflows/release.yml'),
 ]
 const files = (await Promise.all(ownedPaths.map(walk))).flat()
+assert(files.some(file => file.startsWith(resolve(root, 'src/themes') + '/') && extname(file) === '.css'),
+  'at least one theme stylesheet is required')
 const importPattern = /(?:^|\n)\s*(?:import|export)\s+(?:[^"'`;]*?\sfrom\s+)?["']([^"']+)["']/g
 const cssUrlPattern = /url\(\s*(["']?)(.*?)\1\s*\)/gi
 const allowedHostRoots = ['/core/', '/util/', '/widgets/']
