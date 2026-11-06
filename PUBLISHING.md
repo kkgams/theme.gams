@@ -1,8 +1,9 @@
 # Publishing
 
-The collection publishes `theme.gams-<version>.zip` and `SHA256SUMS` through
+The collection publishes `theme.gams.zip` and `SHA256SUMS` through
 GitHub Releases, not npm or OCI. Every theme is included in that ZIP with its
-own `themes/<name>.css` path. The initial collection version is **1.0.0**.
+own `themes/<name>.css` path. The ZIP filename is stable across versions; only
+the release tag changes in download URLs. The next collection version is **1.0.1**.
 
 ## Validate a candidate
 
@@ -10,8 +11,8 @@ Requires Node.js 24 and Python 3. Candidate output must not already exist.
 
 ```sh
 make check
-python3 scripts/release.py stage --tag v1.0.0 --out dist/candidate
-python3 scripts/release.py check --tag v1.0.0 --out dist/candidate
+python3 scripts/release.py stage --tag v1.0.1 --out dist/candidate
+python3 scripts/release.py check --tag v1.0.1 --out dist/candidate
 make validate-docs
 make docs
 ```

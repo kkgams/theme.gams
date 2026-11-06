@@ -14,7 +14,7 @@ each has a separate CSS entry and remains independently selectable.
 In a Project's `gams.json`, `ui.theme.url` points to a CSS source. For example,
 `{"ui":{"theme":{"url":"themes/my-theme.css"}}}` selects a local stylesheet.
 A published ZIP source can select an entry with `#themes/the98.css`.
-The collection's initial artifact is `theme.gams-1.0.0.zip`; release URLs become
+The collection artifact is `theme.gams.zip`; release URLs become
 available only after publication. Custom CSS from outside this collection still
 works through the same Host configuration. Omit `ui.theme` for Host base styling.
 
@@ -62,11 +62,11 @@ changes packaging and ownership, not those CSS bytes.
 
 ## Build and publish
 
-Stage and independently check the initial candidate with:
+Stage and independently check the next candidate with:
 
 ```sh
-python3 scripts/release.py stage --tag v1.0.0 --out dist/candidate
-python3 scripts/release.py check --tag v1.0.0 --out dist/candidate
+python3 scripts/release.py stage --tag v1.0.1 --out dist/candidate
+python3 scripts/release.py check --tag v1.0.1 --out dist/candidate
 ```
 
 The output directory must not exist before staging. Matching version-tag pushes

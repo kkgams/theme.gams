@@ -31,13 +31,13 @@ For a published collection, select the stylesheet inside its release ZIP:
 {
   "ui": {
     "theme": {
-      "url": "https://github.com/kkgams/theme.gams/releases/download/v1.0.0/theme.gams-1.0.0.zip#themes/the98.css"
+      "url": "https://github.com/kkgams/theme.gams/releases/download/v1.0.1/theme.gams.zip#themes/the98.css"
     }
   }
 }
 ```
 
-Version 1.0.0 is the initial collection candidate, not a publication claim. The
+Version 1.0.1 is the next collection candidate, not a publication claim. The
 release URL becomes usable after publication. Existing `theme.the98` release
 URLs remain valid; update Project pins only after the new release is available.
 Omit `ui.theme` to use Host base styling without a theme.

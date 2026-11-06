@@ -113,7 +113,7 @@ def payload(root, tag):
         path = PurePosixPath(entry)
         if path.parts[0] != 'themes' or path.suffix != '.css' or entry not in files:
             raise ValueError('entry must be deployed theme CSS: ' + entry)
-    return package['name'] + '-' + package['version'] + '.zip', files
+    return package['name'] + '.zip', files
 
 
 def archive(files):

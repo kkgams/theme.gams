@@ -60,7 +60,7 @@ class ReleaseTests(unittest.TestCase):
         self.check()
         second = Path(self.temp.name) / 'second'
         release.stage(self.root, second, 'v1.0.0')
-        name = 'theme.gams-1.0.0.zip'
+        name = 'theme.gams.zip'
         self.assertEqual((self.out / name).read_bytes(), (second / name).read_bytes())
         with zipfile.ZipFile(self.out / name) as z:
             self.assertEqual(set(z.namelist()), {
@@ -68,6 +68,20 @@ class ReleaseTests(unittest.TestCase):
             self.assertNotIn('unit.json', z.namelist())
             for path in release.LEGAL_PAYLOAD:
                 self.assertEqual(z.read(path), (self.root / path).read_bytes())
+
+    def test_artifact_name_is_stable_across_versions(self):
+        package = json.loads((self.root / 'package.json').read_text())
+        for version in ('1.0.0', '1.0.1', '1.1.0'):
+            with self.subTest(version=version):
+                package['version'] = version
+                (self.root / 'package.json').write_text(json.dumps(package))
+                out = Path(self.temp.name) / version
+                release.stage(self.root, out, 'v' + version)
+                release.check(self.root, out, 'v' + version)
+                self.assertEqual({p.name for p in out.iterdir()}, {'theme.gams.zip', 'SHA256SUMS'})
+                data = (out / 'theme.gams.zip').read_bytes()
+                self.assertEqual((out / 'SHA256SUMS').read_text(),
+                                 f'{release.digest(data)}  theme.gams.zip\n')
 
     def write_evidence(self, evidence):
         proof = json.dumps(evidence).encode()
@@ -165,7 +179,7 @@ class ReleaseTests(unittest.TestCase):
 
     def test_candidate_symlinks_are_rejected(self):
         self.stage()
-        name = 'theme.gams-1.0.0.zip'
+        name = 'theme.gams.zip'
         target = Path(self.temp.name) / name
         (self.out / name).rename(target)
         (self.out / name).symlink_to(target)
@@ -270,7 +284,7 @@ class ReleaseTests(unittest.TestCase):
             self.check()
         self.out.rmdir()
         self.stage()
-        (self.out / 'theme.gams-1.0.0.zip').unlink()
+        (self.out / 'theme.gams.zip').unlink()
         with self.assertRaises(ValueError):
             self.check()
 
