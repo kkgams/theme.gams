@@ -1,7 +1,7 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
 VERSION := 1.0.1
-PACKAGE_INPUTS := $(shell find src licenses -print) README.md LICENSE NOTICE Makefile scripts/release.py
+ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt src/themes/the98.css
 export TMPDIR := $(abspath build.nosync/tmp)
 export PYTHONPYCACHEPREFIX := $(abspath build.nosync/pycache)
 PYTHON ?= python3
@@ -21,11 +21,13 @@ version:
 
 package: build.nosync/SHA256SUMS build.nosync/theme.gams.zip
 
-build.nosync/theme.gams.zip: $(PACKAGE_INPUTS) | build.nosync/tmp
-	$(PYTHON) scripts/release.py stage --tag "v$(VERSION)" --out "$@"
+build.nosync/theme.gams.zip: $(ZIP_FILES) Makefile | build.nosync/tmp
+	rm -f "$@"
+	cd src && zip -q -X "../$@" $(patsubst src/%,%,$(filter src/%,$(ZIP_FILES)))
+	zip -q -X "$@" $(filter-out src/%,$(ZIP_FILES))
 
 build.nosync/SHA256SUMS: build.nosync/theme.gams.zip
-	@$(PYTHON) -c 'import hashlib, pathlib, sys; p = pathlib.Path(sys.argv[1]); print(hashlib.sha256(p.read_bytes()).hexdigest() + "  " + p.name)' "$<" > "$@"
+	cd build.nosync && shasum -a 256 theme.gams.zip > SHA256SUMS
 
 clean:
 	@set -eu; \

@@ -36,7 +36,8 @@ Any local or external CSS is still supported, for example
 ## Develop
 
 Edit CSS under `src/themes/`. Add assets alongside it and keep any third-party
-attribution and license files. No compilation is needed.
+attribution and license files. List files to include in Makefile's `ZIP_FILES`.
+No compilation is needed.
 
 ```sh
 make open                    # open the local Project with The98 selected
@@ -46,7 +47,8 @@ make serve-docs DOCS_PORT=8080
 make docs
 ```
 
-Packaging requires Make and Python 3. `make open` uses the released macOS Apple
+Packaging requires Make, `zip` and `shasum`. Python 3 is used only by release
+and Host-download helpers. `make open` uses the released macOS Apple
 Silicon Host in ignored `tools/gams.app`, downloading it only when absent,
 retaining notices and setting `GAMS_APP_CWD`. Released Project dependencies are
 pinned; no sibling checkout is needed. Documentation uses pinned

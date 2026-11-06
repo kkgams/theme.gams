@@ -24,7 +24,8 @@ base styling. Existing theme.the98 release pins remain valid.
 ## Edit and open
 
 Edit `src/themes/the98.css` or add another theme under `src/themes/`, with any
-required assets and third-party license files. Follow the Host's documented
+required assets and third-party license files, listing them in Makefile's
+`ZIP_FILES`. Follow the Host's documented
 semantic UI elements rather than introducing a custom loader or View markup.
 Each stylesheet deploys to its corresponding `themes/` path.
 
@@ -40,7 +41,7 @@ Services and file Views supply the workspace; no sibling checkout is needed.
 make package
 ```
 
-Packaging requires Make and Python 3. The `package` alias depends on the native
+Packaging requires Make, `zip` and `shasum`. The `package` alias depends on the native
 file targets `build.nosync/SHA256SUMS` and `build.nosync/theme.gams.zip`. Make
 rebuilds only when inputs change or an output is missing. CSS is copied unchanged;
 there is no compilation or CSS test pipeline. The ZIP includes README, LICENSE,

@@ -1,44 +1,16 @@
 #!/usr/bin/env python3
-"""Package theme files for matching-tag releases."""
+"""Matching-tag release identity and availability checks."""
 import argparse
-import io
 import os
-from pathlib import Path, PurePosixPath
+from pathlib import Path
 import re
 import subprocess
 import urllib.error
 import urllib.request
-import zipfile
 
 
 REPOSITORY = 'kkgams/theme.gams'
-REQUIRED_FILES = ('LICENSE', 'NOTICE', 'README.md', 'licenses/98.css.MIT.txt')
 VERSION_PATTERN = r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)'
-
-
-def safe_path(root, name):
-    if not isinstance(name, str) or not name or "\\" in name:
-        raise ValueError('invalid relative path')
-    path = PurePosixPath(name)
-    if path.is_absolute() or '..' in path.parts or str(path) != name or name == '.':
-        raise ValueError('invalid relative path: ' + name)
-    local = root / name
-    reject_symlinks(local)
-    if not local.resolve().is_relative_to(root):
-        raise ValueError('path escapes repository: ' + name)
-    return local
-
-
-def reject_symlinks(path):
-    if any(p.is_symlink() for p in (path, *path.parents)):
-        raise ValueError('symlink forbidden: ' + str(path))
-
-
-def regular_bytes(root, name):
-    path = safe_path(root, name)
-    if not path.is_file():
-        raise ValueError('required regular file: ' + name)
-    return path.read_bytes()
 
 
 def version(root, tag):
@@ -49,49 +21,6 @@ def version(root, tag):
     if 'GITHUB_REPOSITORY' in os.environ and os.environ['GITHUB_REPOSITORY'] != REPOSITORY:
         raise ValueError('workflow repository must match canonical Project Unit identity')
     return value
-
-
-def payload(root, tag):
-    root = root.resolve()
-    version(root, tag)
-    files = {}
-    for name in REQUIRED_FILES:
-        data = regular_bytes(root, name)
-        if not name.startswith('licenses/'):
-            files[name] = data
-    for directory in ('src', 'licenses'):
-        source = safe_path(root, directory)
-        if not source.is_dir():
-            raise ValueError('required directory: ' + directory)
-        for local in sorted(source.rglob('*')):
-            name = local.relative_to(root).as_posix()
-            safe_path(root, name)
-            if local.is_dir():
-                continue
-            data = regular_bytes(root, name)
-            deployed = local.relative_to(source).as_posix() if directory == 'src' else name
-            if deployed in files:
-                raise ValueError('duplicate deployment output: ' + deployed)
-            files[deployed] = data
-    return files
-
-
-def archive(files):
-    output = io.BytesIO()
-    with zipfile.ZipFile(output, 'w', compression=zipfile.ZIP_STORED) as z:
-        for name, data in sorted(files.items()):
-            info = zipfile.ZipInfo(name, (1980, 1, 1, 0, 0, 0))
-            info.create_system = 3
-            info.external_attr = 0o100644 << 16
-            z.writestr(info, data)
-    return output.getvalue()
-
-
-def stage(root, out, tag):
-    data = archive(payload(root, tag))
-    reject_symlinks(out.absolute())
-    out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_bytes(data)
 
 
 def identity(tag):
@@ -124,14 +53,10 @@ def absent(repository, tag, token):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['stage', 'identity', 'absent'])
-    parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
-    parser.add_argument('--out', type=Path, default=Path('build.nosync/theme.gams.zip'))
+    parser.add_argument('command', choices=['identity', 'absent'])
     parser.add_argument('--tag', required=True)
     args = parser.parse_args()
-    if args.command == 'stage':
-        stage(args.root.resolve(), args.out, args.tag)
-    elif args.command == 'identity':
+    if args.command == 'identity':
         identity(args.tag)
     else:
         absent(os.environ['GITHUB_REPOSITORY'], args.tag, os.environ['GH_TOKEN'])
