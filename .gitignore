@@ -1,0 +1,7 @@
+dist/
+__pycache__/
+
+# Local Host, installed Units, and documentation output.
+/tools/
+/gams_modules/
+/build/

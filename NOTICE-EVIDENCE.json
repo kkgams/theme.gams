@@ -1,0 +1,244 @@
+{
+  "files_sha256": {
+    "THEME-COMPARISON.json": "7de98dca238a7890fdca90a637d83fce9afab725a8b618247286528af3bfb2c1",
+    "licenses/98.css.MIT.txt": "8933005629892c51d896f7591b5e79c39a17617ce678231e4c3aa7d412d2682f",
+    "src/themes/the98.css": "b504eb8334c9e8944f40a703ad40947bf677fc81b469299b991640732dc50414"
+  },
+  "limits": "No universal plagiarism search or legal ownership certification. Follow-history can end at file creation/copy and cannot establish upstream import version. Generated package metadata is not source provenance.",
+  "scope": "13 entry-source closures from packaging/ecosystem/ui.py (12 JavaScript Units + theme.the98); Host imports and sibling Project Units excluded. No code changes or wholesale relicensing.",
+  "source_commit": "ca48dbf190aa66e948a04d2f82a624295b7b6464",
+  "unit": {
+    "confidence": "high for upstream SVG identity and MIT terms; high for CSS derivation, unknown exact original version",
+    "evidence": [
+      "theme-comparison.json"
+    ],
+    "excluded_host_imports": [],
+    "findings": "98.css attribution/license must travel with stylesheet.",
+    "kind": "theme",
+    "licenses": {
+      "gams_authored_code": "Apache-2.0 (owner decision; installation by parent generator pending)",
+      "third_party": [
+        "MIT"
+      ]
+    },
+    "name": "theme.the98",
+    "notices": [
+      "third-party-theme-NOTICE.txt",
+      "licenses/98.css.MIT.txt"
+    ],
+    "release_blockers": [
+      "Install full upstream MIT license and third-party notice in the extracted theme before public source/package release."
+    ],
+    "sources": [
+      {
+        "blame_authors": [
+          "Rom\u0101ns Pota\u0161ovs"
+        ],
+        "earliest_followed_change": {
+          "author": "Rom\u0101ns Pota\u0161ovs",
+          "authored_at": "2026-02-26T11:25:58+02:00",
+          "commit": "9bbbf771581bfc339a2d9c06554e2b359d1a3e31",
+          "email": "justgook@gmail.com",
+          "subject": "\ud83d\udea7(web:theme): improve view-area and view-chrome"
+        },
+        "git_blob": "7b0878252cba060241361ebd1d83746975f768e2",
+        "history_authors": [
+          "Rom\u0101ns Pota\u0161ovs <justgook@gmail.com>"
+        ],
+        "history_count": 46,
+        "latest_change": {
+          "author": "Rom\u0101ns Pota\u0161ovs",
+          "authored_at": "2026-07-24T18:40:47+03:00",
+          "commit": "d2c9ff668ff77f815a6ac5461b43f0ac3352e252",
+          "email": "justgook@gmail.com",
+          "subject": "\ud83d\udd25(widget:breadcrumbs): simplify"
+        },
+        "line_count": 1599,
+        "path": "themes/the98.css",
+        "scan_signals": [
+          {
+            "line": 98,
+            "text": "        --win98-icon-button-down-active: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9"
+          },
+          {
+            "line": 99,
+            "text": "        --win98-icon-button-down: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA"
+          },
+          {
+            "line": 100,
+            "text": "        --win98-icon-button-left: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA"
+          },
+          {
+            "line": 101,
+            "text": "        --win98-icon-button-right: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dH"
+          },
+          {
+            "line": 102,
+            "text": "        --win98-icon-button-up: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTYiIGhlaWdodD0iMTciIHZpZXdCb3g9IjAgMCAxNiAxNyIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6L"
+          },
+          {
+            "line": 103,
+            "text": "        --win98-icon-checkmark-disabled: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNyIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgNyA3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0"
+          },
+          {
+            "line": 104,
+            "text": "        --win98-icon-checkmark: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNyIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgNyA3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3d"
+          },
+          {
+            "line": 105,
+            "text": "        --win98-icon-close: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI3IiB2aWV3Qm94PSIwIDAgOCA3IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53M"
+          },
+          {
+            "line": 106,
+            "text": "        --win98-icon-groupbox-border: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSA1IiBmaWxsPSJncmV5IiB4bWxucz0iaHR0cDo"
+          },
+          {
+            "line": 107,
+            "text": "        --win98-icon-help: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgNiA5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My"
+          },
+          {
+            "line": 108,
+            "text": "        --win98-icon-indicator-horizontal: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAxMSAyMSIgZmlsbD0ibm9uZSIgeG1sbn"
+          },
+          {
+            "line": 109,
+            "text": "        --win98-icon-indicator-rectangle-horizontal: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTEiIGhlaWdodD0iMjEiIHZpZXdCb3g9IjAgMCAxMSAyMSIgZmlsbD0ibm9u"
+          },
+          {
+            "line": 110,
+            "text": "        --win98-icon-maximize-disabled: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAiIGhlaWdodD0iMTAiIHZpZXdCb3g9IjAgMCAxMCAxMCIgZmlsbD0ibm9uZSIgeG1sbnM9I"
+          },
+          {
+            "line": 111,
+            "text": "        --win98-icon-maximize: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOSIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgOSA5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy"
+          },
+          {
+            "line": 112,
+            "text": "        --win98-icon-minimize: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNiIgaGVpZ2h0PSIyIiB2aWV3Qm94PSIwIDAgNiAyIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy"
+          },
+          {
+            "line": 113,
+            "text": "        --win98-icon-radio-border-disabled: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sb"
+          },
+          {
+            "line": 114,
+            "text": "        --win98-icon-radio-border: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dH"
+          },
+          {
+            "line": 115,
+            "text": "        --win98-icon-radio-dot-disabled: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB2aWV3Qm94PSIwIDAgNCA0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0"
+          },
+          {
+            "line": 116,
+            "text": "        --win98-icon-radio-dot: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB2aWV3Qm94PSIwIDAgNCA0IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3d"
+          },
+          {
+            "line": 117,
+            "text": "        --win98-icon-restore: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOCIgaGVpZ2h0PSI5IiB2aWV3Qm94PSIwIDAgOCA5IiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy5"
+          },
+          {
+            "line": 118,
+            "text": "        --win98-icon-scrollbar-background: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMiIgaGVpZ2h0PSIyIiB2aWV3Qm94PSIwIDAgMiAyIiBmaWxsPSJub25lIiB4bWxucz0iaH"
+          },
+          {
+            "line": 119,
+            "text": "        --win98-icon-sunken-panel-border: url(\"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNSIgaGVpZ2h0PSI1IiB2aWV3Qm94PSIwIDAgNSA1IiB4bWxucz0iaHR0cDovL3d3dy53My5"
+          }
+        ],
+        "sha256": "f50db6b86ee61471fb48443e823cb3781553ee84e203fee018d77a31eb96bc4d",
+        "source_url": "https://github.com/justgook/gamectl/blob/ca48dbf190aa66e948a04d2f82a624295b7b6464/themes/the98.css",
+        "static_imports": [],
+        "working_tree_matches_HEAD": true
+      }
+    ],
+    "upstream": [
+      {
+        "bounds": "Embedded SVG payloads and 98.css-derived CSS; not all GAMS theme additions.",
+        "comparison_commit": "b1d7a907371bbe523d6f64e3af97f714fdbd6d6a",
+        "copyright": "Copyright 2020 Jordan Scales",
+        "evidence": "theme-comparison.json",
+        "license_path": "licenses/98.css.MIT.txt",
+        "license_sha256": "8933005629892c51d896f7591b5e79c39a17617ce678231e4c3aa7d412d2682f",
+        "license_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/LICENSE",
+        "original_import_version": null,
+        "repository": "https://github.com/jdan/98.css"
+      }
+    ]
+  },
+  "release_maintenance": [
+    {
+      "version": "0.2.3",
+      "baseline_commit": "7b56a6b0dcb47420c8200b5d237074992a02dbb5",
+      "source_delta_base_tag": "v0.2.1",
+      "authorization": "Owner approved bounded evidence checksum refresh, NOTICE binding and local v0.2.3 preparation after the v0.2.2 packaging failure. No remote push, publication or Actions variable changes authorized here.",
+      "previous_evidence_sha256": "c7afc316f529735b9f29d7ce76532e9e54b67f534e8b4d104948c19e8f5d28a8",
+      "previous_notice_sha256": "236310cd569c3ef75c26563256a82506ccdbd106e2018820db40a5a870edba33",
+      "notice_body_sha256": "acbfd1236f4f6dc891b1034556732bb63d7d12d30a14ffa9a5754c8b77e7ee82",
+      "changed_inputs": {
+        "src/themes/the98.css": {
+          "before": "f50db6b86ee61471fb48443e823cb3781553ee84e203fee018d77a31eb96bc4d",
+          "after": "38e6d798a4461148a7825d240b22f88ae55210f9cb17f6faed28a0fe9a421eeb"
+        }
+      },
+      "change_boundary": "Replace table-editor background shorthand with background-color to preserve select arrows; add selectable gridcell selection and focus-visible styling. No other source changes.",
+      "preserved": "Historical scope/source_commit/unit findings below describe the original audit, not a new audit of current bytes. Previous evidence and NOTICE are recoverable at baseline_commit. LICENSE, full NOTICE body, MIT terms, embedded SVG payloads, THEME-COMPARISON.json, SOURCE.json and strict production verification are unchanged.",
+      "limitations": "No new legal audit, hosted CI, browser rendering or GUI/Host consumption result. This record is not publication approval."
+    },
+    {
+      "version": "0.2.4",
+      "baseline_commit": "cef6d338816331cf0f82a5a703680b7c63eda544",
+      "source_delta_base_tag": "v0.2.3",
+      "source_commit": "680fba902704ca04c46c980e90206b4e2b3c30cd",
+      "authorization": "Owner approved bounded version/evidence refresh and local release preparation for 0.2.4. No tags, remote pushes, publication or Actions variable changes authorized.",
+      "previous_evidence_sha256": "b778a4617ccc58a34f5bc282239bd356749d518ffc73fbb0b82e506a2d33d6a9",
+      "previous_notice_sha256": "71b58e8a2a77fc51bf235fff9bf1814b20d3f2af7c4d974ac309e7e788fb4b25",
+      "notice_body_sha256": "acbfd1236f4f6dc891b1034556732bb63d7d12d30a14ffa9a5754c8b77e7ee82",
+      "changed_inputs": {
+        "src/themes/the98.css": {
+          "before": "38e6d798a4461148a7825d240b22f88ae55210f9cb17f6faed28a0fe9a421eeb",
+          "after": "c473d25b8a9377bb39ea1dea4e1b1076312a962a862384f1058999884f0d3ba3"
+        }
+      },
+      "change_boundary": "Add group-scoped height:auto and min-height:23px for direct-child single-line selects; scale select background arrows with background-size:auto calc(100% - 4px). No top offset or other source changes.",
+      "preserved": "Historical audit findings and prior release_maintenance records remain unchanged. LICENSE, full NOTICE body, MIT terms, embedded SVG payloads, THEME-COMPARISON.json, SOURCE.json and strict production verification are unchanged. Prior evidence and NOTICE bytes remain in baseline_commit.",
+      "limitations": "Bounded checksum maintenance, not a new legal audit or publication approval. Browser checks use development Host CSS; no external-Project desktop, clean-Mac or hosted CI result is claimed."
+    },
+    {
+      "version": "0.2.5",
+      "baseline_commit": "424641b6bf1bd5bdb6ac5e36018df0e70f0d0efa",
+      "source_delta_base_tag": "v0.2.4",
+      "source_commit": "424641b6bf1bd5bdb6ac5e36018df0e70f0d0efa",
+      "authorization": "Owner approved the bounded source-evidence checksum and NOTICE-binding refresh, version preparation and retry of the publish command after the existing-tag mismatch.",
+      "previous_evidence_sha256": "7cd933e1dc124edd142aef0f5fcac9e8a5ed599aae65cb86b180c401434042a3",
+      "previous_notice_sha256": "ebc048837b797e86331f7f5c1b347240926b8ebbf47130ee22b441b20bef9d8b",
+      "notice_body_sha256": "acbfd1236f4f6dc891b1034556732bb63d7d12d30a14ffa9a5754c8b77e7ee82",
+      "changed_inputs": {
+        "src/themes/the98.css": {
+          "before": "c473d25b8a9377bb39ea1dea4e1b1076312a962a862384f1058999884f0d3ba3",
+          "after": "1307978956024f539dad6eecfd42e0a883a8e5688210520b8439d2b98cc93434"
+        }
+      },
+      "change_boundary": "Remove an obsolete commented textarea scrollbar rule; add transparent table and unselected-cell backgrounds for canvas-adjacent tables and sunken cell shadows for separate layouts. Preserve the committed selectors exactly, including the a main prefix.",
+      "preserved": "Historical audit findings and prior release_maintenance records remain unchanged. LICENSE, full NOTICE body, MIT terms, CSS url assets including embedded SVG payloads, THEME-COMPARISON.json, SOURCE.json and strict production verification are unchanged. Previous evidence and NOTICE bytes remain in baseline_commit.",
+      "limitations": "Bounded checksum maintenance, not a new legal audit. No browser rendering, external-Project desktop, clean-Mac or hosted CI result is claimed."
+    },
+    {
+      "version": "0.2.6",
+      "baseline_commit": "37d9921b24ce5f8b71a53ce0cebaa1e847e4b5b4",
+      "source_delta_base_tag": "v0.2.5",
+      "authorization": "Owner approved the select-picker changes and requested preparation of the next release (commit, tag, push); bounded source-evidence and NOTICE-binding maintenance is part of this preparation.",
+      "previous_evidence_sha256": "0fd7a66eaa267a1207c8a8e6cfe46cdf70e9718ec22682133fae3c1c86698f89",
+      "previous_notice_sha256": "6964802f54f178e9affdefbde3a6fec29a86fc1ad14a3a6efe5a367852c05545",
+      "notice_body_sha256": "acbfd1236f4f6dc891b1034556732bb63d7d12d30a14ffa9a5754c8b77e7ee82",
+      "changed_inputs": {
+        "src/themes/the98.css": {
+          "before": "1307978956024f539dad6eecfd42e0a883a8e5688210520b8439d2b98cc93434",
+          "after": "b504eb8334c9e8944f40a703ad40947bf677fc81b469299b991640732dc50414"
+        }
+      },
+      "change_boundary": "Add a feature- and forced-colors-guarded customizable native picker for single-line selects. Reuse The98 variables and arrow assets; style gray optgroup labels and regular-weight options; size popup independently, reserve scrollbar space, and wrap labels at the viewport limit to avoid horizontal scrolling. No other stylesheet changes.",
+      "preserved": "Historical audit findings and prior release_maintenance records remain unchanged. LICENSE, full NOTICE body, MIT terms, CSS url assets including embedded SVG payloads, THEME-COMPARISON.json, SOURCE.json and strict production verification are unchanged. Previous evidence and NOTICE bytes remain in baseline_commit.",
+      "limitations": "Bounded checksum maintenance, not a new legal audit. Development Chrome checks passed 20 picker and 10 arrow assertions, with a narrow-viewport long-label probe. Classic-scrollbar external-Project desktop, clean-Mac and hosted CI results are not claimed."
+    }
+  ]
+}

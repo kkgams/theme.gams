@@ -1,0 +1,691 @@
+{
+  "upstream_commit": "b1d7a907371bbe523d6f64e3af97f714fdbd6d6a",
+  "upstream_stylesheet_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css",
+  "upstream_stylesheet_sha256": "22f66e3d607eb6406b2832ae096716d8c1124d2a8124723adb287402dfdf82fa",
+  "local_stylesheet_sha256": "f50db6b86ee61471fb48443e823cb3781553ee84e203fee018d77a31eb96bc4d",
+  "stylesheet_byte_identical": false,
+  "comparison_method": "Exact SVG decoded-byte comparison; CSS declarations compared after removing whitespace only, without selector equivalence claims.",
+  "icons": [
+    {
+      "variable": "--win98-icon-button-down-active",
+      "source_line": 98,
+      "decoded_bytes": 381,
+      "decoded_sha256": "68b00a22d229c43a7f8e792bb6a57cd6279d02c6d2d010372f7c01490f739524",
+      "encoded_sha256": "2e630630c48d29001d800764d718a2abd8b74a446ed9f214c4955dcdf81207d2",
+      "upstream_path": "icon/button-down-active.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/button-down-active.svg",
+      "upstream_sha256": "68b00a22d229c43a7f8e792bb6a57cd6279d02c6d2d010372f7c01490f739524",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        },
+        {
+          "commit": "2e8d8cabf9702c86f5674b8a1c75efbe610dbe31",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T07:59:49-04:00",
+          "subject": "select boxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-button-down",
+      "source_line": 99,
+      "decoded_bytes": 630,
+      "decoded_sha256": "7d8ddc5d6140b7d751a6499cb652b8a8877786c4ff8723b60e8dd33e10052147",
+      "encoded_sha256": "ed34032561dde09814270ebfcbf2e28058de3537bae7fb35e1ffd68715584369",
+      "upstream_path": "icon/button-down.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/button-down.svg",
+      "upstream_sha256": "7d8ddc5d6140b7d751a6499cb652b8a8877786c4ff8723b60e8dd33e10052147",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        },
+        {
+          "commit": "2e8d8cabf9702c86f5674b8a1c75efbe610dbe31",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T07:59:49-04:00",
+          "subject": "select boxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-button-left",
+      "source_line": 100,
+      "decoded_bytes": 628,
+      "decoded_sha256": "48551dad84d1aa5058138a8d5836deda72cb9a6ed890df8caead2618f3cf91aa",
+      "encoded_sha256": "a4c62aba72365d694b698e8eb22ef52353ae734983599315f14f36fbc19d66db",
+      "upstream_path": "icon/button-left.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/button-left.svg",
+      "upstream_sha256": "48551dad84d1aa5058138a8d5836deda72cb9a6ed890df8caead2618f3cf91aa",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        },
+        {
+          "commit": "2e8d8cabf9702c86f5674b8a1c75efbe610dbe31",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T07:59:49-04:00",
+          "subject": "select boxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-button-right",
+      "source_line": 101,
+      "decoded_bytes": 629,
+      "decoded_sha256": "9ff107d9e22616f884a6787fd4b42817bcf2c9a48dbca890f3d626a7068a6824",
+      "encoded_sha256": "d64caf579eebfea871b4a4a12f4fa6605bd2620f177a76cc717c42478e7c11bf",
+      "upstream_path": "icon/button-right.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/button-right.svg",
+      "upstream_sha256": "9ff107d9e22616f884a6787fd4b42817bcf2c9a48dbca890f3d626a7068a6824",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        },
+        {
+          "commit": "2e8d8cabf9702c86f5674b8a1c75efbe610dbe31",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T07:59:49-04:00",
+          "subject": "select boxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-button-up",
+      "source_line": 102,
+      "decoded_bytes": 629,
+      "decoded_sha256": "632f909933bd686f9707bb2572cea17652d6e6658b5556900cd4644a16a0a2e2",
+      "encoded_sha256": "8979edc5da25ce312eca26792864702bfa076f50c9f131d103f84d46ca9e9734",
+      "upstream_path": "icon/button-up.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/button-up.svg",
+      "upstream_sha256": "632f909933bd686f9707bb2572cea17652d6e6658b5556900cd4644a16a0a2e2",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        },
+        {
+          "commit": "2e8d8cabf9702c86f5674b8a1c75efbe610dbe31",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T07:59:49-04:00",
+          "subject": "select boxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-checkmark-disabled",
+      "source_line": 103,
+      "decoded_bytes": 228,
+      "decoded_sha256": "f8d6b4e74f785fecf0c0046502a7b772d7bd6087a019b9e46737d2346a04142c",
+      "encoded_sha256": "7a9c9f143eb70eabe6b71cb47ddb93168b9f24f8cb19e9801eb36f8fe45eadc8",
+      "upstream_path": "icon/checkmark-disabled.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/checkmark-disabled.svg",
+      "upstream_sha256": "f8d6b4e74f785fecf0c0046502a7b772d7bd6087a019b9e46737d2346a04142c",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "6ffd7c63161ca6452880fb072c33a860fbe2c27d",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T15:40:54-04:00",
+          "subject": "checkboxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-checkmark",
+      "source_line": 104,
+      "decoded_bytes": 226,
+      "decoded_sha256": "386d0568410bbc6dca44865d180bc7902f9186e9eba7eb5873aae839b2b54d05",
+      "encoded_sha256": "9499e53721cfc188b34abc2fc58d82c948e0905eca70625aa129af2a777a04e8",
+      "upstream_path": "icon/checkmark.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/checkmark.svg",
+      "upstream_sha256": "386d0568410bbc6dca44865d180bc7902f9186e9eba7eb5873aae839b2b54d05",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "6ffd7c63161ca6452880fb072c33a860fbe2c27d",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T15:40:54-04:00",
+          "subject": "checkboxes"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-close",
+      "source_line": 105,
+      "decoded_bytes": 270,
+      "decoded_sha256": "6c872690bdee0f5f7014411dbd7b265371bf8d29f5f4ffcb789f9336cbc378dc",
+      "encoded_sha256": "5da23b8fba8f7d78c0202de239b1554791ca74a5d58839335477f32b670c62d2",
+      "upstream_path": "icon/close.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/close.svg",
+      "upstream_sha256": "6c872690bdee0f5f7014411dbd7b265371bf8d29f5f4ffcb789f9336cbc378dc",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "e8d87ed52fedcb1e59ecf304a1169f91716d6e5e",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-23T12:48:46-04:00",
+          "subject": "remove windows line-endings"
+        },
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "f1666930d6d97f9dba7f5bd7c5c2d8c528097405",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T13:13:16-04:00",
+          "subject": "move to docs/"
+        },
+        {
+          "commit": "236ee9731d238f11d24a5b73856922ea88741fd7",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-16T14:05:10-04:00",
+          "subject": "going a little wild with spacing"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-groupbox-border",
+      "source_line": 106,
+      "decoded_bytes": 279,
+      "decoded_sha256": "bbb720314bb0deb15713998b0c1be81ca77f3f28167820424d039247003d6e7a",
+      "encoded_sha256": "d87c4e807336ee05419ff71105538e72ee291f6f16e823a4f6d2cfba47bf78f2",
+      "upstream_path": "icon/groupbox-border.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/groupbox-border.svg",
+      "upstream_sha256": "bbb720314bb0deb15713998b0c1be81ca77f3f28167820424d039247003d6e7a",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "3d378f9e9960191be6ccce7a22ada305feb7e09e",
+          "author": "Dale Whinham",
+          "email": "daleyo@gmail.com",
+          "authored_at": "2021-08-06T14:41:38+01:00",
+          "subject": "Fix GroupBox border for Firefox"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-help",
+      "source_line": 107,
+      "decoded_bytes": 411,
+      "decoded_sha256": "a9152922483e65f0fa09e1a06777b489a3b9da8f96f48176ffd80d2e806f1e53",
+      "encoded_sha256": "e5bc868abdac53850c3e437a6d693a0fbce340d2b0a9b6e1b72a229472c8a536",
+      "upstream_path": "icon/help.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/help.svg",
+      "upstream_sha256": "a9152922483e65f0fa09e1a06777b489a3b9da8f96f48176ffd80d2e806f1e53",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "bfd5340a76ee678256a535265ac71b7c40d62bdb",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-28T12:17:40-04:00",
+          "subject": "Add help title-bar button (#72)"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-indicator-horizontal",
+      "source_line": 108,
+      "decoded_bytes": 523,
+      "decoded_sha256": "3ddc43bcfec1d8cdc68e5bf315ab2fef1cef018d3dba5310b35e008e69934ac3",
+      "encoded_sha256": "2cd60bd036e171d4bfab95217da0ce97a07340f99d44550ab564bfdae3b1c423",
+      "upstream_path": "icon/indicator-horizontal.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/indicator-horizontal.svg",
+      "upstream_sha256": "3ddc43bcfec1d8cdc68e5bf315ab2fef1cef018d3dba5310b35e008e69934ac3",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "1e004ff6b726af21eec90f743fac15beaffda1b6",
+          "author": "Jo\u00e3o Nuno Mota",
+          "email": "jnuno.carrilho@gmail.com",
+          "authored_at": "2020-05-07T21:10:43+01:00",
+          "subject": "Add slider (#78)"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-indicator-rectangle-horizontal",
+      "source_line": 109,
+      "decoded_bytes": 415,
+      "decoded_sha256": "025a2014497c1aa4ea547ba20e0362272f15353f8d81fd90c9610d50d302bc6f",
+      "encoded_sha256": "6e2ac8239a73db79057e2d3d530c0ecdbeafe92460169c32c032b507bbd218b3",
+      "upstream_path": "icon/indicator-rectangle-horizontal.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/indicator-rectangle-horizontal.svg",
+      "upstream_sha256": "025a2014497c1aa4ea547ba20e0362272f15353f8d81fd90c9610d50d302bc6f",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "1e004ff6b726af21eec90f743fac15beaffda1b6",
+          "author": "Jo\u00e3o Nuno Mota",
+          "email": "jnuno.carrilho@gmail.com",
+          "authored_at": "2020-05-07T21:10:43+01:00",
+          "subject": "Add slider (#78)"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-maximize-disabled",
+      "source_line": 110,
+      "decoded_bytes": 319,
+      "decoded_sha256": "6db22bf53712341cbe9151d92e8a58cff9fc61ac93cf1d663af79b25c49e507f",
+      "encoded_sha256": "4cedd46b7ae716634c7a66a3e67dc63db947de84f54dccc7c22e132e821d23fb",
+      "upstream_path": "icon/maximize-disabled.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/maximize-disabled.svg",
+      "upstream_sha256": "6db22bf53712341cbe9151d92e8a58cff9fc61ac93cf1d663af79b25c49e507f",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "479ff657c3cf5aeaa8a21d710dc480c402cb6422",
+          "author": "Vincent Langlois",
+          "email": "vtlanglo@gmail.com",
+          "authored_at": "2024-01-21T12:15:48-05:00",
+          "subject": "Added maximize disabled styling"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-maximize",
+      "source_line": 111,
+      "decoded_bytes": 203,
+      "decoded_sha256": "80d32da4d6ac350eaecc51a947175c17fcd646ff677589b5284605c5ee83cf57",
+      "encoded_sha256": "c33c7e8ed6d49c5b724375786d74caa93bb5671e769967195882f266cb2b9793",
+      "upstream_path": "icon/maximize.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/maximize.svg",
+      "upstream_sha256": "80d32da4d6ac350eaecc51a947175c17fcd646ff677589b5284605c5ee83cf57",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "ecbfb5d54717d872a9dba4ca3b372b2bcd5937ab",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-27T09:54:15-04:00",
+          "subject": "adjust nav button dimensions - fixes #9"
+        },
+        {
+          "commit": "e8d87ed52fedcb1e59ecf304a1169f91716d6e5e",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-23T12:48:46-04:00",
+          "subject": "remove windows line-endings"
+        },
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "f1666930d6d97f9dba7f5bd7c5c2d8c528097405",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T13:13:16-04:00",
+          "subject": "move to docs/"
+        },
+        {
+          "commit": "fd9da1b476b2cebb6d20de512f3ae9b237770743",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T11:22:36-04:00",
+          "subject": "use only inset shadows for buttons"
+        },
+        {
+          "commit": "236ee9731d238f11d24a5b73856922ea88741fd7",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-16T14:05:10-04:00",
+          "subject": "going a little wild with spacing"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-minimize",
+      "source_line": 112,
+      "decoded_bytes": 141,
+      "decoded_sha256": "7dd66ef6f5e3d1a5562f10a5f09ef432d255d4bf29a875451a90259301171986",
+      "encoded_sha256": "daad10d6dbebee3b6b9a5810355b59c74588c90ce4c6e52b14bed906a6420c1e",
+      "upstream_path": "icon/minimize.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/minimize.svg",
+      "upstream_sha256": "7dd66ef6f5e3d1a5562f10a5f09ef432d255d4bf29a875451a90259301171986",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "e8d87ed52fedcb1e59ecf304a1169f91716d6e5e",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-23T12:48:46-04:00",
+          "subject": "remove windows line-endings"
+        },
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "f1666930d6d97f9dba7f5bd7c5c2d8c528097405",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T13:13:16-04:00",
+          "subject": "move to docs/"
+        },
+        {
+          "commit": "236ee9731d238f11d24a5b73856922ea88741fd7",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-16T14:05:10-04:00",
+          "subject": "going a little wild with spacing"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-radio-border-disabled",
+      "source_line": 113,
+      "decoded_bytes": 744,
+      "decoded_sha256": "6ebaac0e76ca11455751d890bf56e324b0824639c3c78a0b29c7ba9d51730e70",
+      "encoded_sha256": "4df9bad31b375b03e0caa99b676e06c1fb714dce1c9df4a9a0ad7e047a7c0a1d",
+      "upstream_path": "icon/radio-border-disabled.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/radio-border-disabled.svg",
+      "upstream_sha256": "6ebaac0e76ca11455751d890bf56e324b0824639c3c78a0b29c7ba9d51730e70",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "38e958620b54734af20441610867d5bb707d2ba3",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T14:36:38-04:00",
+          "subject": "radio buttons"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-radio-border",
+      "source_line": 114,
+      "decoded_bytes": 743,
+      "decoded_sha256": "aee2270c5e60bf5902e7e83241d0260003c453814ecd64521afce2c5836827a3",
+      "encoded_sha256": "39cc0070d0713031cd0a5bdce16fd70b8049327992de201e15705b2c005d049b",
+      "upstream_path": "icon/radio-border.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/radio-border.svg",
+      "upstream_sha256": "aee2270c5e60bf5902e7e83241d0260003c453814ecd64521afce2c5836827a3",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "38e958620b54734af20441610867d5bb707d2ba3",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T14:36:38-04:00",
+          "subject": "radio buttons"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-radio-dot-disabled",
+      "source_line": 115,
+      "decoded_bytes": 200,
+      "decoded_sha256": "4f6cd3b99f6b9950929b78a795c6717efce4633e864a146b7f34d0d350389caf",
+      "encoded_sha256": "acc51cdd0df219a8f5ced5e74e0145c536bf90c649116d01e21cbc2b6ea074cb",
+      "upstream_path": "icon/radio-dot-disabled.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/radio-dot-disabled.svg",
+      "upstream_sha256": "4f6cd3b99f6b9950929b78a795c6717efce4633e864a146b7f34d0d350389caf",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "38e958620b54734af20441610867d5bb707d2ba3",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T14:36:38-04:00",
+          "subject": "radio buttons"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-radio-dot",
+      "source_line": 116,
+      "decoded_bytes": 198,
+      "decoded_sha256": "e92c08cefc8ee32069d7a39c0b9458df6b0dc9bd14a5da890500e0497198fe75",
+      "encoded_sha256": "fd39367aa04091f06414c603327460f68a777f48f6f0b51a069ca93041b40a53",
+      "upstream_path": "icon/radio-dot.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/radio-dot.svg",
+      "upstream_sha256": "e92c08cefc8ee32069d7a39c0b9458df6b0dc9bd14a5da890500e0497198fe75",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "38e958620b54734af20441610867d5bb707d2ba3",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-17T14:36:38-04:00",
+          "subject": "radio buttons"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-restore",
+      "source_line": 117,
+      "decoded_bytes": 513,
+      "decoded_sha256": "0e1cfde669628f656d2085c411e32a989a6f587929f2d7b50652e96d065b028d",
+      "encoded_sha256": "236c63ae61059f250afe73221b1a3a4c7b7c9cf92b4e8978bc2c7462fcbede55",
+      "upstream_path": "icon/restore.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/restore.svg",
+      "upstream_sha256": "0e1cfde669628f656d2085c411e32a989a6f587929f2d7b50652e96d065b028d",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "5fcf41146e356b27e4b9639d87217ad2d4b53988",
+          "author": "Juan Garay",
+          "email": "31663056+JuanGaray93@users.noreply.github.com",
+          "authored_at": "2020-05-17T16:15:53-03:00",
+          "subject": "Add title-bar restore icon (#83)"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-scrollbar-background",
+      "source_line": 118,
+      "decoded_bytes": 275,
+      "decoded_sha256": "b2f448db13cbf4fa1e70ef674bfe41c9e836ccac0bba2d18f76ddfe7dad15430",
+      "encoded_sha256": "8ff44a63d64fa115466d4cc67f1da51870e006e656838692209541ccb5488c9f",
+      "upstream_path": "icon/scrollbar-background.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/scrollbar-background.svg",
+      "upstream_sha256": "b2f448db13cbf4fa1e70ef674bfe41c9e836ccac0bba2d18f76ddfe7dad15430",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "228ab60b642628bfec181f43b07a86a81a344490",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-21T14:07:21-04:00",
+          "subject": "inline svg and reference style.css appropriately"
+        },
+        {
+          "commit": "ef88386825b91d4ca910d28331f7000c08728a27",
+          "author": "Jordan Scales",
+          "email": "scalesjordan@gmail.com",
+          "authored_at": "2020-04-18T11:05:27-04:00",
+          "subject": "scrollbars"
+        }
+      ]
+    },
+    {
+      "variable": "--win98-icon-sunken-panel-border",
+      "source_line": 119,
+      "decoded_bytes": 545,
+      "decoded_sha256": "0312d8c060fc7ec62fdd0a01c4933ac2780edcf40ddbc9d6f0a565e146465717",
+      "encoded_sha256": "3700aba377642bbddb5189e74c2c005621028dba8401041b80d4076a375a9a1f",
+      "upstream_path": "icon/sunken-panel-border.svg",
+      "upstream_url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/icon/sunken-panel-border.svg",
+      "upstream_sha256": "0312d8c060fc7ec62fdd0a01c4933ac2780edcf40ddbc9d6f0a565e146465717",
+      "byte_identical": true,
+      "upstream_git_history": [
+        {
+          "commit": "d39788c7886173b48399268d25c83874b1681a05",
+          "author": "robert-ryu7",
+          "email": "balcerowicz87@gmail.com",
+          "authored_at": "2022-11-13T21:49:59+01:00",
+          "subject": "Implement TableView component (#151)"
+        }
+      ]
+    }
+  ],
+  "css": {
+    "local_declaration_count": 721,
+    "matched_declaration_occurrences": 462,
+    "distinct_matched_declarations": 215,
+    "samples": [
+      {
+        "local_line": 48,
+        "local_declaration": "--radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);",
+        "upstream_line": 36,
+        "upstream_declaration": "--radio-dot-top: calc(var(--radio-width) / 2 - var(--radio-dot-width) / 2);",
+        "url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css#L36"
+      },
+      {
+        "local_line": 71,
+        "local_declaration": "--default-button-border-raised-inner:\n            inset 2px 2px var(--button-highlight), inset -3px -3px var(--button-shadow),\n            inset 3px 3px var(--button-face);",
+        "upstream_line": 61,
+        "upstream_declaration": "--default-button-border-raised-inner: inset 2px 2px var(--button-highlight), inset -3px -3px var(--button-shadow), inset 3px 3px var(--button-face);",
+        "url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css#L61"
+      },
+      {
+        "local_line": 84,
+        "local_declaration": "--border-field:\n            inset -1px -1px var(--button-highlight),\n            inset 1px 1px var(--button-shadow), inset -2px -2px var(--button-face),\n            inset 2px 2px var(--window-frame);",
+        "upstream_line": 73,
+        "upstream_declaration": "--border-field: inset -1px -1px var(--button-highlight),\n    inset 1px 1px var(--button-shadow), inset -2px -2px var(--button-face),\n    inset 2px 2px var(--window-frame);",
+        "url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css#L73"
+      },
+      {
+        "local_line": 175,
+        "local_declaration": "text-shadow: 0 0 var(--text-color);",
+        "upstream_line": 151,
+        "upstream_declaration": "text-shadow: 0 0 var(--text-color);",
+        "url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css#L151"
+      },
+      {
+        "local_line": 233,
+        "local_declaration": "outline-offset: -4px;",
+        "upstream_line": 199,
+        "upstream_declaration": "outline-offset: -4px;",
+        "url": "https://github.com/jdan/98.css/blob/b1d7a907371bbe523d6f64e3af97f714fdbd6d6a/style.css#L199"
+      }
+    ],
+    "upstream_font_faces": 2,
+    "local_font_faces": 0,
+    "bounds": "98.css-derived color/spacing/border tokens, control typography and widget rules are adapted across the theme; selectors, theme layer, semantic GAMS chrome and custom tokens differ. Match metrics are evidence, not a line-by-line copyright allocation. Original imported version/date is unknown."
+  }
+}
