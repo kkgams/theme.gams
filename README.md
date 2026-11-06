@@ -13,10 +13,10 @@ Themes for [GAMS](https://github.com/kkgams/gams).
 
 Edit styles in `src/themes/` and list packaged files in Makefile's `ZIP_FILES`.
 `orange` keeps the Host base styling with the GAMS promo accent (`#ec4e00`) and
-square corners. The preview Projects are `projects/orange/gams.json` and
-`projects/the98/gams.json`. Each links to the canonical `src/` directory;
-`make open` selects the Project folder without copying configuration or styles.
-Both use the repository's shared `gams_modules/` cache.
+square corners. The preview configurations are `gams_orange.json` and
+`gams_the98.json`. `make open` passes the selected filename through `GAMS_CONFIG`
+and uses this repository as the Project root, with no copying or symlinks.
+Both configurations use the root `src/` directory and `gams_modules/` cache.
 
 | Command | Description |
 | --- | --- |
@@ -29,8 +29,10 @@ Both use the repository's shared `gams_modules/` cache.
 | `make docs` / `make build-docs` | Build the portable documentation site in `build.nosync/site/`. |
 | `make validate-docs` | Check the documentation. |
 
-Packaging needs Make, `zip` and `shasum`. Opening the Project requires macOS
-Apple Silicon; the Host downloader uses Python 3, curl and unzip. Documentation
+Packaging needs Make, `zip` and `shasum`. Opening the Project requires GAMS
+2.2.0+ on macOS Apple Silicon; the Host downloader uses Python 3, curl and unzip.
+Existing Host downloads are preserved; use `make clean` before `make open` to
+replace an older Host (also removes the generated output and caches listed above). Documentation
 uses Node.js 24 and pinned `justgook/wiki` v1.4.0. Initial downloads need network
 access; no sibling checkout is required.
 

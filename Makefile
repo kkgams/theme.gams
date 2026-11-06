@@ -57,8 +57,8 @@ tools/gams.app: | build.nosync/tmp
 		mv "$$stage/unpacked" tools/gams-release-notices; \
 		mv "$$stage/GAMS.app" "$@"
 
-open: projects/$(THEME)/gams.json tools/gams.app
-	GAMS_APP_CWD="$(CURDIR)/projects/$(THEME)" GAMS_MODULES_DIR="$(CURDIR)/gams_modules" ./tools/gams.app/Contents/MacOS/gams
+open: gams_$(THEME).json tools/gams.app
+	GAMS_APP_CWD="$(CURDIR)" GAMS_CONFIG="$<" ./tools/gams.app/Contents/MacOS/gams
 
 build.nosync/tmp:
 	@mkdir -p "$@"
