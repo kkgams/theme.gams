@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
-ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt src/themes/the98.css
+ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt src/themes/the98.css src/themes/orange.css
 export TMPDIR := $(abspath build.nosync/tmp)
 export PYTHONPYCACHEPREFIX := $(abspath build.nosync/pycache)
 PYTHON ?= python3

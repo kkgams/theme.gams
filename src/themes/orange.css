@@ -1,0 +1,7 @@
+@layer theme {
+    :root {
+        --accent: #ec4e00;
+        --radius-sm: 0;
+        --radius-md: 0;
+    }
+}
