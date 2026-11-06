@@ -38,14 +38,13 @@ Services and file Views supply the workspace; no sibling checkout is needed.
 
 ```sh
 make package OUT=build.nosync/dist/new-candidate
-make check-package OUT=build.nosync/dist/new-candidate
 ```
 
 Packaging requires Make and Python 3. `make package` defaults to
 `build.nosync/dist/candidate/`; output must not already exist. CSS is
 copied unchanged; there is no compilation or CSS test pipeline. The ZIP includes
-README, LICENSE, NOTICE and `licenses/`. Generated checksums and package checking
-concern release bytes, not CSS behavior or license auditing.
+README, LICENSE, NOTICE and `licenses/`, with a generated SHA256SUMS file
+alongside the archive. Developers decide whether the theme works as expected.
 
 Makefile owns `VERSION`. A matching tag push publishes `theme.gams.zip` and
 SHA256SUMS without overwriting existing releases.

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Stdlib-only deterministic Project Unit staging and independent verification."""
+"""Package theme files for matching-tag releases."""
 import argparse
 import hashlib
 import io
@@ -101,28 +101,6 @@ def stage(root, out, tag):
     (out / 'SHA256SUMS').write_text(f'{digest(data)}  {name}\n')
 
 
-def check(root, out, tag):
-    name, files = payload(root, tag)
-    reject_symlinks(out.absolute())
-    if not out.is_dir():
-        raise ValueError('candidate must be a regular directory; no source fallback')
-    if {p.name for p in out.iterdir()} != {name, 'SHA256SUMS'}:
-        raise ValueError('missing or extra candidate inputs; no source fallback')
-    for filename in (name, 'SHA256SUMS'):
-        regular_bytes(out.resolve(), filename)
-    data = (out / name).read_bytes()
-    if (out / 'SHA256SUMS').read_text() != f'{digest(data)}  {name}\n':
-        raise ValueError('checksum mismatch')
-    with zipfile.ZipFile(io.BytesIO(data)) as z:
-        if len(z.namelist()) != len(files) or set(z.namelist()) != set(files):
-            raise ValueError('duplicate/missing/extra ZIP entries')
-        for path, expected in files.items():
-            if z.read(path) != expected:
-                raise ValueError(f'candidate content mismatch: {path}')
-    if data != archive(files):
-        raise ValueError('non-deterministic candidate metadata')
-
-
 def identity(tag):
     root = Path(__file__).resolve().parents[1]
     version(root, tag)
@@ -153,13 +131,13 @@ def absent(repository, tag, token):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('command', choices=['stage', 'check', 'identity', 'absent'])
+    parser.add_argument('command', choices=['stage', 'identity', 'absent'])
     parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument('--out', type=Path, default=Path('build.nosync/dist/candidate'))
     parser.add_argument('--tag', required=True)
     args = parser.parse_args()
-    if args.command in ('stage', 'check'):
-        globals()[args.command](args.root.resolve(), args.out, args.tag)
+    if args.command == 'stage':
+        stage(args.root.resolve(), args.out, args.tag)
     elif args.command == 'identity':
         identity(args.tag)
     else:

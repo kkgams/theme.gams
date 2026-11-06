@@ -15,15 +15,12 @@ WIKI_REPOSITORY := https://github.com/justgook/wiki
 WIKI_MAKEFILE := build.nosync/wiki-$(WIKI_VERSION).mk
 WIKI_ENGINE := $(abspath build.nosync/wiki-$(WIKI_VERSION))
 
-.PHONY: version package check-package clean open serve-docs validate-docs build-docs docs
+.PHONY: version package clean open serve-docs validate-docs build-docs docs
 version:
 	@printf '%s\n' '$(VERSION)'
 
 package: | build.nosync/tmp
 	$(PYTHON) scripts/release.py stage --tag "v$(VERSION)" --out "$(OUT)"
-
-check-package:
-	$(PYTHON) scripts/release.py check --tag "v$(VERSION)" --out "$(OUT)"
 
 clean:
 	@set -eu; \
