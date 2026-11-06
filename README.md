@@ -1,31 +1,20 @@
 # theme.gams
 
 The kkgams-maintained theme collection for GAMS. Each theme is a separate CSS
-stylesheet; the collection shares one version and release ZIP.
-
-## Themes
+stylesheet; all themes share one version and release ZIP.
 
 | Theme | Source | Release path |
 | --- | --- | --- |
 | The98 | `src/themes/the98.css` | `themes/the98.css` |
 
-The98 provides a compact Windows 98-style interface. It adapts MIT-licensed
-98.css; GAMS-authored additions are Apache-2.0. See [LICENSING.md](LICENSING.md).
+The98 is based on [98.css](https://github.com/jdan/98.css) by **Jordan Scales**,
+copyright 2020. Its adapted styles and embedded SVG icons retain the
+[MIT license](licenses/98.css.MIT.txt). GAMS-authored additions are
+[Apache-2.0](LICENSE).
 
 ## Use a theme
 
-The Host still loads any CSS source configured in `gams.json`; this collection
-is not a required registry or a restriction on custom themes. For local CSS:
-
-```json
-{
-  "ui": {
-    "theme": { "url": "themes/my-theme.css" }
-  }
-}
-```
-
-For a published collection, select the stylesheet inside its release ZIP:
+Select a stylesheet in your Project's `gams.json`:
 
 ```json
 {
@@ -37,28 +26,30 @@ For a published collection, select the stylesheet inside its release ZIP:
 }
 ```
 
-Version 1.0.1 is the next collection candidate, not a publication claim. The
-release URL becomes usable after publication. Existing `theme.the98` release
-URLs remain valid; update Project pins only after the new release is available.
-Omit `ui.theme` to use Host base styling without a theme.
+Version 1.0.1 is the next candidate; that URL works after publication. ZIP names
+stay fixed, so future upgrades change only the tag version. Existing
+`theme.the98` release URLs remain valid.
+
+Any local or external CSS is still supported, for example
+`"theme": { "url": "themes/my-theme.css" }`. Omit `ui.theme` for Host base styling.
 
 ## Develop
 
-Requires Node.js 24, Python 3 and Make.
+Edit CSS under `src/themes/`. Add assets alongside it and keep any third-party
+attribution and license files. No compilation is needed.
 
 ```sh
-make check                  # source, packaging and release safety tests
-make open                   # open the local Project with The98 selected
+make open                    # open the local Project with The98 selected
+make package                 # create theme.gams.zip and SHA256SUMS
 make serve-docs DOCS_PORT=8080
-make validate-docs
 make docs
 ```
 
-`make open` uses the local CSS in `gams.json` and downloads the released macOS
-Apple Silicon Host to ignored `tools/gams.app` when absent. It sets
-`GAMS_APP_CWD`, preserves accompanying notices and never updates an existing
-Host implicitly. Pinned released dependencies require network access on first
-launch; no sibling checkout is needed.
+Packaging requires Make and Python 3. `make open` uses the released macOS Apple
+Silicon Host in ignored `tools/gams.app`, downloading it only when absent,
+retaining notices and setting `GAMS_APP_CWD`. Released Project dependencies are
+pinned; no sibling checkout is needed. Documentation uses pinned
+`justgook/wiki` v1.4.0 and requires Node.js 24. Initial downloads need network access.
 
-[Development documentation](docs/index.md) covers adding and checking themes.
-[Publishing](PUBLISHING.md) covers matching-tag releases and documentation Pages.
+Package output must not already exist; set `OUT=dist/new-candidate` for a fresh
+output directory. See [PUBLISHING.md](PUBLISHING.md) for release commands.

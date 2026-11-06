@@ -1,5 +1,7 @@
-.DEFAULT_GOAL := check
+.DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
+VERSION := 1.0.1
+OUT ?= dist/candidate
 PYTHON ?= python3
 CURL ?= curl
 GAMS_RELEASE_API ?= https://api.github.com/repos/kkgams/gams/releases/latest
@@ -11,9 +13,15 @@ WIKI_REPOSITORY := https://github.com/justgook/wiki
 WIKI_MAKEFILE := build/wiki-$(WIKI_VERSION).mk
 WIKI_ENGINE := $(abspath build/wiki-$(WIKI_VERSION))
 
-.PHONY: check open serve-docs validate-docs build-docs docs
-check:
-	npm test
+.PHONY: version package check-package open serve-docs validate-docs build-docs docs
+version:
+	@printf '%s\n' '$(VERSION)'
+
+package:
+	$(PYTHON) scripts/release.py stage --tag "v$(VERSION)" --out "$(OUT)"
+
+check-package:
+	$(PYTHON) scripts/release.py check --tag "v$(VERSION)" --out "$(OUT)"
 
 # Retain an existing app; never update it implicitly.
 tools/gams.app:

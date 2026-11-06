@@ -1,63 +1,51 @@
 # Publishing
 
-The collection publishes `theme.gams.zip` and `SHA256SUMS` through
-GitHub Releases, not npm or OCI. Every theme is included in that ZIP with its
-own `themes/<name>.css` path. The ZIP filename is stable across versions; only
-the release tag changes in download URLs. The next collection version is **1.0.1**.
+`VERSION` in Makefile is the collection version, currently **1.0.1**. A matching
+`v<version>` tag push publishes `theme.gams.zip` and `SHA256SUMS` through GitHub
+Releases. Only the tag version changes in download URLs.
 
-## Validate a candidate
+## Package
 
-Requires Node.js 24 and Python 3. Candidate output must not already exist.
-
-```sh
-make check
-python3 scripts/release.py stage --tag v1.0.1 --out dist/candidate
-python3 scripts/release.py check --tag v1.0.1 --out dist/candidate
-make validate-docs
-make docs
-```
-
-Staging validates the complete source/evidence closure and produces deterministic
-ZIP bytes and checksums. Independent checking requires the exact candidate files,
-contents and metadata; it never substitutes source for missing artifacts. LICENSE,
-NOTICE, README, source evidence and third-party license files accompany the
-stylesheets. The Host loads CSS directly; no `unit.json` or custom loader is needed.
-
-`make check` does not run browser rendering. Before publishing changed CSS,
-verify it in the real Host using `make open`, including disabled/focused/selected
-states and the Host's documented UI elements. The existing browser regression
-module checks The98 select arrows and enhanced native picker styling; run it in
-the real Host cascade as described in `docs/index.md`.
-
-## Publish a version
-
-A matching `vMAJOR.MINOR.PATCH` tag push is the release authorization. No manual
-checksum variables, extra approval flags or required publication branch apply.
-Tests, exact tag/version/repository/checkout identity, source/licensing evidence,
-artifact integrity and no-overwrite checks remain mandatory.
-
-After an explicitly authorized version commit, use a clean checkout and the
-canonical `git@github.com:kkgams/theme.gams.git` origin:
+Requires Make and Python 3. Use a fresh output directory:
 
 ```sh
-scripts/push-release.sh             # read-only remote preflight; no refs changed
-scripts/push-release.sh --publish   # create local tag if needed; push branch/tag
+make package OUT=dist/new-candidate
+make check-package OUT=dist/new-candidate
 ```
 
-The helper requires authenticated GitHub CLI with repository push access to see
-drafts. It rejects existing remote tags/releases, checks local tag identity,
-runs tests and fresh stage/check, then pushes the current branch and matching tag
-atomically without force. API/authentication/network errors fail closed. A failed
-push can leave a local tag; inspect it before retrying. The helper does not create
-a GitHub Release; matching-tag CI verifies the candidate and creates it using the
-automatic GitHub token. Existing releases and tags must never be replaced.
+The ZIP contains `src/` files with that prefix removed, README, LICENSE, NOTICE
+and `licenses/`. CSS is copied as-is, without parsing, linting or browser tests.
+The98 credits Jordan Scales and keeps the full 98.css MIT license under
+`licenses/98.css.MIT.txt`.
 
-Branch and PR CI validate candidates without publishing. Enable immutable
-releases in the repository settings before publication. Hosted CI, public artifact
-consumption and native GUI checks must be reported separately from local tests.
+`check-package` checks the release ZIP and its generated checksum against the
+current files. It does not validate CSS or license contents. Packaging refuses
+to overwrite an existing output directory.
+
+## Push a release
+
+From a clean committed checkout with canonical
+`git@github.com:kkgams/theme.gams.git` origin and authenticated GitHub CLI:
+
+```sh
+scripts/push-release.sh             # preflight only; no refs changed
+scripts/push-release.sh --publish   # push current branch and matching tag
+```
+
+The helper checks repository/version/tag identity, remote tag/release absence
+and a fresh package. `--publish` creates the local tag if absent, then pushes
+branch and tag atomically. It never forces updates or creates the GitHub Release
+itself; matching-tag CI publishes using the automatic GitHub token. Authentication
+and API errors stop publication. Existing tags and releases cannot be replaced.
+A failed push may leave a local tag; inspect it before retrying.
+
+No special publication branch or manual approval/checksum variables are required.
+Enable immutable releases in repository settings. Branch and PR CI package
+without publishing. Creating tags, pushing or publishing still requires explicit
+authorization.
 
 ## Documentation
 
-Every push to `release` publishes `docs/` through GitHub Pages using `make docs`
-and pinned `justgook/wiki` v1.4.0. Configure Pages to use GitHub Actions.
-Documentation publication is independent of version tags and the default branch.
+`make serve-docs` previews docs, `make validate-docs` checks documentation and
+`make docs` builds the portable site. Every push to `release` deploys it through
+GitHub Pages independently of version tags. Pages must use GitHub Actions.

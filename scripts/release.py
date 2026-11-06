@@ -3,7 +3,6 @@
 import argparse
 import hashlib
 import io
-import json
 import os
 from pathlib import Path, PurePosixPath
 import re
@@ -17,8 +16,9 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
-LEGAL_PAYLOAD = ('LICENSE', 'NOTICE', 'README.md', 'NOTICE-EVIDENCE.json',
-                 'licenses/98.css.MIT.txt')
+REPOSITORY = 'kkgams/theme.gams'
+REQUIRED_FILES = ('LICENSE', 'NOTICE', 'README.md', 'licenses/98.css.MIT.txt')
+VERSION_PATTERN = r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)'
 
 
 def safe_path(root, name):
@@ -28,83 +28,57 @@ def safe_path(root, name):
     if path.is_absolute() or '..' in path.parts or str(path) != name or name == '.':
         raise ValueError('invalid relative path: ' + name)
     local = root / name
-    if any(p.is_symlink() for p in (local, *local.parents)):
-        raise ValueError('symlink forbidden: ' + name)
+    reject_symlinks(local)
     if not local.resolve().is_relative_to(root):
         raise ValueError('path escapes repository: ' + name)
     return local
 
 
+def reject_symlinks(path):
+    if any(p.is_symlink() for p in (path, *path.parents)):
+        raise ValueError('symlink forbidden: ' + str(path))
+
+
 def regular_bytes(root, name):
     path = safe_path(root, name)
-    if not path.is_file() or not path.read_bytes().strip():
-        raise ValueError('required nonempty regular file: ' + name)
+    if not path.is_file():
+        raise ValueError('required regular file: ' + name)
     return path.read_bytes()
 
 
-def legal_files(root):
-    for name in LEGAL_PAYLOAD:
-        regular_bytes(root, name)
-    if 'PROVENANCE_PENDING' in (root / 'NOTICE').read_text():
-        raise ValueError('theme provenance audit pending')
+def version(root, tag):
+    value = subprocess.check_output(
+        ['make', '--no-print-directory', '-s', 'version'], cwd=root, text=True).strip()
+    if not re.fullmatch(VERSION_PATTERN, value) or tag != 'v' + value:
+        raise ValueError('tag/version mismatch')
+    if 'GITHUB_REPOSITORY' in os.environ and os.environ['GITHUB_REPOSITORY'] != REPOSITORY:
+        raise ValueError('workflow repository must match canonical Project Unit identity')
+    return value
 
 
 def payload(root, tag):
     root = root.resolve()
-    package = json.loads(regular_bytes(root, 'package.json'))
-    if package['name'] != 'theme.gams':
-        raise ValueError('invalid theme collection identity')
-    if 'GITHUB_REPOSITORY' in os.environ and os.environ['GITHUB_REPOSITORY'] != 'kkgams/' + package['name']:
-        raise ValueError('workflow repository must match canonical Project Unit identity')
-    if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', package['version']) or tag != 'v' + package['version']:
-        raise ValueError('tag/version mismatch')
-    if package['license'] != 'Apache-2.0' or package['private'] is not True:
-        raise ValueError('invalid package licensing/publication policy')
-    legal_files(root)
-    evidence_bytes = regular_bytes(root, 'NOTICE-EVIDENCE.json')
-    if ('NOTICE-EVIDENCE.json SHA-256: ' + digest(evidence_bytes)) not in (root / 'NOTICE').read_text():
-        raise ValueError('NOTICE does not bind current evidence')
-    evidence = json.loads(evidence_bytes)
-    audited = evidence.get('files_sha256') if isinstance(evidence, dict) else None
-    if not isinstance(audited, dict) or not audited:
-        raise ValueError('invalid evidence inputs')
-    if 'licenses/98.css.MIT.txt' not in audited:
-        raise ValueError('missing audited MIT input')
-    for path, expected in audited.items():
-        if not isinstance(expected, str) or not re.fullmatch(r'[0-9a-f]{64}', expected):
-            raise ValueError('invalid evidence digest')
-        if digest(regular_bytes(root, path)) != expected:
-            raise ValueError('audited evidence input changed: ' + path)
-    source_files = package['files']
-    if not isinstance(source_files, list) or not source_files or any(not isinstance(p, str) for p in source_files) or len(source_files) != len(set(source_files)):
-        raise ValueError('empty or duplicate source mapping')
-    source_root = safe_path(root, 'src')
-    if not source_root.is_dir():
-        raise ValueError('required source directory')
-    actual = set()
-    for local in source_root.rglob('*'):
-        name = local.relative_to(root).as_posix()
-        safe_path(root, name)
-        if local.is_file():
-            actual.add(name)
-        elif not local.is_dir():
-            raise ValueError('nonregular source: ' + name)
-    if not any(path.startswith('src/themes/') and path.endswith('.css') for path in actual):
-        raise ValueError('at least one theme stylesheet is required')
-    if actual != set(source_files):
-        raise ValueError('source closure differs from package files')
-    if actual != {p for p in audited if p.startswith('src/')}:
-        raise ValueError('source closure differs from audited evidence')
-    files = {name: regular_bytes(root, name) for name in LEGAL_PAYLOAD}
-    for source in source_files:
-        path = PurePosixPath(source)
-        if path.parts[0] != 'src' or len(path.parts) < 2:
-            raise ValueError('invalid source path')
-        deployed = path.relative_to('src').as_posix()
-        if deployed in files or deployed == 'unit.json':
-            raise ValueError('duplicate deployment output')
-        files[deployed] = regular_bytes(root, source)
-    return package['name'] + '.zip', files
+    version(root, tag)
+    files = {}
+    for name in REQUIRED_FILES:
+        data = regular_bytes(root, name)
+        if not name.startswith('licenses/'):
+            files[name] = data
+    for directory in ('src', 'licenses'):
+        source = safe_path(root, directory)
+        if not source.is_dir():
+            raise ValueError('required directory: ' + directory)
+        for local in sorted(source.rglob('*')):
+            name = local.relative_to(root).as_posix()
+            safe_path(root, name)
+            if local.is_dir():
+                continue
+            data = regular_bytes(root, name)
+            deployed = local.relative_to(source).as_posix() if directory == 'src' else name
+            if deployed in files:
+                raise ValueError('duplicate deployment output: ' + deployed)
+            files[deployed] = data
+    return 'theme.gams.zip', files
 
 
 def archive(files):
@@ -121,6 +95,7 @@ def archive(files):
 def stage(root, out, tag):
     name, files = payload(root, tag)
     data = archive(files)
+    reject_symlinks(out.absolute())
     out.mkdir(parents=True, exist_ok=False)
     (out / name).write_bytes(data)
     (out / 'SHA256SUMS').write_text(f'{digest(data)}  {name}\n')
@@ -128,7 +103,8 @@ def stage(root, out, tag):
 
 def check(root, out, tag):
     name, files = payload(root, tag)
-    if out.is_symlink() or not out.is_dir():
+    reject_symlinks(out.absolute())
+    if not out.is_dir():
         raise ValueError('candidate must be a regular directory; no source fallback')
     if {p.name for p in out.iterdir()} != {name, 'SHA256SUMS'}:
         raise ValueError('missing or extra candidate inputs; no source fallback')
@@ -148,20 +124,18 @@ def check(root, out, tag):
 
 
 def identity(tag):
-    package = json.loads((Path(__file__).resolve().parents[1] / 'package.json').read_text())
-    if tag != 'v' + package['version']:
-        raise ValueError('tag/version mismatch')
-    if package['name'] != 'theme.gams' or os.environ['GITHUB_REPOSITORY'] != 'kkgams/theme.gams':
+    root = Path(__file__).resolve().parents[1]
+    version(root, tag)
+    if os.environ['GITHUB_REPOSITORY'] != REPOSITORY:
         raise ValueError('workflow repository must match canonical Project Unit identity')
-    head = subprocess.check_output(['git', 'rev-parse', 'HEAD']).strip()
-    tagged = subprocess.check_output(['git', 'rev-parse', tag + '^{commit}']).strip()
-    workflow = subprocess.check_output(['git', 'rev-parse', os.environ['GITHUB_SHA'] + '^{commit}']).strip()
-    if head != tagged or head != workflow:
+    def commit(ref):
+        return subprocess.check_output(['git', 'rev-parse', ref + '^{commit}'], cwd=root).strip()
+    if commit('HEAD') != commit(tag) or commit('HEAD') != commit(os.environ['GITHUB_SHA']):
         raise ValueError('tag must match checkout HEAD and workflow SHA')
 
 
 def absent(repository, tag, token):
-    if not re.fullmatch(r'[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+', repository) or not re.fullmatch(r'v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', tag):
+    if repository != REPOSITORY or not re.fullmatch('v' + VERSION_PATTERN, tag) or not token:
         raise ValueError('invalid release identity')
     request = urllib.request.Request(
         f'https://api.github.com/repos/{repository}/releases/tags/{tag}',

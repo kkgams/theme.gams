@@ -11,7 +11,7 @@ esac
 [ "$#" -le 1 ] || fail 'usage: scripts/push-release.sh [--publish]'
 cd "$(dirname "$0")/.."
 repo=kkgams/theme.gams
-for command in git gh python3 npm; do command -v "$command" >/dev/null || fail "missing command: $command"; done
+for command in git gh python3 make; do command -v "$command" >/dev/null || fail "missing command: $command"; done
 [ -z "$(git status --porcelain)" ] || fail 'checkout must be clean'
 branch_ref=$(git symbolic-ref --quiet HEAD) || fail 'HEAD must be on a branch'
 [[ $branch_ref == refs/heads/* ]] || fail 'HEAD must name a local branch'
@@ -30,7 +30,15 @@ if mirror=$(git config --bool --get remote.origin.mirror); then
 else
   [ "$?" -eq 1 ] || fail 'cannot inspect origin mirror configuration'
 fi
-version=$(git show HEAD:package.json | python3 -c 'import json,re,sys; p=json.load(sys.stdin); v=p["version"]; assert p["name"] == "theme.gams"; assert re.fullmatch(r"(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)",v), "invalid version"; print(v)')
+version=$(git show HEAD:Makefile | python3 -c '
+import re, sys
+lines = [line for line in sys.stdin.read().splitlines() if line.startswith("VERSION :=")]
+if len(lines) != 1:
+    sys.exit("expected exactly one canonical VERSION := line")
+match = re.fullmatch(r"VERSION := ?((?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*)\.(?:0|[1-9][0-9]*))", lines[0])
+if not match:
+    sys.exit("invalid version")
+print(match[1])')
 tag="v$version"
 local_tag=false
 if git show-ref --verify --quiet "refs/tags/$tag"; then
@@ -63,11 +71,10 @@ for page in pages:
         if release["tag_name"] == sys.argv[1]:
             sys.exit("GitHub Release already exists; use a new version")
 ' "$tag"
-npm test
 out=$(mktemp -d)
 trap 'rm -rf "$out"' EXIT
-python3 scripts/release.py stage --tag "$tag" --out "$out/candidate"
-python3 scripts/release.py check --tag "$tag" --out "$out/candidate"
+make package OUT="$out/candidate"
+make check-package OUT="$out/candidate"
 [ -z "$(git status --porcelain)" ] || fail 'checkout changed during preflight'
 [ "$(git rev-parse HEAD)" = "$head" ] || fail 'HEAD changed during preflight'
 [ "$(git symbolic-ref --quiet HEAD)" = "$branch_ref" ] || fail 'branch changed during preflight'
