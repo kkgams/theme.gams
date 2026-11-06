@@ -47,8 +47,7 @@ README, LICENSE, NOTICE and `licenses/`. Generated checksums and package checkin
 concern release bytes, not CSS behavior or license auditing.
 
 Makefile owns `VERSION`. A matching tag push publishes `theme.gams.zip` and
-SHA256SUMS without overwriting existing releases. PUBLISHING.md in the repository
-covers the authenticated preflight/atomic-push helper.
+SHA256SUMS without overwriting existing releases.
 
 ## Documentation
 

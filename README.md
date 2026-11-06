@@ -52,4 +52,4 @@ pinned; no sibling checkout is needed. Documentation uses pinned
 `justgook/wiki` v1.4.0 and requires Node.js 24. Initial downloads need network access.
 
 Package output must not already exist; set `OUT=dist/new-candidate` for a fresh
-output directory. See [PUBLISHING.md](PUBLISHING.md) for release commands.
+output directory.
