@@ -6,6 +6,22 @@
         --header-border: 1px solid var(--border);
     }
 
+    view-area::part(header) {
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+    }
+
+    view-area::part(view-select) {
+        flex-shrink: 0;
+    }
+
+    view-area [slot="header-controls"] {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+    }
+
     select {
         -webkit-appearance: none;
         appearance: none;
