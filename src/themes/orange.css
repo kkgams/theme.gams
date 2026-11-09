@@ -3,5 +3,19 @@
         --accent: #ec4e00;
         --radius-sm: 0;
         --radius-md: 0;
+        --header-border: 1px solid var(--border);
+    }
+
+    /* Flat status fields; shared sizing and wrapping live in Host base.css. */
+    main > footer {
+        padding: var(--space-2);
+        border-top: 1px solid var(--border);
+        background: var(--surface);
+    }
+
+    footer > output {
+        border: 1px solid var(--border);
+        background: var(--surface-elevated);
+        font-size: var(--font-sm);
     }
 }
