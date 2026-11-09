@@ -6,6 +6,19 @@
         --header-border: 1px solid var(--border);
     }
 
+    view-area {
+        padding: var(--resize-handle-size);
+    }
+
+    view-area::before {
+        content: "";
+        position: absolute;
+        inset: var(--resize-handle-size);
+        border: 1px solid var(--border);
+        pointer-events: none;
+        z-index: var(--z-index-handle);
+    }
+
     view-area::part(header) {
         min-width: 0;
         display: flex;
