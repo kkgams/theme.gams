@@ -35,6 +35,14 @@
         overflow-x: auto;
     }
 
+    [role="buttongroup"] {
+        padding: 0 3px;
+    }
+
+    [role="buttongroup"]:last-child {
+        padding-right: 0;
+    }
+
     select {
         -webkit-appearance: none;
         appearance: none;
