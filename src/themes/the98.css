@@ -1564,6 +1564,7 @@
     }
 
     view-popup::part(container) {
+        border: 0;
         box-shadow: var(--border-window-outer), var(--border-window-inner);
         background: var(--surface);
         padding: 3px;
