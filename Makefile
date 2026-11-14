@@ -9,6 +9,7 @@ GAMS_RELEASE_API ?= https://api.github.com/repos/kkgams/gams/releases/latest
 UNAME_S := $(shell uname -s)
 UNAME_M := $(shell uname -m)
 THEME ?= orange
+GAMS_CONFIG ?= gams_$(THEME).json
 DOCS_PORT ?= 8080
 WIKI_VERSION := v1.4.0
 WIKI_REPOSITORY := https://github.com/justgook/wiki
@@ -57,8 +58,8 @@ tools/gams.app: | build.nosync/tmp
 		mv "$$stage/unpacked" tools/gams-release-notices; \
 		mv "$$stage/GAMS.app" "$@"
 
-open: gams_$(THEME).json tools/gams.app
-	GAMS_APP_CWD="$(CURDIR)" GAMS_CONFIG="$<" ./tools/gams.app/Contents/MacOS/gams
+open: $(GAMS_CONFIG) tools/gams.app
+	GAMS_APP_CWD="$(CURDIR)" GAMS_CONFIG="$(GAMS_CONFIG)" ./tools/gams.app/Contents/MacOS/gams
 
 build.nosync/tmp:
 	@mkdir -p "$@"

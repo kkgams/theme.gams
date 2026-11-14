@@ -16,6 +16,7 @@ Edit styles in `src/themes/` and list packaged files in Makefile's `ZIP_FILES`.
 square corners. The preview configurations are `gams_orange.json` and
 `gams_the98.json`. `make open` passes the selected filename through `GAMS_CONFIG`
 and uses this repository as the Project root, with no copying or symlinks.
+An existing environment or command-line `GAMS_CONFIG` overrides the theme selection.
 Both configurations use the root `src/` directory and `gams_modules/` cache.
 
 | Command | Description |
