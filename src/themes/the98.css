@@ -1079,6 +1079,21 @@
         box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
     }
 
+    /* GAMS selectable columns: cells stay transparent; selected rows paint above. */
+    col[aria-selected="true"],
+    th[scope="col"][role="button"][aria-selected="true"] {
+        background: var(--intent-soft-bg);
+    }
+
+    th[scope="col"][role="button"][aria-selected="true"] {
+        color: var(--intent-soft-fg);
+    }
+
+    th[scope="col"][role="button"][aria-selected]:not([aria-disabled="true"]) {
+        cursor: pointer;
+        user-select: none;
+    }
+
     /* Nested tables provide their own cell spacing; do not pad their containers. */
     table > :is(thead, tbody, tfoot) > tr > td:has(table),
     table[data-layout="separate"] > tbody > tr > td:has(table),
