@@ -88,17 +88,17 @@
         border: 1px solid var(--border);
     }
 
-    /* GAMS selectable columns: cells stay transparent; selected rows paint above. */
+    /* GAMS column/header controls; selected rows paint above column backgrounds. */
     col[aria-selected="true"],
-    th[scope="col"][role="button"][aria-selected="true"] {
+    th[scope="col"][role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
         background: var(--intent-soft-bg);
     }
 
-    th[scope="col"][role="button"][aria-selected="true"] {
+    th[scope="col"][role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
         color: var(--intent-soft-fg);
     }
 
-    th[scope="col"][role="button"][aria-selected]:not([aria-disabled="true"]) {
+    th[scope="col"][role="button"]:is([aria-selected], [aria-pressed]):not([aria-disabled="true"]) {
         cursor: pointer;
         user-select: none;
     }
