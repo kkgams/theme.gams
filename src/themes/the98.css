@@ -502,7 +502,7 @@
         border-radius: 0;
     }
 
-    table > tbody > tr > td:has(> input) {
+    table > tbody > tr > td:has(> input, > select) {
         padding: 0;
     }
 
