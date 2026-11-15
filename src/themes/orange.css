@@ -35,7 +35,7 @@
         overflow-x: auto;
     }
 
-    [role="buttongroup"] {
+    [role="buttongroup"]:not(td > [role="buttongroup"]:only-child) {
         padding: 0 3px;
     }
 
@@ -45,20 +45,6 @@
 
     :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] {
         padding: 0;
-    }
-
-    /* An adjacent cell supplies row height; keep the native table-cell layout. */
-    td.stretch-actions {
-        position: relative;
-        padding: 0;
-    }
-
-    td.stretch-actions > [role="buttongroup"] {
-        position: absolute;
-        inset: 0;
-        padding: 0;
-        display: flex;
-        align-items: stretch;
     }
 
     select {
@@ -101,8 +87,210 @@
         cursor: default;
     }
 
-    tr,
-    td {
+    /* Progressive enhancement for dropdowns only; retain native fallback and
+       forced-colors behavior. The closed control keeps Orange's existing arrow. */
+    @supports (appearance: base-select) and selector(select::picker-icon) and selector(select::picker(select)) {
+        @media (forced-colors: none) {
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]),
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select) {
+                appearance: base-select;
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker-icon {
+                display: none;
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"])::picker(select) {
+                margin: 0;
+                padding: var(--space-1);
+                inline-size: max-content;
+                max-inline-size: calc(100dvw - var(--space-3));
+                max-block-size: min(18rem, 70dvh);
+                scrollbar-gutter: stable;
+                overflow-x: hidden;
+                overflow-y: auto;
+                border: 1px solid var(--border-hover);
+                border-radius: var(--radius-sm);
+                background: var(--surface-elevated);
+                color: var(--text);
+                box-shadow: 0 8px 24px rgb(0 0 0 / 0.35);
+                font: inherit;
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) optgroup {
+                color: var(--text-muted);
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option {
+                display: flex;
+                align-items: center;
+                min-block-size: 0;
+                gap: 0;
+                padding: var(--space-2) var(--space-3);
+                border: none;
+                border-radius: 0;
+                background: var(--surface-elevated);
+                color: var(--text);
+                font: inherit;
+                font-weight: normal;
+                white-space: normal;
+                overflow-wrap: anywhere;
+                text-shadow: none;
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option[hidden] {
+                display: none;
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:checked:not(:disabled) {
+                background: var(--intent-soft-bg);
+                color: var(--intent-soft-fg);
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:not(:disabled):is(:hover, :focus-visible) {
+                background: var(--accent);
+                color: var(--base-ink);
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:disabled {
+                color: var(--text-muted);
+            }
+
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option::checkmark {
+                display: none;
+            }
+        }
+    }
+
+    /* Native checkbox behavior with Orange's square, accent-colored mark. */
+    @media (forced-colors: none) {
+        input[type="checkbox"] {
+            -webkit-appearance: none;
+            appearance: none;
+            box-sizing: border-box;
+            display: inline-grid;
+            place-content: center;
+            inline-size: var(--space-5);
+            block-size: var(--space-5);
+            flex: none;
+            margin: 0;
+            padding: 0;
+            border: 1px solid var(--text-muted);
+            border-radius: 0;
+            background: var(--surface);
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        input[type="checkbox"]:checked::before {
+            content: "";
+            box-sizing: border-box;
+            inline-size: 6px;
+            block-size: 10px;
+            border: solid var(--accent);
+            border-width: 0 2px 2px 0;
+            transform: translateY(-1px) rotate(45deg);
+        }
+
+        input[type="checkbox"]:indeterminate::before {
+            content: "";
+            inline-size: 8px;
+            block-size: 2px;
+            border: 0;
+            background: var(--accent);
+            transform: none;
+        }
+
+        input[type="checkbox"]:not(:disabled):hover {
+            border-color: var(--text);
+        }
+
+        input[type="checkbox"]:focus-visible {
+            outline: 2px solid var(--border-focus);
+            outline-offset: -2px;
+        }
+
+        input[type="checkbox"]:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+    }
+
+    /* Flat filled ranges; native controls remain available in forced-colors mode. */
+    @media (forced-colors: none) {
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            box-sizing: border-box;
+            inline-size: 100%;
+            block-size: var(--space-5);
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            border: 0;
+            border-radius: 0;
+            background: var(--base-border);
+            cursor: ew-resize;
+        }
+
+        input[type="range"]:focus-visible {
+            outline: 2px solid var(--border-focus);
+            outline-offset: -2px;
+        }
+
+        input[type="range"]:disabled {
+            opacity: 0.5;
+            cursor: default;
+        }
+
+        input[type="range"]::-webkit-slider-runnable-track {
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            background: var(--base-border);
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 0;
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+            /* The clipped shadow follows the native thumb without View-local JS. */
+            box-shadow: -100vmax 0 0 100vmax var(--accent);
+        }
+
+        input[type="range"]::-moz-range-track {
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            background: var(--base-border);
+        }
+
+        input[type="range"]::-moz-range-progress {
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            background: var(--accent);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 0;
+            height: 100%;
+            border: 0;
+            border-radius: 0;
+            background: transparent;
+        }
+
+        input[type="range"]:dir(rtl)::-webkit-slider-thumb {
+            box-shadow: 100vmax 0 0 100vmax var(--accent);
+        }
+    }
+
+    tbody > tr,
+    tbody > tr > td {
         border: 1px solid var(--border);
     }
 
