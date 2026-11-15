@@ -1079,19 +1079,34 @@
         box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
     }
 
-    /* GAMS column/header controls; selected rows paint above column backgrounds. */
+    /* Column selection is a tint; pressed headers use button relief below. */
     col[aria-selected="true"],
-    th[scope="col"][role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
+    th[scope="col"][role="button"][aria-selected="true"] {
         background: var(--intent-soft-bg);
     }
 
-    th[scope="col"][role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
+    th[scope="col"][role="button"][aria-selected="true"] {
         color: var(--intent-soft-fg);
     }
 
     th[scope="col"][role="button"]:is([aria-selected], [aria-pressed]):not([aria-disabled="true"]) {
         cursor: pointer;
         user-select: none;
+    }
+
+    th[scope="col"][role="button"][aria-pressed] {
+        background: var(--surface);
+        color: var(--text-color);
+        text-shadow: none;
+        box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+    }
+
+    th[scope="col"][role="button"][aria-pressed="true"],
+    th[scope="col"][role="button"][aria-pressed]:not([aria-disabled="true"]):active {
+        background: var(--surface);
+        color: transparent;
+        box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
+        text-shadow: 1px 1px var(--text-color);
     }
 
     /* Nested tables provide their own cell spacing; do not pad their containers. */
