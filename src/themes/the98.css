@@ -1675,6 +1675,20 @@
         font-size: inherit;
     }
 
+    /* An adjacent cell supplies row height; keep the native table-cell layout. */
+    td.stretch-actions {
+        position: relative;
+        padding: 0;
+    }
+
+    td.stretch-actions > [role="buttongroup"] {
+        position: absolute;
+        inset: 0;
+        padding: 0;
+        display: flex;
+        align-items: stretch;
+    }
+
     view-toast {
         border-radius: 0;
         box-shadow: var(--border-window-outer), var(--border-window-inner);
