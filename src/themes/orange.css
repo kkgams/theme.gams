@@ -43,6 +43,10 @@
         padding-right: 0;
     }
 
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] {
+        padding: 0;
+    }
+
     select {
         -webkit-appearance: none;
         appearance: none;
