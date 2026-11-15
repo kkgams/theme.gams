@@ -88,6 +88,13 @@
         border: 1px solid var(--border);
     }
 
+    /* Nested tables provide their own cell spacing; do not pad their containers. */
+    table > :is(thead, tbody, tfoot) > tr > td:has(table),
+    table[data-layout="separate"] > tbody > tr > td:has(table),
+    article.prose td:has(table) {
+        padding: 0;
+    }
+
     /* Flat status fields; shared sizing and wrapping live in Host base.css. */
     main > footer {
         padding: var(--space-2);

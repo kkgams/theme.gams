@@ -1079,6 +1079,13 @@
         box-shadow: var(--border-sunken-outer), var(--border-sunken-inner);
     }
 
+    /* Nested tables provide their own cell spacing; do not pad their containers. */
+    table > :is(thead, tbody, tfoot) > tr > td:has(table),
+    table[data-layout="separate"] > tbody > tr > td:has(table),
+    article.prose td:has(table) {
+        padding: 0;
+    }
+
     /* Match row selection, but highlight only the chosen record cell. */
     table[role="grid"] > tbody > tr > td[role="gridcell"][aria-selected="true"] {
         color: #fff;
@@ -1612,7 +1619,7 @@
         table-layout: auto;
     }
 
-    table > tbody > tr > td:has(button) {
+    table > tbody > tr > td:has(> button) {
         width: 1%;
         text-align: center;
     }
