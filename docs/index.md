@@ -29,7 +29,7 @@ Both configurations use the root `src/` directory and `gams_modules/` cache.
 | `make open` | Open orange (default) in the released GAMS Host; download the Host when absent. |
 | `THEME=the98 make open` | Open The98; `THEME=orange make open` selects orange explicitly. |
 | `make tools/gams.app` | Download the Host and its notices without opening it; keep an existing download. |
-| `make clean` | Remove generated output, downloaded tools and installed Unit caches; preserve tracked files and unrelated untracked files. |
+| `make clean` | Remove entire `build.nosync/`, `tools/` and `gams_modules/`, including unmarked tools/caches; refuse tracked files and symlinks in all targets before deleting anything. |
 | `make serve-docs DOCS_PORT=8080` | Serve the documentation locally. |
 | `make docs` / `make build-docs` | Build the portable documentation site in `build.nosync/site/`. |
 | `make validate-docs` | Check the documentation. |

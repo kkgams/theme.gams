@@ -28,16 +28,7 @@ build.nosync/SHA256SUMS: build.nosync/theme.gams.zip
 	cd build.nosync && shasum -a 256 theme.gams.zip > SHA256SUMS
 
 clean:
-	@set -eu; \
-		paths='build.nosync tools gams_modules __pycache__'; \
-		for dir in scripts test; do \
-			if [ ! -L "$$dir" ]; then paths="$$paths $$dir/__pycache__"; fi; \
-		done; \
-		tracked=$$(git ls-files -- $$paths); \
-		if [ -n "$$tracked" ]; then \
-			printf 'Refusing to remove tracked output files:\n%s\n' "$$tracked" >&2; exit 1; \
-		fi; \
-		rm -rf -- $$paths
+	$(PYTHON) -B scripts/clean.py
 
 # Retain an existing app; never update it implicitly.
 tools/gams.app: | build.nosync/tmp
