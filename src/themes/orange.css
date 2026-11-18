@@ -43,7 +43,8 @@
         padding-right: 0;
     }
 
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] {
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > [role="buttongroup"] {
         padding: 0;
     }
 
@@ -147,7 +148,8 @@
                 color: var(--intent-soft-fg);
             }
 
-            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:not(:disabled):is(:hover, :focus-visible) {
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"])
+                option:not(:disabled):is(:hover, :focus-visible) {
                 background: var(--accent);
                 color: var(--base-ink);
             }
@@ -312,7 +314,9 @@
     th[scope="col"][role="button"][aria-pressed] {
         background: var(--surface-elevated);
         color: var(--text);
-        box-shadow: inset 1px 1px 0 rgb(255 255 255 / 0.12), inset -1px -1px 0 rgb(0 0 0 / 0.3);
+        box-shadow:
+            inset 1px 1px 0 rgb(255 255 255 / 0.12),
+            inset -1px -1px 0 rgb(0 0 0 / 0.3);
     }
 
     th[scope="col"][role="button"][aria-pressed="false"]:not([aria-disabled="true"]):hover {
@@ -323,7 +327,9 @@
     th[scope="col"][role="button"][aria-pressed]:not([aria-disabled="true"]):active {
         background: var(--surface);
         color: var(--text);
-        box-shadow: inset 1px 1px 2px rgb(0 0 0 / 0.45), inset -1px -1px 0 rgb(255 255 255 / 0.08);
+        box-shadow:
+            inset 1px 1px 2px rgb(0 0 0 / 0.45),
+            inset -1px -1px 0 rgb(255 255 255 / 0.08);
     }
 
     /* Nested tables provide their own cell spacing; do not pad their containers. */

@@ -121,6 +121,7 @@
     }
 
     body {
+        /* biome-ignore lint/a11y/useGenericFontNames: Keep The98's existing browser fallback. */
         font-family: Arial;
         font-size: 12px;
         color: var(--text-color);
@@ -137,6 +138,7 @@
     .window,
     .title-bar,
     li[role="tab"] {
+        /* biome-ignore lint/a11y/useGenericFontNames: Keep The98's existing browser fallback. */
         font-family: "Pixelated MS Sans Serif", Arial;
         -webkit-font-smoothing: none;
         font-size: 11px;
@@ -860,7 +862,8 @@
                 display: none;
             }
 
-            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"]) option:not(:disabled):is(:checked, :hover, :focus-visible) {
+            :is(select:not([multiple]):not([size]), select:not([multiple])[size="1"])
+                option:not(:disabled):is(:checked, :hover, :focus-visible) {
                 background: var(--dialog-blue);
                 color: var(--button-highlight);
             }
@@ -914,6 +917,7 @@
     article.prose h6 {
         margin: 1.45em 0 0.55em;
         color: #111;
+        /* biome-ignore lint/a11y/useGenericFontNames: Keep The98's existing browser fallback. */
         font-family: "Pixelated MS Sans Serif", Arial;
         font-weight: bold;
         line-height: 1.2;
@@ -1224,6 +1228,7 @@
         color: var(--text-color);
         background: var(--surface);
         box-shadow: var(--border-window-outer), var(--border-window-inner);
+        /* biome-ignore lint/a11y/useGenericFontNames: Keep The98's existing browser fallback. */
         font-family: "Pixelated MS Sans Serif", Arial;
         font-size: 11px;
         white-space: normal;
@@ -1467,6 +1472,7 @@
         background: var(--surface);
         color: var(--text-color);
         box-shadow: var(--border-raised-outer), var(--border-raised-inner);
+        /* biome-ignore lint/a11y/useGenericFontNames: Keep The98's existing browser fallback. */
         font-family: "Pixelated MS Sans Serif", Arial;
         -webkit-font-smoothing: none;
         font-size: 11px;
@@ -1623,7 +1629,6 @@
     }
 
     ::slotted([slot="title"]) {
-        display: block;
         width: 100%;
         font-size: inherit !important;
         font-weight: bold;
@@ -1659,19 +1664,28 @@
     }
 
     /* Compact icon actions: opt in on a table or an individual header/body/footer cell. */
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] {
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > [role="buttongroup"] {
         padding: 0;
     }
 
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > button:has(> i:only-child),
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] > button:has(> i:only-child) {
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > button:has(> i:only-child),
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > [role="buttongroup"]
+        > button:has(> i:only-child) {
         min-width: 0;
         min-height: 14px;
         padding: 0 1px;
     }
 
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > button:has(> i:only-child) > i,
-    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions) > [role="buttongroup"] > button:has(> i:only-child) > i {
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > button:has(> i:only-child)
+        > i,
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > [role="buttongroup"]
+        > button:has(> i:only-child)
+        > i {
         font-size: inherit;
     }
 
