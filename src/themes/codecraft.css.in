@@ -12,9 +12,13 @@
 
     @media (forced-colors: none) {
         @supports selector(::-webkit-scrollbar) {
+            :root {
+                --codecraft-scrollbar-size: 9px;
+            }
+
             ::-webkit-scrollbar {
-                width: 9px;
-                height: 9px;
+                width: var(--codecraft-scrollbar-size);
+                height: var(--codecraft-scrollbar-size);
             }
 
             ::-webkit-scrollbar-track,
@@ -23,12 +27,12 @@
             }
 
             ::-webkit-scrollbar-track:vertical {
-                margin-block: 4px;
+                margin-block: var(--codecraft-scrollbar-size);
                 background: linear-gradient(#6b6660, #6b6660) center / 1px 100% no-repeat;
             }
 
             ::-webkit-scrollbar-track:horizontal {
-                margin-inline: 4px;
+                margin-inline: var(--codecraft-scrollbar-size);
             }
 
             ::-webkit-scrollbar-thumb {
