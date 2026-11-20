@@ -139,8 +139,7 @@
     }
 
     @media (forced-colors: none) {
-        view-popup button,
-        :host(view-popup) button[part~="close"] {
+        view-popup button:not([slot="header-controls"] *) {
             --codecraft-button-art: url("data:image/png;base64,{{btn-n-l}}"), url("data:image/png;base64,{{btn-n-r}}"), url("data:image/png;base64,{{btn-n-m}}");
             background: var(--codecraft-button-art);
             background-position: left center, right center, left center;
