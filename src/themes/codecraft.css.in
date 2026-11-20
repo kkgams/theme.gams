@@ -234,7 +234,10 @@
         }
 
         fieldset > legend {
+            inline-size: fit-content;
+            max-inline-size: 100%;
             padding-inline: var(--space-2);
+            overflow-wrap: anywhere;
         }
 
         [role="tablist"] {
