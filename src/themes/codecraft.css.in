@@ -1,13 +1,13 @@
 @layer theme {
     view-area {
-        padding: calc(var(--resize-handle-size) / 2 + 14px);
+        padding: 14px;
     }
 
     view-area::before,
     view-area::after {
         content: "";
         position: absolute;
-        inset: calc(var(--resize-handle-size) / 2);
+        inset: 0;
         pointer-events: none;
     }
 
