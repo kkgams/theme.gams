@@ -62,7 +62,6 @@
         min-inline-size: min(6rem, 40%);
         min-block-size: var(--control-height);
         padding-inline: var(--space-2) var(--space-5);
-        appearance: none;
         border: 0;
         border-radius: 0;
         color: var(--base-text);
@@ -89,5 +88,71 @@
         flex-wrap: nowrap;
         justify-content: safe flex-end;
         overflow-x: auto;
+    }
+
+    /* Keep this inside the select's shadow root so the picker can opt in below. */
+    :where(select[part~="view-select"]) {
+        appearance: none;
+    }
+
+    /* Keep native popups for unsupported engines, forced colors, and listboxes. */
+    @supports (appearance: base-select) and selector(select::picker-icon) and selector(select::picker(select)) {
+        @media (forced-colors: none) {
+            select:not([multiple]):is(:not([size]), [size="1"]) {
+                appearance: base-select;
+
+                &[part~="view-select"]::picker-icon {
+                    display: none;
+                }
+
+                &::picker(select) {
+                    appearance: base-select;
+                    margin: 0;
+                    padding: var(--space-1);
+                    inline-size: max-content;
+                    min-inline-size: 0;
+                    max-inline-size: calc(100dvw - var(--space-3));
+                    max-block-size: min(18rem, 70dvh);
+                    overflow-x: hidden;
+                    overflow-y: auto;
+                    border: 1px solid var(--accent);
+                    border-radius: 0;
+                    background: var(--surface-elevated);
+                    color: var(--text);
+                    box-shadow: 0 6px 18px rgb(0 0 0 / 0.45);
+                    font: inherit;
+                }
+
+                & optgroup {
+                    color: var(--text-muted);
+                }
+
+                & option {
+                    padding: var(--space-2) var(--space-3);
+                    color: var(--text);
+                    font-weight: normal;
+                    white-space: normal;
+                    overflow-wrap: anywhere;
+                }
+
+                & option[hidden] {
+                    display: none;
+                }
+
+                & option:checked:not(:disabled) {
+                    background: var(--intent-soft-bg);
+                    color: var(--intent-soft-fg);
+                }
+
+                & option:not(:disabled):is(:hover, :focus-visible) {
+                    background: var(--accent);
+                    color: var(--base-ink);
+                }
+
+                & option:disabled {
+                    color: var(--text-muted);
+                }
+            }
+        }
     }
 }
