@@ -227,7 +227,8 @@
     }
 
     @media (forced-colors: none) {
-        button:not([part~="close"], [slot="header-controls"], [slot="header-controls"] *, [role="tablist"] > [role="tab"]) {
+        button:not([part~="close"], [slot="header-controls"], [slot="header-controls"] *, [role="tablist"] > [role="tab"]),
+        thead > tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]) {
             --codecraft-button-art: url("data:image/png;base64,{{btn-n-l}}"), url("data:image/png;base64,{{btn-n-r}}"), url("data:image/png;base64,{{btn-n-m}}");
             background: var(--codecraft-button-art);
             background-position: left center, right center, left center;
@@ -242,12 +243,17 @@
                 color: var(--accent);
             }
 
-            &:hover:enabled {
+            &:hover:not(:disabled, [aria-disabled="true"]) {
                 --codecraft-button-art: url("data:image/png;base64,{{btn-h-l}}"), url("data:image/png;base64,{{btn-h-r}}"), url("data:image/png;base64,{{btn-h-m}}");
             }
 
-            &:active:enabled {
+            &:active:not(:disabled, [aria-disabled="true"]),
+            &:is(th[aria-pressed="true"], th[aria-selected="true"]) {
                 --codecraft-button-art: url("data:image/png;base64,{{btn-p-l}}"), url("data:image/png;base64,{{btn-p-r}}"), url("data:image/png;base64,{{btn-p-m}}");
+            }
+
+            &:is(th[aria-pressed="true"], th[aria-selected="true"]) {
+                color: var(--accent);
             }
 
             &.danger {
@@ -385,39 +391,47 @@
     }
 
     @media (forced-colors: none) {
-        table > thead {
+        /* Interactive column headers have individual button faces instead of a shared strip. */
+        table > thead:not(:has(> tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]))) {
             background:
                 url("data:image/png;base64,{{entete-l}}") left center / 16px 100% no-repeat,
                 url("data:image/png;base64,{{entete-r}}") right center / 16px 100% no-repeat,
                 url("data:image/png;base64,{{entete-m}}") left center / 2400px 100% repeat-x
                 #2e2016;
+
+            & > tr > :is(th, td):first-child {
+                padding-inline-start: 16px;
+            }
+
+            & > tr > :is(th, td):last-child {
+                padding-inline-end: 16px;
+            }
         }
 
         table > thead > tr {
             height: 30px;
         }
 
-        table > thead > tr > :is(th, td):first-child {
-            padding-inline-start: 16px;
+        thead > tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]) {
+            padding-inline: var(--space-2);
+            background-size: min(8px, 32%) 100%, min(8px, 32%) 100%, 800px 100%;
+            box-shadow: none;
+            text-align: center;
         }
 
-        table > thead > tr > :is(th, td):last-child {
-            padding-inline-end: 16px;
+        col[aria-selected="true"] {
+            background: var(--intent-soft-bg);
         }
+    }
 
-        table > thead > tr > th[role="button"][aria-pressed="false"] {
-            background-color: transparent;
-        }
-
-        table > thead > tr > th[role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
-            background-color: color-mix(in oklab, var(--accent) 22%, transparent);
-            color: var(--base-text);
-        }
-
-        table > thead > tr > th[role="button"]:is([aria-selected], [aria-pressed]):not([aria-disabled="true"]):hover {
-            background-color: color-mix(in oklab, var(--accent) 32%, transparent);
-            color: var(--base-text);
-        }
+    thead > tr > td > [role="buttongroup"]:only-child > button:has(> i:only-child) {
+        flex: 0 0 auto;
+        aspect-ratio: 1;
+        inline-size: auto;
+        block-size: 100%;
+        min-inline-size: 0;
+        min-block-size: var(--control-height);
+        padding: 0;
     }
 
     table:not([data-layout="separate"]) > tbody > tr + tr > :is(th, td) {
