@@ -226,6 +226,56 @@
         }
     }
 
+    @media (forced-colors: none) {
+        fieldset {
+            position: relative;
+            min-inline-size: 0;
+            padding: var(--space-3);
+            border: 0;
+        }
+
+        fieldset::before,
+        fieldset::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        fieldset:has(> legend)::before,
+        fieldset:has(> legend)::after {
+            inset-block-start: -8px;
+        }
+
+        fieldset::before {
+            padding-inline: 6px;
+            background:
+                url("data:image/png;base64,{{plaque-frame-tl}}") left top / 6px 6px no-repeat padding-box,
+                url("data:image/png;base64,{{plaque-frame-tr}}") right top / 6px 6px no-repeat padding-box,
+                url("data:image/png;base64,{{plaque-frame-bl}}") left bottom / 6px 6px no-repeat padding-box,
+                url("data:image/png;base64,{{plaque-frame-br}}") right bottom / 6px 6px no-repeat padding-box,
+                url("data:image/png;base64,{{plaque-frame-t}}") left top / 16px 6px repeat-x content-box,
+                url("data:image/png;base64,{{plaque-frame-b}}") left bottom / 16px 6px repeat-x content-box;
+        }
+
+        fieldset::after {
+            padding-block: 6px;
+            background:
+                url("data:image/png;base64,{{plaque-frame-l}}") left top / 6px 12px repeat-y content-box,
+                url("data:image/png;base64,{{plaque-frame-r}}") right top / 6px 12px repeat-y content-box;
+        }
+
+        fieldset > legend {
+            position: relative;
+            z-index: 1;
+            inline-size: fit-content;
+            max-inline-size: 100%;
+            padding-inline: var(--space-2);
+            overflow-wrap: anywhere;
+            background: var(--surface);
+        }
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;
