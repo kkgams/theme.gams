@@ -179,7 +179,7 @@
     }
 
     @media (forced-colors: none) {
-        button:not([part~="close"], [slot="header-controls"], [slot="header-controls"] *) {
+        button:not([part~="close"], [slot="header-controls"], [slot="header-controls"] *, [role="tablist"] > [role="tab"]) {
             --codecraft-button-art: url("data:image/png;base64,{{btn-n-l}}"), url("data:image/png;base64,{{btn-n-r}}"), url("data:image/png;base64,{{btn-n-m}}");
             background: var(--codecraft-button-art);
             background-position: left center, right center, left center;
@@ -228,26 +228,59 @@
 
     @media (forced-colors: none) {
         fieldset {
-            position: relative;
             min-inline-size: 0;
             padding: var(--space-3);
-            border: 0;
+            border: 2px solid var(--accent);
         }
 
-        fieldset::before,
-        fieldset::after {
+        fieldset > legend {
+            padding-inline: var(--space-2);
+        }
+
+        [role="tablist"] {
+            display: flex;
+            gap: var(--space-2);
+            list-style: none;
+        }
+
+        [role="tablist"] > [role="tab"] {
+            display: block;
+            position: relative;
+            padding: var(--space-2) var(--space-3);
+            border: 0;
+            border-radius: 0;
+            background: var(--surface);
+            color: var(--text-muted);
+        }
+
+        [role="tablist"] > [role="tab"]:is(:hover, [aria-selected="true"]):not(:disabled) {
+            background: var(--surface-elevated);
+            color: var(--accent);
+        }
+
+        [role="tablist"] > [role="tab"][aria-selected="true"] {
+            font-weight: 700;
+        }
+
+        [role="tablist"] > [role="tab"]:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: -3px;
+        }
+
+        [role="tablist"] > [role="tab"]:disabled {
+            opacity: 0.55;
+            cursor: default;
+        }
+
+        [role="tablist"] > [role="tab"]::before,
+        [role="tablist"] > [role="tab"]::after {
             content: "";
             position: absolute;
             inset: 0;
             pointer-events: none;
         }
 
-        fieldset:has(> legend)::before,
-        fieldset:has(> legend)::after {
-            inset-block-start: -8px;
-        }
-
-        fieldset::before {
+        [role="tablist"] > [role="tab"]::before {
             padding-inline: 6px;
             background:
                 url("data:image/png;base64,{{plaque-frame-tl}}") left top / 6px 6px no-repeat padding-box,
@@ -258,22 +291,13 @@
                 url("data:image/png;base64,{{plaque-frame-b}}") left bottom / 16px 6px repeat-x content-box;
         }
 
-        fieldset::after {
+        [role="tablist"] > [role="tab"]::after {
             padding-block: 6px;
             background:
                 url("data:image/png;base64,{{plaque-frame-l}}") left top / 6px 12px repeat-y content-box,
                 url("data:image/png;base64,{{plaque-frame-r}}") right top / 6px 12px repeat-y content-box;
         }
 
-        fieldset > legend {
-            position: relative;
-            z-index: 1;
-            inline-size: fit-content;
-            max-inline-size: 100%;
-            padding-inline: var(--space-2);
-            overflow-wrap: anywhere;
-            background: var(--surface);
-        }
     }
 
     @media (forced-colors: none) {
