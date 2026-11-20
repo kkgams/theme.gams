@@ -1,6 +1,8 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
-ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt src/themes/the98.css src/themes/orange.css
+CODECRAFT_ART := $(addprefix src/art/codecraft/baguette-,$(addsuffix .png,tl t tr l r bl b br 9slice))
+CODECRAFT_CSS := build.nosync/themes/codecraft.css
+ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt licenses/world-of-codecraft.MIT.txt src/themes/the98.css src/themes/orange.css $(CODECRAFT_ART)
 export TMPDIR := $(abspath build.nosync/tmp)
 export PYTHONPYCACHEPREFIX := $(abspath build.nosync/pycache)
 PYTHON ?= python3
@@ -19,10 +21,15 @@ WIKI_ENGINE := $(abspath build.nosync/wiki-$(WIKI_VERSION))
 .PHONY: package clean open serve-docs validate-docs build-docs docs
 package: build.nosync/SHA256SUMS build.nosync/theme.gams.zip
 
-build.nosync/theme.gams.zip: $(ZIP_FILES) Makefile | build.nosync/tmp
+$(CODECRAFT_CSS): src/themes/codecraft.css.in src/art/codecraft/baguette-9slice.png Makefile
+	@mkdir -p "$(@D)"
+	$(PYTHON) -c 'from base64 import b64encode; from pathlib import Path; import sys; print(Path(sys.argv[1]).read_text().replace("{{FRAME_PNG}}", b64encode(Path(sys.argv[2]).read_bytes()).decode()), end="")' "$<" "$(word 2,$^)" > "$@"
+
+build.nosync/theme.gams.zip: $(ZIP_FILES) $(CODECRAFT_CSS) Makefile | build.nosync/tmp
 	rm -f "$@"
 	cd src && zip -q -X "../$@" $(patsubst src/%,%,$(filter src/%,$(ZIP_FILES)))
 	zip -q -X "$@" $(filter-out src/%,$(ZIP_FILES))
+	cd build.nosync && zip -q -X "../$@" "$(patsubst build.nosync/%,%,$(CODECRAFT_CSS))"
 
 build.nosync/SHA256SUMS: build.nosync/theme.gams.zip
 	cd build.nosync && shasum -a 256 theme.gams.zip > SHA256SUMS
@@ -49,7 +56,7 @@ tools/gams.app: | build.nosync/tmp
 		mv "$$stage/unpacked" tools/gams-release-notices; \
 		mv "$$stage/GAMS.app" "$@"
 
-open: $(GAMS_CONFIG) tools/gams.app
+open: $(GAMS_CONFIG) $(if $(filter gams_codecraft.json,$(notdir $(GAMS_CONFIG))),$(CODECRAFT_CSS)) tools/gams.app
 	GAMS_APP_CWD="$(CURDIR)" GAMS_CONFIG="$(GAMS_CONFIG)" ./tools/gams.app/Contents/MacOS/gams
 
 build.nosync/tmp:

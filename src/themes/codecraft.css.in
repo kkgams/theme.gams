@@ -1,0 +1,14 @@
+@layer theme {
+    view-area {
+        padding: calc(var(--resize-handle-size) / 2 + 14px);
+    }
+
+    view-area::before {
+        content: "";
+        position: absolute;
+        inset: calc(var(--resize-handle-size) / 2);
+        border: 14px solid transparent;
+        border-image: url("data:image/png;base64,{{FRAME_PNG}}") 28 repeat;
+        pointer-events: none;
+    }
+}
