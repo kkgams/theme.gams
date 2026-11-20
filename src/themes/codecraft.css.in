@@ -3,12 +3,31 @@
         padding: calc(var(--resize-handle-size) / 2 + 14px);
     }
 
-    view-area::before {
+    view-area::before,
+    view-area::after {
         content: "";
         position: absolute;
         inset: calc(var(--resize-handle-size) / 2);
-        border: 14px solid transparent;
-        border-image: url("data:image/png;base64,{{FRAME_PNG}}") 28 repeat;
         pointer-events: none;
+    }
+
+    /* Layer the original strips instead of using border-image, which can fail
+       to repaint after splitting panes in WebKit. Clip the strips at the corners. */
+    view-area::before {
+        padding-inline: 14px;
+        background:
+            url("data:image/png;base64,{{baguette-tl}}") left top / 14px 14px no-repeat padding-box,
+            url("data:image/png;base64,{{baguette-tr}}") right top / 14px 14px no-repeat padding-box,
+            url("data:image/png;base64,{{baguette-bl}}") left bottom / 14px 14px no-repeat padding-box,
+            url("data:image/png;base64,{{baguette-br}}") right bottom / 14px 14px no-repeat padding-box,
+            url("data:image/png;base64,{{baguette-t}}") left top / 2400px 14px repeat-x content-box,
+            url("data:image/png;base64,{{baguette-b}}") left bottom / 2400px 14px repeat-x content-box;
+    }
+
+    view-area::after {
+        padding-block: 14px;
+        background:
+            url("data:image/png;base64,{{baguette-l}}") left top / 14px 2400px repeat-y content-box,
+            url("data:image/png;base64,{{baguette-r}}") right top / 14px 2400px repeat-y content-box;
     }
 }

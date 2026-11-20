@@ -13,8 +13,8 @@ Themes for [GAMS](https://github.com/kkgams/gams).
 Codecraft styles panel borders only. [The original slices and atlas](src/art/codecraft/)
 ship under `art/codecraft/` in the ZIP. The atlas uses 28 px source slices at 2×
 (14 CSS px). The four corners are unchanged in size; the four strips use the
-first 480 px of each original edge. The build embeds the atlas in the CSS so it
-works without separate asset URLs.
+first 480 px of each original edge. GAMS layers the original slices as CSS
+backgrounds. The build embeds them so no separate asset URLs are needed.
 
 ## Development
 
