@@ -125,8 +125,46 @@
         overflow-wrap: anywhere;
     }
 
-    view-popup:has(> [slot="header-controls"])::part(close) {
-        margin-inline-start: 0;
+    view-popup::part(close) {
+        position: absolute;
+        inset-block-start: 0;
+        inset-inline-end: 0;
+        z-index: 2;
+        inline-size: 32px;
+        block-size: 32px;
+        min-block-size: 0;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: url("data:image/png;base64,{{medaillon}}") center / 100% 100% no-repeat var(--surface);
+        color: var(--base-text);
+        font-size: 16px;
+    }
+
+    view-popup::part(close):hover {
+        filter: brightness(1.25);
+    }
+
+    view-popup::part(close):active {
+        filter: brightness(0.85);
+    }
+
+    view-popup::part(close):focus-visible {
+        outline: 2px solid var(--base-text);
+        outline-offset: -2px;
+    }
+
+    @media (forced-colors: active) {
+        view-popup::part(close) {
+            border: 1px solid ButtonText;
+            background: ButtonFace;
+            color: ButtonText;
+        }
+
+        view-popup::part(close):focus-visible {
+            outline-color: Highlight;
+        }
     }
 
     view-area [slot="header-controls"],
