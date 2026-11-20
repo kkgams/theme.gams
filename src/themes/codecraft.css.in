@@ -58,8 +58,10 @@
     }
 
     view-area::part(view-select) {
-        flex: 1 0 0;
-        min-inline-size: min(6rem, 40%);
+        flex: 0 0 auto;
+        field-sizing: content;
+        min-inline-size: 0;
+        max-inline-size: 45%;
         min-block-size: var(--control-height);
         padding-inline: var(--space-2) var(--space-5);
         border: 0;
@@ -85,6 +87,7 @@
 
     view-area [slot="header-controls"] {
         flex: 0 1 auto;
+        margin-inline-start: auto;
         flex-wrap: nowrap;
         justify-content: safe flex-end;
         overflow-x: auto;
