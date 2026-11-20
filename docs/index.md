@@ -15,8 +15,8 @@ Themes for [GAMS](https://github.com/kkgams/gams).
 | orange | [orange.css](https://github.com/kkgams/theme.gams/blob/release/src/themes/orange.css) | Pending | [kkgams / GAMS](https://github.com/kkgams/gams) |
 | Codecraft | `themes/codecraft.css` | Pending | [World of Codecraft by Kevin Pardo](https://github.com/kevinpardo/world-of-codecraft) |
 
-Codecraft styles panel borders only. The original slices and the combined 2× atlas
-ship under `art/codecraft/` in the ZIP.
+Codecraft uses dark oak surfaces, cream text, and gilded panel frames and headers.
+The original slices and combined 2× frame atlas ship under `art/codecraft/` in the ZIP.
 
 ## Development
 

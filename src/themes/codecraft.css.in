@@ -1,4 +1,15 @@
 @layer theme {
+    :root {
+        --base-bg: #1a1411;
+        --surface: #241a14;
+        --surface-elevated: #35261c;
+        --base-border: #6d5036;
+        --base-text: #f6ead0;
+        --base-text-muted: #cdb98f;
+        --base-ink: #140e0b;
+        --accent: #f2c25a;
+    }
+
     view-area {
         padding: 14px;
     }
@@ -29,5 +40,54 @@
         background:
             url("data:image/png;base64,{{baguette-l}}") left top / 14px 2400px repeat-y content-box,
             url("data:image/png;base64,{{baguette-r}}") right top / 14px 2400px repeat-y content-box;
+    }
+
+    view-area::part(header) {
+        display: flex;
+        align-items: center;
+        gap: var(--space-2);
+        min-inline-size: 0;
+        min-block-size: 36px;
+        padding-inline: 20px;
+        border: 0;
+        background:
+            url("data:image/png;base64,{{bandeau-l}}") left center / 20px 100% no-repeat padding-box,
+            url("data:image/png;base64,{{bandeau-r}}") right center / 20px 100% no-repeat padding-box,
+            url("data:image/png;base64,{{bandeau-m}}") left center / 2400px 100% repeat-x content-box
+            #231b27;
+    }
+
+    view-area::part(view-select) {
+        flex: 1 0 0;
+        min-inline-size: min(6rem, 40%);
+        min-block-size: var(--control-height);
+        padding-inline: var(--space-2) var(--space-5);
+        appearance: none;
+        border: 0;
+        border-radius: 0;
+        color: var(--base-text);
+        color-scheme: dark;
+        background:
+            linear-gradient(45deg, transparent 50%, currentColor 50%) right 8px center / 4px 4px no-repeat,
+            linear-gradient(135deg, currentColor 50%, transparent 50%) right 4px center / 4px 4px no-repeat;
+        font: inherit;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    view-area::part(view-select):hover {
+        color: var(--accent);
+    }
+
+    view-area::part(view-select):focus-visible {
+        outline: 2px solid var(--border-focus);
+        outline-offset: -2px;
+    }
+
+    view-area [slot="header-controls"] {
+        flex: 0 1 auto;
+        flex-wrap: nowrap;
+        justify-content: safe flex-end;
+        overflow-x: auto;
     }
 }

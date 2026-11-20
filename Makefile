@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := package
 .DELETE_ON_ERROR:
-CODECRAFT_SLICES := $(addprefix src/art/codecraft/baguette-,$(addsuffix .png,tl t tr l r bl b br))
+CODECRAFT_SLICES := $(addprefix src/art/codecraft/,$(addsuffix .png,baguette-tl baguette-t baguette-tr baguette-l baguette-r baguette-bl baguette-b baguette-br bandeau-l bandeau-m bandeau-r))
 CODECRAFT_ART := $(CODECRAFT_SLICES) src/art/codecraft/baguette-9slice.png
 CODECRAFT_CSS := build.nosync/themes/codecraft.css
 ZIP_FILES := README.md LICENSE NOTICE licenses/98.css.MIT.txt licenses/world-of-codecraft.MIT.txt src/themes/the98.css src/themes/orange.css $(CODECRAFT_ART)
@@ -24,7 +24,7 @@ package: build.nosync/SHA256SUMS build.nosync/theme.gams.zip
 
 $(CODECRAFT_CSS): src/themes/codecraft.css.in $(CODECRAFT_SLICES) Makefile
 	@mkdir -p "$(@D)"
-	$(PYTHON) -c 'from base64 import b64encode; from pathlib import Path; import re, sys; images = {p.stem: b64encode(p.read_bytes()).decode() for p in map(Path, sys.argv[2:])}; print(re.sub(r"\{\{(baguette-[a-z]+)\}\}", lambda m: images[m[1]], Path(sys.argv[1]).read_text()), end="")' "$<" $(CODECRAFT_SLICES) > "$@"
+	$(PYTHON) -c 'from base64 import b64encode; from pathlib import Path; import re, sys; images = {p.stem: b64encode(p.read_bytes()).decode() for p in map(Path, sys.argv[2:])}; print(re.sub(r"\{\{((?:baguette|bandeau)-[a-z]+)\}\}", lambda m: images[m[1]], Path(sys.argv[1]).read_text()), end="")' "$<" $(CODECRAFT_SLICES) > "$@"
 
 build.nosync/theme.gams.zip: $(ZIP_FILES) $(CODECRAFT_CSS) Makefile | build.nosync/tmp
 	rm -f "$@"

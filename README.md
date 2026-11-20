@@ -8,10 +8,11 @@ Themes for [GAMS](https://github.com/kkgams/gams).
 | --- | --- | --- | --- | --- |
 | The98 | [the98.css](https://github.com/kkgams/theme.gams/blob/release/src/themes/the98.css) | Pending | [MIT — 98.css](licenses/98.css.MIT.txt), [Apache-2.0 — GAMS additions](LICENSE) | [98.css by Jordan Scales](https://github.com/jdan/98.css) |
 | orange | [orange.css](https://github.com/kkgams/theme.gams/blob/release/src/themes/orange.css) | Pending | [Apache-2.0](LICENSE) | [kkgams / GAMS](https://github.com/kkgams/gams) |
-| Codecraft | `themes/codecraft.css` | Pending | [MIT — panel art](licenses/world-of-codecraft.MIT.txt), [Apache-2.0 — CSS](LICENSE) | [World of Codecraft by Kevin Pardo](https://github.com/kevinpardo/world-of-codecraft) |
+| Codecraft | `themes/codecraft.css` | Pending | [MIT — frame and header art](licenses/world-of-codecraft.MIT.txt), [Apache-2.0 — CSS](LICENSE) | [World of Codecraft by Kevin Pardo](https://github.com/kevinpardo/world-of-codecraft) |
 
-Codecraft styles panel borders only. [The original slices and atlas](src/art/codecraft/)
-ship under `art/codecraft/` in the ZIP. The atlas uses 28 px source slices at 2×
+Codecraft uses dark oak surfaces, cream text, and gilded panel frames and headers.
+[The original slices and frame atlas](src/art/codecraft/) ship under `art/codecraft/`
+in the ZIP. The atlas uses 28 px source slices at 2×
 (14 CSS px). The four corners are unchanged in size; the four strips use the
 first 480 px of each original edge. GAMS layers the original slices as CSS
 backgrounds. The build embeds them so no separate asset URLs are needed.
