@@ -384,6 +384,46 @@
         }
     }
 
+    @media (forced-colors: none) {
+        table > thead {
+            background:
+                url("data:image/png;base64,{{entete-l}}") left center / 16px 100% no-repeat,
+                url("data:image/png;base64,{{entete-r}}") right center / 16px 100% no-repeat,
+                url("data:image/png;base64,{{entete-m}}") left center / 2400px 100% repeat-x
+                #2e2016;
+        }
+
+        table > thead > tr {
+            height: 30px;
+        }
+
+        table > thead > tr > :is(th, td):first-child {
+            padding-inline-start: 16px;
+        }
+
+        table > thead > tr > :is(th, td):last-child {
+            padding-inline-end: 16px;
+        }
+
+        table > thead > tr > th[role="button"][aria-pressed="false"] {
+            background-color: transparent;
+        }
+
+        table > thead > tr > th[role="button"]:is([aria-selected="true"], [aria-pressed="true"]) {
+            background-color: color-mix(in oklab, var(--accent) 22%, transparent);
+            color: var(--base-text);
+        }
+
+        table > thead > tr > th[role="button"]:is([aria-selected], [aria-pressed]):not([aria-disabled="true"]):hover {
+            background-color: color-mix(in oklab, var(--accent) 32%, transparent);
+            color: var(--base-text);
+        }
+    }
+
+    table:not([data-layout="separate"]) > tbody > tr + tr > :is(th, td) {
+        border-block-start: 1px solid var(--base-border);
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;
