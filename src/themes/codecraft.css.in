@@ -42,7 +42,42 @@
             url("data:image/png;base64,{{baguette-r}}") right top / 14px 2400px repeat-y content-box;
     }
 
-    view-area::part(header) {
+    view-popup::part(container) {
+        position: relative;
+        padding: 14px;
+        border: 0;
+        box-shadow: var(--shadow);
+    }
+
+    :host(view-popup) [part~="container"]::before,
+    :host(view-popup) [part~="container"]::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+    }
+
+    :host(view-popup) [part~="container"]::before {
+        z-index: 1;
+        padding-inline: 34px;
+        background:
+            url("data:image/png;base64,{{cadre-tl}}") left top / 34px 34px no-repeat padding-box,
+            url("data:image/png;base64,{{cadre-tr}}") right top / 34px 34px no-repeat padding-box,
+            url("data:image/png;base64,{{cadre-bl}}") left bottom / 34px 34px no-repeat padding-box,
+            url("data:image/png;base64,{{cadre-br}}") right bottom / 34px 34px no-repeat padding-box,
+            url("data:image/png;base64,{{cadre-t}}") left top / 2400px 14px repeat-x content-box,
+            url("data:image/png;base64,{{cadre-b}}") left bottom / 2400px 14px repeat-x content-box;
+    }
+
+    :host(view-popup) [part~="container"]::after {
+        padding-block: 34px;
+        background:
+            url("data:image/png;base64,{{cadre-l}}") left top / 14px 2400px repeat-y content-box,
+            url("data:image/png;base64,{{cadre-r}}") right top / 14px 2400px repeat-y content-box;
+    }
+
+    view-area::part(header),
+    view-popup::part(header) {
         display: flex;
         align-items: center;
         gap: var(--space-2);
@@ -85,12 +120,71 @@
         outline-offset: -2px;
     }
 
-    view-area [slot="header-controls"] {
+    view-popup > [slot="title"] {
+        min-inline-size: 0;
+        overflow-wrap: anywhere;
+    }
+
+    view-popup:has(> [slot="header-controls"])::part(close) {
+        margin-inline-start: 0;
+    }
+
+    view-area [slot="header-controls"],
+    view-popup > [slot="header-controls"] {
         flex: 0 1 auto;
         margin-inline-start: auto;
         flex-wrap: nowrap;
         justify-content: safe flex-end;
         overflow-x: auto;
+    }
+
+    @media (forced-colors: none) {
+        view-popup button,
+        :host(view-popup) button[part~="close"] {
+            --codecraft-button-art: url("data:image/png;base64,{{btn-n-l}}"), url("data:image/png;base64,{{btn-n-r}}"), url("data:image/png;base64,{{btn-n-m}}");
+            background: var(--codecraft-button-art);
+            background-position: left center, right center, left center;
+            background-size: 8px 100%, 8px 100%, 800px 100%;
+            background-repeat: no-repeat, no-repeat, repeat-x;
+            border: 0;
+            border-radius: 0;
+            color: var(--base-text);
+            transition: none;
+
+            &.accent {
+                color: var(--accent);
+            }
+
+            &:hover:enabled {
+                --codecraft-button-art: url("data:image/png;base64,{{btn-h-l}}"), url("data:image/png;base64,{{btn-h-r}}"), url("data:image/png;base64,{{btn-h-m}}");
+            }
+
+            &:active:enabled {
+                --codecraft-button-art: url("data:image/png;base64,{{btn-p-l}}"), url("data:image/png;base64,{{btn-p-r}}"), url("data:image/png;base64,{{btn-p-m}}");
+            }
+
+            &.danger {
+                --codecraft-button-art: url("data:image/png;base64,{{btn-or-n-l}}"), url("data:image/png;base64,{{btn-or-n-r}}"), url("data:image/png;base64,{{btn-or-n-m}}");
+            }
+
+            &.danger:hover:enabled {
+                --codecraft-button-art: url("data:image/png;base64,{{btn-or-h-l}}"), url("data:image/png;base64,{{btn-or-h-r}}"), url("data:image/png;base64,{{btn-or-h-m}}");
+            }
+
+            &.danger:active:enabled {
+                --codecraft-button-art: url("data:image/png;base64,{{btn-or-p-l}}"), url("data:image/png;base64,{{btn-or-p-r}}"), url("data:image/png;base64,{{btn-or-p-m}}");
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: -2px;
+            }
+
+            &:disabled {
+                opacity: 0.55;
+                cursor: default;
+            }
+        }
     }
 
     /* Keep this inside the select's shadow root so the picker can opt in below. */
