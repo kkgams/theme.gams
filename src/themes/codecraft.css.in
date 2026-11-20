@@ -276,6 +276,39 @@
         }
     }
 
+    @media (forced-colors: none) {
+        main > footer,
+        :host > footer,
+        :is(view-area, view-popup) > :not([slot]) > footer {
+            --codecraft-footer-strap: url("data:image/png;base64,{{poutre-strap}}");
+            justify-content: space-between;
+            min-block-size: 32px;
+            padding-inline: var(--space-2);
+            background: url("data:image/png;base64,{{poutre-ornament}}") left top / 28px 32px repeat var(--surface);
+
+            & > output {
+                flex: 0 1 auto;
+                align-self: stretch;
+                align-content: center;
+                min-block-size: 32px;
+                padding: var(--space-2) 18px;
+                background:
+                    var(--codecraft-footer-strap) left center / 14px 100% no-repeat,
+                    var(--codecraft-footer-strap) right center / 14px 100% no-repeat,
+                    linear-gradient(rgb(18 12 10 / 0.6), rgb(18 12 10 / 0.6)),
+                    url("data:image/png;base64,{{poutre-plain}}") left center / 3px 100% repeat-x;
+            }
+
+            /* An empty live output should not take up room in the flex row. */
+            & > output:empty {
+                position: absolute;
+                min-block-size: 0;
+                padding: 0;
+                background: none;
+            }
+        }
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;

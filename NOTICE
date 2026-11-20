@@ -11,6 +11,6 @@ Full copyright and permission terms: licenses/98.css.MIT.txt
 
 Codecraft frame, header and button art is from World of Codecraft by Kevin Pardo:
 https://github.com/kevinpardo/world-of-codecraft/tree/6c5b65b75eafb78dd906cdccfebabdd262ac9f28/mods/world-of-codecraft/art/ui
-The original UI slices, adapted frame atlas, and fieldset slices cropped from
-plaque.png retain their MIT license.
+The original UI slices, adapted frame atlas, fieldset slices from plaque.png,
+and footer slices from poutre-m.png retain their MIT license.
 Full copyright and permission terms: licenses/world-of-codecraft.MIT.txt
