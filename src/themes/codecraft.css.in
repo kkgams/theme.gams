@@ -22,6 +22,10 @@
                 background: transparent;
             }
 
+            ::-webkit-scrollbar-track:vertical {
+                background: linear-gradient(#6b6660, #6b6660) center / 1px 100% no-repeat;
+            }
+
             ::-webkit-scrollbar-thumb {
                 border: 1px solid transparent;
                 border-radius: 999px;
