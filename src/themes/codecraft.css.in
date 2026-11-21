@@ -425,8 +425,9 @@
         }
     }
 
-    /* Preview the same iron faces on icon-only header and compact table buttons. */
+    /* Share iron faces across toolbars and compact table actions. */
     [slot="header-controls"] button:has(> i:only-child),
+    thead > tr > td > [role="buttongroup"]:only-child > button:has(> i:only-child),
     :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
         > button:has(> i:only-child),
     :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
@@ -477,7 +478,7 @@
                 --codecraft-action-art: url("data:image/png;base64,{{bouton-p}}");
             }
 
-            [slot="header-controls"] &:is(:disabled, [aria-disabled="true"]) {
+            &:is(:disabled, [aria-disabled="true"]) {
                 opacity: 0.75;
             }
         }
@@ -679,16 +680,6 @@
         col[aria-selected="true"] {
             background: var(--intent-soft-bg);
         }
-    }
-
-    thead > tr > td > [role="buttongroup"]:only-child > button:has(> i:only-child) {
-        flex: 0 0 auto;
-        aspect-ratio: 1;
-        inline-size: auto;
-        block-size: 100%;
-        min-inline-size: 0;
-        min-block-size: var(--control-height);
-        padding: 0;
     }
 
     table:not([data-layout="separate"]) {
