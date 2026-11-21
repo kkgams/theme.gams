@@ -133,7 +133,8 @@
             url("data:image/png;base64,{{cadre-r}}") right top / 14px 2400px repeat-y content-box;
     }
 
-    view-area::part(header) {
+    view-area::part(header),
+    view-popup::part(header) {
         display: flex;
         align-items: center;
         gap: var(--space-2);
@@ -199,11 +200,8 @@
 
         view-popup::part(header) {
             flex: none;
-            gap: var(--space-2);
             min-block-size: 48px;
             padding: var(--space-1) 14px;
-            border: 0;
-            background: url("data:image/png;base64,{{popup-header-beam}}") left center / 3600px 48px repeat-x #2e2016;
         }
 
         view-popup > [slot="title"] {
