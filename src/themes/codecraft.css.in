@@ -177,8 +177,8 @@
     view-popup::part(close) {
         --codecraft-close-size: 32px;
         position: absolute;
-        inset-block-start: calc(var(--codecraft-close-size) / -2);
-        inset-inline-end: calc(var(--codecraft-close-size) / -2);
+        inset-block-start: -8px;
+        inset-inline-end: -8px;
         z-index: 2;
         inline-size: var(--codecraft-close-size);
         block-size: var(--codecraft-close-size);
