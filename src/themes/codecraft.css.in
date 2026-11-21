@@ -300,6 +300,14 @@
         }
     }
 
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), th.compact-actions, td.compact-actions) {
+        font-size: 8px;
+
+        & :is(button, input, select, textarea) {
+            font-size: var(--font-md);
+        }
+    }
+
     table.compact-actions:has(> tbody > tr > :is(th, td) > [role="buttongroup"] > button > i:only-child),
     table:has(> tbody > tr > :is(th, td).compact-actions > button > i:only-child,
               > tbody > tr > :is(th, td).compact-actions > [role="buttongroup"] > button > i:only-child) {
@@ -335,7 +343,7 @@
             padding: 0;
 
             & > i {
-                font-size: 8px;
+                font-size: 12px;
             }
 
             [role="buttongroup"] > button + & {
