@@ -335,7 +335,7 @@
             padding: 0;
 
             & > i {
-                font-size: 12px;
+                font-size: 8px;
             }
 
             [role="buttongroup"] > button + & {
