@@ -761,6 +761,11 @@
             }
         }
 
+        [slot="header-controls"] > [role="buttongroup"] > select:not([multiple]):is(:not([size]), [size="1"]) {
+            align-self: center;
+            min-block-size: 0;
+        }
+
         select:not([part~="view-select"], [multiple]):is(:not([size]), [size="1"]) {
             appearance: none;
             padding-inline-end: var(--space-6);
@@ -913,10 +918,10 @@
         appearance: none;
     }
 
-    /* Keep native popups for unsupported engines, forced colors, and listboxes. */
+    /* Only the View picker opts in to a custom popup. */
     @supports (appearance: base-select) and selector(select::picker-icon) and selector(select::picker(select)) {
         @media (forced-colors: none) {
-            select:not([multiple]):is(:not([size]), [size="1"]) {
+            select[part~="view-select"] {
                 appearance: base-select;
 
                 &::picker-icon {
