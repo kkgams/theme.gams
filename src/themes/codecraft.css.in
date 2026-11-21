@@ -317,6 +317,10 @@
             border-radius: 0;
             background: var(--codecraft-action-art) center / 100% 100% no-repeat;
 
+            & > i {
+                text-shadow: 0 1px 1px #140e0b;
+            }
+
             &.danger:not(:disabled, [aria-disabled="true"]) {
                 color: #ff9a95;
             }
