@@ -236,10 +236,6 @@
             }
         }
 
-        view-popup::part(body) {
-            padding: var(--space-3);
-        }
-
         view-popup footer {
             flex-wrap: wrap;
             justify-content: flex-end;
