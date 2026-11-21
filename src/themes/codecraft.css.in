@@ -588,6 +588,10 @@
         border-inline: 1px solid var(--base-border);
         border-block-end: 1px solid var(--base-border);
 
+        &:not(:has(> thead)) {
+            border-block-start: 1px solid var(--base-border);
+        }
+
         & > tbody > tr + tr > :is(th, td) {
             border-block-start: 1px solid var(--base-border);
         }
