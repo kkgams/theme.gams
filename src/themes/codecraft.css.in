@@ -97,9 +97,10 @@
     }
 
     view-popup::part(container) {
-        --codecraft-popup-frame-inset: 14px;
+        --codecraft-popup-close-size: 32px;
+        --codecraft-popup-close-offset: -8px;
         position: relative;
-        padding: var(--codecraft-popup-frame-inset);
+        padding: 14px;
         border: 0;
         box-shadow: var(--shadow);
         overflow: visible;
@@ -182,10 +183,6 @@
         outline-offset: -2px;
     }
 
-    view-popup::part(header) {
-        position: relative;
-    }
-
     view-popup > [slot="title"] {
         min-inline-size: 0;
         overflow-wrap: anywhere;
@@ -210,10 +207,14 @@
         }
 
         view-popup > [slot="title"] {
-            position: relative;
+            position: absolute;
+            z-index: 2;
+            inset-block-start: calc(var(--codecraft-popup-close-offset) + var(--codecraft-popup-close-size) / 2);
+            inset-inline: 0;
+            translate: 0 -50%;
             align-content: center;
             inline-size: max-content;
-            max-inline-size: 100%;
+            max-inline-size: calc(100% - 2 * var(--codecraft-popup-close-size));
             min-block-size: 42px;
             margin-inline: auto;
             padding: var(--space-1) 16px;
@@ -259,15 +260,14 @@
     }
 
     view-popup::part(close) {
-        --codecraft-close-size: 32px;
         position: absolute;
-        inset-block: 0;
-        inset-inline-end: calc(-8px - var(--codecraft-popup-frame-inset));
+        inset-block-start: var(--codecraft-popup-close-offset);
+        inset-inline-end: var(--codecraft-popup-close-offset);
         z-index: 2;
-        inline-size: var(--codecraft-close-size);
-        block-size: var(--codecraft-close-size);
+        inline-size: var(--codecraft-popup-close-size);
+        block-size: var(--codecraft-popup-close-size);
         min-block-size: 0;
-        margin: auto 0;
+        margin: 0;
         padding: 0;
         border: 0;
         border-radius: 50%;
