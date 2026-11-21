@@ -642,13 +642,20 @@
 
     @media (forced-colors: none) {
         /* Interactive column headers have individual button faces instead of a shared strip. */
-        table > thead:not(:has(> tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]))) {
+        table:not([data-layout="separate"]) > thead:not(:has(> tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]))),
+        table[data-layout="separate"] > thead > tr > :is(th, td):not(th[scope="col"][role="button"]:is([aria-pressed], [aria-selected])) {
             background:
                 url("data:image/png;base64,{{entete-l}}") left center / 16px 100% no-repeat,
                 url("data:image/png;base64,{{entete-r}}") right center / 16px 100% no-repeat,
                 url("data:image/png;base64,{{entete-m}}") left center / 2400px 100% repeat-x
                 #2e2016;
+        }
 
+        table[data-layout="separate"] > thead > tr > :is(th, td):not(th[scope="col"][role="button"]:is([aria-pressed], [aria-selected])) {
+            padding-inline: 16px;
+        }
+
+        table:not([data-layout="separate"]) > thead:not(:has(> tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]))) {
             & > tr > :is(th, td):first-child {
                 padding-inline-start: 16px;
             }
