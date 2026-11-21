@@ -289,6 +289,48 @@
         }
     }
 
+    /* Original iron pane-control faces for opt-in icon-only table actions. */
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > button:has(> i:only-child),
+    :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
+        > [role="buttongroup"] > button:has(> i:only-child) {
+        box-sizing: border-box;
+        flex: none;
+        align-self: center;
+        inline-size: 24px;
+        block-size: 22px;
+        min-inline-size: 0;
+        min-block-size: 0;
+        padding: 0;
+
+        & > i {
+            font-size: 14px;
+        }
+
+        [role="buttongroup"] > button + & {
+            margin-inline-start: 1px;
+        }
+
+        @media (forced-colors: none) {
+            --codecraft-action-art: url("data:image/png;base64,{{bouton-n}}");
+            border: 0;
+            border-radius: 0;
+            background: var(--codecraft-action-art) center / 100% 100% no-repeat;
+
+            &.danger:not(:disabled, [aria-disabled="true"]) {
+                color: #ff9a95;
+            }
+
+            &:hover:not(:disabled, [aria-disabled="true"]) {
+                --codecraft-action-art: url("data:image/png;base64,{{bouton-h}}");
+            }
+
+            &:active:not(:disabled, [aria-disabled="true"]) {
+                --codecraft-action-art: url("data:image/png;base64,{{bouton-p}}");
+            }
+        }
+    }
+
     @media (forced-colors: none) {
         view-tooltip {
             padding: var(--space-2);
