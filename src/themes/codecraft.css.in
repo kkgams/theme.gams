@@ -409,6 +409,14 @@
             padding: var(--space-3);
             border: 5px solid var(--base-border);
             border-image: url("data:image/png;base64,{{district-frame}}") 20 / 10px repeat;
+
+            &.accent {
+                border-image-source: url("data:image/png;base64,{{district-frame-gold}}");
+            }
+
+            &.danger {
+                border-image-source: url("data:image/png;base64,{{district-frame-ruby}}");
+            }
         }
 
         fieldset > legend {

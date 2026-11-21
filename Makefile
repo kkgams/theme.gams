@@ -3,7 +3,7 @@
 CODECRAFT_SLICES := $(addprefix src/art/codecraft/,$(addsuffix .png,\
 	$(foreach frame,baguette cadre plaque-frame,$(addprefix $(frame)-,tl t tr l r bl b br)) \
 	bandeau-l bandeau-m bandeau-r entete-l entete-m entete-r medaillon \
-	poutre-ornament poutre-strap poutre-plain bouton-n bouton-h bouton-p portrait-frame district-frame \
+	poutre-ornament poutre-strap poutre-plain bouton-n bouton-h bouton-p portrait-frame district-frame district-frame-gold district-frame-ruby \
 	$(foreach face,btn btn-or,$(foreach state,n h p,$(addprefix $(face)-$(state)-,l m r)))))
 CODECRAFT_ART := $(CODECRAFT_SLICES) src/art/codecraft/baguette-9slice.png
 CODECRAFT_CSS := build.nosync/themes/codecraft.css
