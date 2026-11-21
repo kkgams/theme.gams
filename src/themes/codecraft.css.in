@@ -297,14 +297,14 @@
         box-sizing: border-box;
         flex: none;
         align-self: center;
-        inline-size: 24px;
-        block-size: 22px;
+        inline-size: 20px;
+        block-size: 18px;
         min-inline-size: 0;
         min-block-size: 0;
         padding: 0;
 
         & > i {
-            font-size: 14px;
+            font-size: 12px;
         }
 
         [role="buttongroup"] > button + & {
