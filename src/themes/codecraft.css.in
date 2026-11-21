@@ -202,7 +202,9 @@
             flex: none;
             min-block-size: 48px;
             padding: var(--space-1) 14px;
-            background: url("data:image/png;base64,{{bandeau-m}}") left center / 2400px 100% repeat-x var(--codecraft-header-enamel);
+            background: var(--codecraft-header-enamel);
+            border-block-end: 1px solid var(--accent);
+            box-shadow: 0 3px 5px rgb(0 0 0 / 0.45);
         }
 
         view-popup > [slot="title"] {
