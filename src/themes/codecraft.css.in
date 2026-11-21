@@ -831,6 +831,73 @@
         }
     }
 
+    @media (forced-colors: none) {
+        input:is([type="checkbox"], [type="radio"]) {
+            appearance: none;
+            box-sizing: border-box;
+            flex: none;
+            inline-size: 18px;
+            block-size: 18px;
+            padding: 0;
+            border: 1px solid #c58c45;
+            vertical-align: middle;
+            background-color: #18121d;
+            box-shadow: inset 0 1px 3px #0e0a12;
+
+            &:hover:not(:disabled) {
+                background-color: #2a2033;
+            }
+
+            &:focus-visible {
+                outline: 1px solid var(--accent);
+                outline-offset: 1px;
+                box-shadow: 0 0 6px 2px color-mix(in srgb, var(--accent) 50%, transparent);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+            }
+        }
+
+        input[type="checkbox"] {
+            display: inline-grid;
+            place-items: center;
+            border-radius: 0;
+            border-image: url("data:image/png;base64,{{district-frame-gold}}") 20 / 4px stretch;
+
+            &:is(:checked, :indeterminate)::before {
+                content: "";
+                box-sizing: border-box;
+                filter: drop-shadow(0 0 2px #33cf62);
+            }
+
+            &:checked::before {
+                inline-size: 7px;
+                block-size: 12px;
+                border: solid #a1ffab;
+                border-width: 0 2px 2px 0;
+                transform: translateY(-1px) rotate(45deg);
+            }
+
+            &:indeterminate::before {
+                inline-size: 10px;
+                block-size: 2px;
+                border: 0;
+                background: #a1ffab;
+                transform: none;
+            }
+        }
+
+        input[type="radio"] {
+            border-radius: 50%;
+            border-color: #f2c25a #bc813b #a36a31;
+
+            &:checked {
+                background: #18121d url("data:image/png;base64,{{gemme-done}}") center / 16px no-repeat;
+            }
+        }
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;
