@@ -201,7 +201,7 @@
         view-popup::part(header) {
             flex: none;
             display: grid;
-            grid-template: 3fr auto 1fr / minmax(0, 1fr);
+            grid-template: 7fr auto 1fr / minmax(0, 1fr);
             gap: 0;
             min-block-size: 48px;
             padding: 0;
