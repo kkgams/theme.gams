@@ -1,7 +1,8 @@
 {
   "plugins": [
     { "$file": "https://github.com/kkgams/plugin.fs/releases/download/v0.2.0/plugin.fs.wasm" },
-    { "$file": "https://github.com/kkgams/plugin.layout/releases/download/v0.2.0/plugin.layout.wasm" }
+    { "$file": "https://github.com/kkgams/plugin.layout/releases/download/v0.2.0/plugin.layout.wasm" },
+    { "$file": "https://github.com/kkgams/plugin.font/releases/download/v0.1.1/plugin.font.wasm" }
   ],
   "ui": {
     "keys": [],
@@ -77,6 +78,149 @@
             "default": "files-default"
           }
         }
+      },
+      "view-tilemap": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.tilemap/releases/download/v0.2.2/view.tilemap.zip",
+            "entry": "views/view-tilemap.js"
+          }
+        },
+        "label": "Tilemap",
+        "group": "Project",
+        "internal": false
+      },
+      "view-world": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+            "entry": "views/view-world.js"
+          }
+        },
+        "label": "World",
+        "group": "Project",
+        "internal": false,
+        "config": {
+          "renderers": {
+            "rectangle": {
+              "url": {
+                "$file": {
+                  "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+                  "entry": "world-renderers/rectangle.js"
+                }
+              },
+              "match": {
+                "render": "rectangle"
+              },
+              "config": {
+                "origin": [0, 0]
+              }
+            },
+            "sprite": {
+              "url": {
+                "$file": {
+                  "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+                  "entry": "world-renderers/sprite.js"
+                }
+              },
+              "match": {
+                "render": "sprite"
+              },
+              "config": {
+                "origin": [0.5, 0.5]
+              }
+            },
+            "tilemap": {
+              "url": {
+                "$file": {
+                  "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+                  "entry": "world-renderers/tilemap.js"
+                }
+              },
+              "match": {
+                "render": "tilemap"
+              },
+              "config": {
+                "origin": [0, 1]
+              }
+            },
+            "text": {
+              "url": {
+                "$file": {
+                  "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+                  "entry": "world-renderers/text.js"
+                }
+              },
+              "match": {
+                "render": "text"
+              },
+              "config": {
+                "origin": [0, 0]
+              }
+            },
+            "nine": {
+              "url": {
+                "$file": {
+                  "url": "https://github.com/kkgams/view.world/releases/download/v0.5.0/view.world.zip",
+                  "entry": "world-renderers/nine.js"
+                }
+              },
+              "match": {
+                "render": "nine"
+              },
+              "config": {
+                "origin": [0, 0]
+              }
+            }
+          },
+          "inputs": {},
+          "invert": {
+            "x": false,
+            "y": false
+          }
+        }
+      },
+      "view-synth": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.synth/releases/download/v0.2.0/view.synth.zip",
+            "entry": "views/view-synth.js"
+          }
+        },
+        "label": "Synth",
+        "group": "Project",
+        "internal": false
+      },
+      "view-nine": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.nine/releases/download/v0.1.1/view.nine.zip",
+            "entry": "views/view-nine.js"
+          }
+        },
+        "label": "Nine-slice",
+        "group": "Project",
+        "internal": false
+      },
+      "tilemap-settings": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.tilemap/releases/download/v0.2.2/view.tilemap-settings.zip",
+            "entry": "views/tilemap-settings.js"
+          }
+        },
+        "label": "Tilemap Settings",
+        "internal": true
+      },
+      "view-props": {
+        "url": {
+          "$file": {
+            "url": "https://github.com/kkgams/view.project-tools/releases/download/v0.2.1/view.props.zip",
+            "entry": "views/view-props.js"
+          }
+        },
+        "label": "Properties",
+        "internal": true
       },
       "files-rename": {
         "url": {
