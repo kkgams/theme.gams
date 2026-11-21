@@ -438,6 +438,52 @@
         border-block-start: 1px solid var(--base-border);
     }
 
+    @media (forced-colors: none) {
+        :is(
+            input:is(:not([type]), [type="text"], [type="number"], [type="search"], [type="url"], [type="email"], [type="password"]),
+            select:not([part~="view-select"], [multiple]):is(:not([size]), [size="1"])
+        ) {
+            background-color: #18110e;
+            border: 1px solid var(--codecraft-field-alert, #8a6334);
+            border-radius: 0;
+            color: var(--text);
+            color-scheme: dark;
+            box-shadow: inset 0 1px 2px #0c0806, inset 0 -1px #4a3525;
+
+            &:hover:not(:disabled) {
+                border-color: var(--codecraft-field-alert, #a37a49);
+            }
+
+            &:focus-visible {
+                outline: 2px solid var(--accent);
+                outline-offset: -2px;
+            }
+
+            &:is(:user-invalid, [aria-invalid="true"], .danger, .danger > *) {
+                --codecraft-field-alert: var(--danger);
+            }
+
+            &:is(:user-invalid, [aria-invalid="true"], .danger, .danger > *):focus-visible {
+                outline-color: var(--danger);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+            }
+        }
+
+        select:not([part~="view-select"], [multiple]):is(:not([size]), [size="1"]) {
+            appearance: none;
+            padding-inline-end: var(--space-6);
+            background-image:
+                linear-gradient(45deg, transparent 50%, #cdb98f 50%),
+                linear-gradient(135deg, #cdb98f 50%, transparent 50%);
+            background-position: right 13px center, right 8px center;
+            background-size: 5px 5px;
+            background-repeat: no-repeat;
+        }
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;
@@ -449,7 +495,7 @@
             select:not([multiple]):is(:not([size]), [size="1"]) {
                 appearance: base-select;
 
-                &[part~="view-select"]::picker-icon {
+                &::picker-icon {
                     display: none;
                 }
 
