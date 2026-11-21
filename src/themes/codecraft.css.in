@@ -369,6 +369,24 @@
     }
 
     @media (forced-colors: none) {
+        /* Crop only the artwork edges shared by adjacent iron buttons. */
+        [slot="header-controls"] [role="buttongroup"] > button:has(> i:only-child) {
+            background-size: calc(100% + var(--codecraft-trim-start, 0px) + var(--codecraft-trim-end, 0px)) 100%;
+            background-position-x: calc(-1 * var(--codecraft-trim-start, 0px));
+
+            &:dir(rtl) {
+                background-position-x: calc(-1 * var(--codecraft-trim-end, 0px));
+            }
+
+            button:has(> i:only-child) + & {
+                --codecraft-trim-start: 1px;
+            }
+
+            &:has(+ button > i:only-child) {
+                --codecraft-trim-end: 1px;
+            }
+        }
+
         view-tooltip {
             padding: var(--space-2);
             border: 1px solid #b18447;
