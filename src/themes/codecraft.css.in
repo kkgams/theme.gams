@@ -92,9 +92,14 @@
             url("data:image/png;base64,{{baguette-r}}") right top / 14px 2400px repeat-y content-box;
     }
 
+    view-popup {
+        padding-block-start: calc(var(--space-6) + 32px);
+    }
+
     view-popup::part(container) {
+        --codecraft-popup-frame-inset: 14px;
         position: relative;
-        padding: 14px;
+        padding: var(--codecraft-popup-frame-inset);
         border: 0;
         box-shadow: var(--shadow);
         overflow: visible;
@@ -177,6 +182,10 @@
         outline-offset: -2px;
     }
 
+    view-popup::part(header) {
+        position: relative;
+    }
+
     view-popup > [slot="title"] {
         min-inline-size: 0;
         overflow-wrap: anywhere;
@@ -252,13 +261,13 @@
     view-popup::part(close) {
         --codecraft-close-size: 32px;
         position: absolute;
-        inset-block-start: -8px;
-        inset-inline-end: -8px;
+        inset-block: 0;
+        inset-inline-end: calc(-8px - var(--codecraft-popup-frame-inset));
         z-index: 2;
         inline-size: var(--codecraft-close-size);
         block-size: var(--codecraft-close-size);
         min-block-size: 0;
-        margin: 0;
+        margin: auto 0;
         padding: 0;
         border: 0;
         border-radius: 50%;
