@@ -407,10 +407,13 @@
         fieldset {
             min-inline-size: 0;
             padding: var(--space-3);
-            border: 2px solid var(--accent);
+            border: 5px solid var(--base-border);
+            border-image: url("data:image/png;base64,{{district-frame}}") 20 / 10px repeat;
         }
 
         fieldset > legend {
+            margin-inline-start: 4px;
+            background: var(--base-bg);
             inline-size: fit-content;
             max-inline-size: 100%;
             padding-inline: var(--space-2);
