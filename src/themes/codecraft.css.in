@@ -718,28 +718,32 @@
             input:is(:not([type]), [type="text"], [type="number"], [type="search"], [type="url"], [type="email"], [type="password"]),
             select:not([part~="view-select"], [multiple]):is(:not([size]), [size="1"])
         ) {
-            background-color: #18110e;
+            background-color: #18121d;
             border: 1px solid var(--codecraft-field-alert, #8a6334);
+            border-image: url("data:image/png;base64,{{district-frame-gold}}") 20 / 5px stretch;
             border-radius: 0;
             color: var(--text);
             color-scheme: dark;
-            box-shadow: inset 0 1px 2px #0c0806, inset 0 -1px #4a3525;
+            box-shadow: inset 0 1px 3px #0e0a12;
 
             &:hover:not(:disabled) {
-                border-color: var(--codecraft-field-alert, #a37a49);
+                background-color: #21182a;
+            }
+
+            --codecraft-field-focus: var(--codecraft-field-alert, var(--accent));
+
+            &:focus {
+                box-shadow: inset 0 1px 3px #0e0a12, 0 0 6px 2px color-mix(in srgb, var(--codecraft-field-focus) 50%, transparent);
             }
 
             &:focus-visible {
-                outline: 2px solid var(--accent);
-                outline-offset: -2px;
+                outline: 1px solid var(--codecraft-field-focus);
+                outline-offset: 1px;
             }
 
             &:is(:user-invalid, [aria-invalid="true"], .danger, .danger > *) {
                 --codecraft-field-alert: var(--danger);
-            }
-
-            &:is(:user-invalid, [aria-invalid="true"], .danger, .danger > *):focus-visible {
-                outline-color: var(--danger);
+                border-image: none;
             }
 
             &:disabled {
