@@ -203,8 +203,6 @@
             min-block-size: 48px;
             padding: 0;
             background: var(--codecraft-header-enamel);
-            border-block-end: 1px solid var(--accent);
-            box-shadow: 0 3px 5px rgb(0 0 0 / 0.45);
         }
 
         view-popup > [slot="title"] {
