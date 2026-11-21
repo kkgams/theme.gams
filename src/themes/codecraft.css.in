@@ -289,6 +289,24 @@
         }
     }
 
+    table.compact-actions:has(> tbody > tr > :is(th, td) > [role="buttongroup"] > button > i:only-child),
+    table:has(> tbody > tr > :is(th, td).compact-actions > button > i:only-child,
+              > tbody > tr > :is(th, td).compact-actions > [role="buttongroup"] > button > i:only-child) {
+        table-layout: auto;
+    }
+
+    :is(table.compact-actions > tbody > tr > :is(th, td), tbody > tr > :is(th, td).compact-actions):has(
+        > button > i:only-child, > [role="buttongroup"] > button > i:only-child
+    ) {
+        inline-size: 1%;
+        padding-block: 0;
+        text-align: center;
+
+        &:last-child {
+            text-align: end;
+        }
+    }
+
     /* Original iron pane-control faces for opt-in icon-only table actions. */
     :is(table.compact-actions > :is(thead, tbody, tfoot) > tr > :is(th, td), td.compact-actions, th.compact-actions)
         > button:has(> i:only-child),
