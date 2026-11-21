@@ -134,6 +134,10 @@
             url("data:image/png;base64,{{cadre-r}}") right top / 14px 2400px repeat-y content-box;
     }
 
+    view-area::part(header) {
+        --codecraft-header-top-cover: var(--codecraft-header-enamel);
+    }
+
     view-area::part(header),
     view-popup::part(header) {
         display: flex;
@@ -144,6 +148,7 @@
         padding-inline: 20px;
         border: 0;
         background:
+            linear-gradient(var(--codecraft-header-top-cover, transparent) 10%, transparent 10%),
             url("data:image/png;base64,{{bandeau-l}}") left center / 20px 100% no-repeat padding-box,
             url("data:image/png;base64,{{bandeau-r}}") right center / 20px 100% no-repeat padding-box,
             url("data:image/png;base64,{{bandeau-m}}") left center / 2400px 100% repeat-x content-box
