@@ -425,6 +425,12 @@
         }
     }
 
+    thead > tr > td > [role="buttongroup"]:only-child:has(> button > i:only-child) {
+        display: flex;
+        justify-content: flex-end;
+        padding: 0;
+    }
+
     /* Share iron faces across toolbars and compact table actions. */
     [slot="header-controls"] button:has(> i:only-child),
     thead > tr > td > [role="buttongroup"]:only-child > button:has(> i:only-child),
