@@ -15,6 +15,7 @@ The original UI slices, adapted frame atlas, tab slices from plaque.png,
 cropped footer slices from poutre-m.png, the tooltip frame cropped from
 heros/nain-artificier-carte.png, and the fieldset atlases assembled from the
 fin, fin-or, and fin-rubis PNG slices retain their MIT license, as do the
-popup title assets cartouche.png and blason.png and the popup header beam
-(poutre-m.png, packaged as popup-header-beam.png).
+popup title assets cartouche.png and blason.png, the popup header beam
+(poutre-m.png, packaged as popup-header-beam.png), and the slider thumb
+(gemme-blocked.png).
 Full copyright and permission terms: licenses/world-of-codecraft.MIT.txt

@@ -763,6 +763,74 @@
         }
     }
 
+    @media (forced-colors: none) {
+        input[type="range"] {
+            --codecraft-slider-thumb: url("data:image/png;base64,{{gemme-blocked}}");
+            /* Center the same 6px gradient in both the 18px thumb and its extended fill. */
+            --codecraft-slider-fill: linear-gradient(transparent 6px, #ff8a83 6px, #d64655 8px, #9b253c 10px, #70152c 12px, transparent 12px);
+            appearance: none;
+            overflow: hidden;
+            min-block-size: 18px;
+            padding: 0;
+            border: 0 solid transparent;
+            border-inline-width: 1px;
+            border-image: linear-gradient(transparent calc(50% - 4px), #ab7839 0, #74502c calc(50% + 4px), transparent 0) 0 1 stretch;
+            background:
+                linear-gradient(#100c15, #24182c) center / 100% 6px no-repeat,
+                linear-gradient(#ab7839, #74502c) center / 100% 8px no-repeat;
+
+            &::-webkit-slider-thumb {
+                appearance: none;
+                width: 18px;
+                height: 18px;
+                border: 0;
+                background:
+                    var(--codecraft-slider-thumb) center / contain no-repeat,
+                    var(--codecraft-slider-fill) var(--codecraft-slider-fill-side, left) center / 50% 100% no-repeat;
+                filter: var(--codecraft-slider-light, none);
+                /* Extend the fill from the moving thumb; the slider clips it at the end cap. */
+                border-image: var(--codecraft-slider-fill) 0 1 / 0 0 0 100vmax / 0 0 0 100vmax stretch;
+            }
+
+            &:dir(rtl)::-webkit-slider-thumb {
+                --codecraft-slider-fill-side: right;
+                border-image-width: 0 100vmax 0 0;
+                border-image-outset: 0 100vmax 0 0;
+            }
+
+            &::-moz-range-progress {
+                height: 6px;
+                background: var(--codecraft-slider-fill) center / 100% 18px no-repeat;
+            }
+
+            &::-moz-range-thumb {
+                width: 18px;
+                height: 18px;
+                border: 0;
+                background: var(--codecraft-slider-thumb) center / contain no-repeat;
+                filter: var(--codecraft-slider-light, none);
+            }
+
+            &:hover:not(:disabled) {
+                --codecraft-slider-light: brightness(1.2);
+            }
+
+            &:active:not(:disabled) {
+                --codecraft-slider-light: brightness(1.35);
+            }
+
+            &:focus-visible {
+                outline: 1px solid var(--accent);
+                outline-offset: 1px;
+                box-shadow: 0 0 6px 2px color-mix(in srgb, var(--accent) 50%, transparent);
+            }
+
+            &:disabled {
+                opacity: 0.6;
+            }
+        }
+    }
+
     /* Keep this inside the select's shadow root so the picker can opt in below. */
     :where(select[part~="view-select"]) {
         appearance: none;
