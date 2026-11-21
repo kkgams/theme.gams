@@ -201,7 +201,7 @@
         view-popup::part(header) {
             flex: none;
             min-block-size: 48px;
-            padding: var(--space-1) 14px;
+            padding: 0;
             background: var(--codecraft-header-enamel);
             border-block-end: 1px solid var(--accent);
             box-shadow: 0 3px 5px rgb(0 0 0 / 0.45);
