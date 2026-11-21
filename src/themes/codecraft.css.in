@@ -208,6 +208,11 @@
             background: var(--codecraft-header-enamel);
         }
 
+        view-popup:not(:has(> [slot="header-controls"]:not(:empty, [hidden])))::part(header) {
+            /* Leave room for the floating plaque below the frame's top edge. */
+            min-block-size: 14px;
+        }
+
         view-popup > [slot="header-controls"] {
             grid-row: 2;
         }
