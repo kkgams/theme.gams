@@ -93,7 +93,8 @@
     }
 
     view-popup {
-        padding-block-start: calc(var(--space-6) + 32px);
+        grid-template-rows: minmax(0, 1fr);
+        padding-block: var(--space-6);
     }
 
     view-popup::part(container) {
