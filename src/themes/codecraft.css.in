@@ -751,6 +751,16 @@
             }
         }
 
+        input[type="number"] {
+            appearance: textfield;
+
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                appearance: none;
+                margin: 0;
+            }
+        }
+
         select:not([part~="view-select"], [multiple]):is(:not([size]), [size="1"]) {
             appearance: none;
             padding-inline-end: var(--space-6);
