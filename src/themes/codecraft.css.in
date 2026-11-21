@@ -9,6 +9,7 @@
         --base-ink: #140e0b;
         --accent: #f2c25a;
         --codecraft-disabled-button-text: #a88f72;
+        --codecraft-header-enamel: #241c2c;
     }
 
     @media (forced-colors: none) {
@@ -139,7 +140,14 @@
             url("data:image/png;base64,{{bandeau-l}}") left center / 20px 100% no-repeat padding-box,
             url("data:image/png;base64,{{bandeau-r}}") right center / 20px 100% no-repeat padding-box,
             url("data:image/png;base64,{{bandeau-m}}") left center / 2400px 100% repeat-x content-box
-            #231b27;
+            var(--codecraft-header-enamel);
+    }
+
+    @media (forced-colors: none) {
+        aside {
+            --codecraft-legend-background: var(--codecraft-header-enamel);
+            background-color: var(--codecraft-header-enamel);
+        }
     }
 
     view-area::part(view-select) {
@@ -421,7 +429,7 @@
 
         fieldset > legend {
             margin-inline-start: 4px;
-            background: var(--base-bg);
+            background: var(--codecraft-legend-background, var(--base-bg));
             inline-size: fit-content;
             max-inline-size: 100%;
             padding-inline: var(--space-2);
