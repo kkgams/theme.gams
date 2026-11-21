@@ -281,6 +281,22 @@
     }
 
     @media (forced-colors: none) {
+        view-tooltip {
+            padding: var(--space-2);
+            border: 1px solid #b18447;
+            background: linear-gradient(#35261c, #241a14);
+            color: var(--base-text);
+            box-shadow: inset 0 1px #765330, 0 4px 12px rgb(0 0 0 / 0.55);
+        }
+
+        view-tooltip[data-tooltip-type="tip"] {
+            padding-inline: var(--space-3);
+        }
+
+        view-tooltip [data-element="tooltip-tip-text"] {
+            margin: 0;
+        }
+
         fieldset {
             min-inline-size: 0;
             padding: var(--space-3);
