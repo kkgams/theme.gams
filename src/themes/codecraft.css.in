@@ -210,7 +210,7 @@
         view-popup > [slot="title"] {
             position: absolute;
             z-index: 2;
-            inset-block-start: calc(var(--codecraft-popup-close-offset) + var(--codecraft-popup-close-size) / 2);
+            inset-block-start: 5px;
             inset-inline: 0;
             translate: 0 -50%;
             align-content: center;
