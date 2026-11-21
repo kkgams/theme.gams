@@ -127,8 +127,7 @@
             url("data:image/png;base64,{{cadre-r}}") right top / 14px 2400px repeat-y content-box;
     }
 
-    view-area::part(header),
-    view-popup::part(header) {
+    view-area::part(header) {
         display: flex;
         align-items: center;
         gap: var(--space-2);
@@ -181,6 +180,73 @@
     view-popup > [slot="title"] {
         min-inline-size: 0;
         overflow-wrap: anywhere;
+    }
+
+    @media (forced-colors: none) {
+        view-popup {
+            --codecraft-legend-background: #241c2c;
+        }
+
+        view-popup::part(container) {
+            background: radial-gradient(ellipse at 42% 36%, #2a2338, #1e192a 65%, #17131f);
+        }
+
+        view-popup::part(header) {
+            flex: none;
+            gap: var(--space-2);
+            min-block-size: 48px;
+            padding: var(--space-1) 14px;
+            border: 0;
+            background: url("data:image/png;base64,{{poutre-ornament}}") left center / 28px 37px repeat-x #2e2016;
+        }
+
+        view-popup > [slot="title"] {
+            position: relative;
+            align-content: center;
+            inline-size: max-content;
+            max-inline-size: 100%;
+            min-block-size: 42px;
+            margin-inline: auto;
+            padding: var(--space-1) 16px;
+            padding-inline-start: 45px;
+            border-image: url("data:image/png;base64,{{cartouche}}") 12 32 fill / 6px 16px stretch;
+            color: var(--base-text);
+            text-align: center;
+
+            &::before {
+                content: "";
+                position: absolute;
+                inset-inline-start: 16px;
+                inset-block: 0;
+                margin-block: auto;
+                inline-size: 25px;
+                block-size: 30px;
+                background: url("data:image/png;base64,{{blason}}") center / contain no-repeat;
+            }
+        }
+
+        view-popup::part(body) {
+            padding: var(--space-3);
+        }
+
+        view-popup footer {
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            align-items: center;
+            padding: var(--space-2) var(--space-3);
+            border-block-start: 1px solid #b18447;
+            background: linear-gradient(#41221d, #2e1717);
+
+            & > output:not(:empty) {
+                flex: 1 1 auto;
+                padding: 0;
+                background: none;
+            }
+
+            & > output:empty {
+                display: none;
+            }
+        }
     }
 
     view-popup::part(close) {
@@ -510,7 +576,7 @@
     @media (forced-colors: none) {
         main > footer,
         :host > footer,
-        :is(view-area, view-popup) > :not([slot]) > footer {
+        view-area > :not([slot]) > footer {
             --codecraft-footer-strap: url("data:image/png;base64,{{poutre-strap}}");
             --codecraft-footer-tile-height: 37px;
             justify-content: space-between;
