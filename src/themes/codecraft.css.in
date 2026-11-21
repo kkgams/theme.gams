@@ -512,22 +512,23 @@
         :host > footer,
         :is(view-area, view-popup) > :not([slot]) > footer {
             --codecraft-footer-strap: url("data:image/png;base64,{{poutre-strap}}");
+            --codecraft-footer-tile-height: 37px;
             justify-content: space-between;
-            min-block-size: 32px;
+            min-block-size: var(--codecraft-footer-tile-height);
             padding-inline: var(--space-2);
-            background: url("data:image/png;base64,{{poutre-ornament}}") left top / 28px 32px repeat var(--surface);
+            background: url("data:image/png;base64,{{poutre-ornament}}") left top / 28px var(--codecraft-footer-tile-height) repeat var(--surface);
 
             & > output {
                 flex: 0 1 auto;
                 align-self: stretch;
                 align-content: center;
-                min-block-size: 32px;
+                min-block-size: var(--codecraft-footer-tile-height);
                 padding: var(--space-2) 18px;
                 background:
-                    var(--codecraft-footer-strap) left center / 14px 100% no-repeat,
-                    var(--codecraft-footer-strap) right center / 14px 100% no-repeat,
+                    var(--codecraft-footer-strap) left top / 14px var(--codecraft-footer-tile-height) repeat-y,
+                    var(--codecraft-footer-strap) right top / 14px var(--codecraft-footer-tile-height) repeat-y,
                     linear-gradient(rgb(18 12 10 / 0.6), rgb(18 12 10 / 0.6)),
-                    url("data:image/png;base64,{{poutre-plain}}") left center / 3px 100% repeat-x;
+                    url("data:image/png;base64,{{poutre-plain}}") left top / 3px var(--codecraft-footer-tile-height) repeat;
             }
 
             /* An empty live output should not take up room in the flex row. */
