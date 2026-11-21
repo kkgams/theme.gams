@@ -8,6 +8,7 @@
         --base-text-muted: #cdb98f;
         --base-ink: #140e0b;
         --accent: #f2c25a;
+        --codecraft-disabled-button-text: #a88f72;
     }
 
     @media (forced-colors: none) {
@@ -227,6 +228,13 @@
     }
 
     @media (forced-colors: none) {
+        [slot="header-controls"] button:is(:disabled, [aria-disabled="true"]) {
+            color: var(--codecraft-disabled-button-text);
+            background: var(--surface);
+            border-color: var(--base-border);
+            cursor: default;
+        }
+
         button:not([part~="close"], [slot="header-controls"], [slot="header-controls"] *, [role="tablist"] > [role="tab"]),
         thead > tr > th[scope="col"][role="button"]:is([aria-pressed], [aria-selected]) {
             --codecraft-button-art: url("data:image/png;base64,{{btn-n-l}}"), url("data:image/png;base64,{{btn-n-r}}"), url("data:image/png;base64,{{btn-n-m}}");
@@ -260,11 +268,11 @@
                 --codecraft-button-art: url("data:image/png;base64,{{btn-or-n-l}}"), url("data:image/png;base64,{{btn-or-n-r}}"), url("data:image/png;base64,{{btn-or-n-m}}");
             }
 
-            &.danger:hover:enabled {
+            &.danger:hover:not(:disabled, [aria-disabled="true"]) {
                 --codecraft-button-art: url("data:image/png;base64,{{btn-or-h-l}}"), url("data:image/png;base64,{{btn-or-h-r}}"), url("data:image/png;base64,{{btn-or-h-m}}");
             }
 
-            &.danger:active:enabled {
+            &.danger:active:not(:disabled, [aria-disabled="true"]) {
                 --codecraft-button-art: url("data:image/png;base64,{{btn-or-p-l}}"), url("data:image/png;base64,{{btn-or-p-r}}"), url("data:image/png;base64,{{btn-or-p-m}}");
             }
 
@@ -273,8 +281,9 @@
                 outline-offset: -2px;
             }
 
-            &:disabled {
-                opacity: 0.55;
+            &:is(:disabled, [aria-disabled="true"]) {
+                color: var(--codecraft-disabled-button-text);
+                opacity: 0.75;
                 cursor: default;
             }
         }
