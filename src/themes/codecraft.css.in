@@ -379,11 +379,11 @@
             }
 
             button:has(> i:only-child) + & {
-                --codecraft-trim-start: 1px;
+                --codecraft-trim-start: 2px;
             }
 
             &:has(+ button > i:only-child) {
-                --codecraft-trim-end: 1px;
+                --codecraft-trim-end: 2px;
             }
         }
 
